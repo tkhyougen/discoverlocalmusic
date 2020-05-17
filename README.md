@@ -21,6 +21,7 @@ https://cacoo.com/diagrams/56CCE08v2xbxbKSK/86245
 https://docs.google.com/spreadsheets/d/1ViRNdom4mMu-KTN0M29tJE90dhl5rVygPVR3cg8nozY/edit?usp=sharing
 
 ## 使用予定Gem
+AWS
 devise  (login/out)  
 kaminari (paginate)  
 spec-Rails (test)  
