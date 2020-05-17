@@ -21,11 +21,11 @@ https://cacoo.com/diagrams/56CCE08v2xbxbKSK/86245
 https://docs.google.com/spreadsheets/d/10ROOc1jR2QuMZUO-KRwHttO4iNQiT25K/edit#gid=1924254820
 
 ## 使用予定Gem
-*devise  (login/out)
-*kaminari (paginate)
-*spec-Rails (test)
-*google maps API
-*google/api_client (youtube)
-*carrierwave  (image upload)
-*mini_magick  (image resize)
+devise  (login/out)
+kaminari (paginate)
+spec-Rails (test)
+google maps API
+google/api_client (youtube)
+carrierwave  (image upload)
+mini_magick  (image resize)
 etc
