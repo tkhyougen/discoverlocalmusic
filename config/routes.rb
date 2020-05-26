@@ -1,3 +1,15 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  devise_scope :user do
+    root "devise/registrations#new"
+  end
+
+
+  devise_for :users, controllers: {
+    registrations: "devise/registrations",
+    sessions: "devise/sessions",
+  }
+
+  #usersのshow indexへのルーティングを追加する。deviseにはないため
+  resources :users, only: [:show,:index]
 end

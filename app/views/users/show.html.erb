@@ -1,0 +1,22 @@
+<div class ="container_user_profile">
+  <div class="user_profile_upper">
+    <div class="user_profile_higher_left">
+      <div class="user_profile_image">
+        <%= image_tag @user.image.thumb.url if @user.image.present? %>
+      </div>
+    </div>
+
+    <div class="user_profile_higer_right">
+      <div class="user_name">
+        <p>ユーザー名<%= @user.name %></p>
+      </div>
+      <div class="user_email">
+        <p>Emailアドレス<%= @user.email %><p>
+      </div>
+      <div class="user_comment">
+        <p><%= @user.comment%><p>
+      </div>
+    </div>
+  </div>
+
+</div>

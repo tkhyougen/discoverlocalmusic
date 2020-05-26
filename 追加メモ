@@ -1,0 +1,65 @@
+http://localhost:3000/
+
+
+例：
+ログインユーザーのみがブログ投稿できる。未ログインでも一覧表示は閲覧可能
+
+class BlogsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+  def new
+  end
+  def create
+  end
+  def index
+  end
+end
+
+
+##フォームの例
+
+<%= form_with(model: @xxxx) do |form| %>
+  <div class="blog_title">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="blog_content">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+  <%= form.submit %>
+<% end %>
+
+###each
+<% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.title %></td>
+    <td><%= blog.content %></td>
+  </tr>
+<% end %>
+
+
+##bootstrap
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#gnavi">
+        <span class="sr-only">Bootstrap</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Bootstrap
+      </a>
+    </div>
+    <div id="gnavi" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="">top</a></li>
+        <li><a href="">menu1</a></li>
+        <li><a href="">menu2</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+#### アセットコンパイル
+rails assets:precompile RAILS_ENV=production

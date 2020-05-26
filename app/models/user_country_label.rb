@@ -1,0 +1,2 @@
+class UserCountryLabel < ApplicationRecord
+end
