@@ -13,6 +13,10 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+
+// https://diver.diveintocode.jp/curriculums/1265
+//= require jquery_ujs
+
 //= require jquery/dist/jquery.js
 //= require bootstrap/dist/js/bootstrap.min
 //= require_tree .

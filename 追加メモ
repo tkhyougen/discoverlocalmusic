@@ -63,3 +63,5 @@ end
 
 #### アセットコンパイル
 rails assets:precompile RAILS_ENV=production
+
+###デプロイ前には例外処理

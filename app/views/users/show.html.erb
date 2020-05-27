@@ -2,7 +2,7 @@
   <div class="user_profile_upper">
     <div class="user_profile_higher_left">
       <div class="user_profile_image">
-        <%= image_tag @user.image.thumb.url if @user.image.present? %>
+        <%= image_tag @user.image.thumb.url if @user.image.present? && @user.image.url.present? %>
       </div>
     </div>
 

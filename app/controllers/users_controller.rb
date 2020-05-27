@@ -12,4 +12,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :image, :image_cache, :comment, :password, :password_confirmation)
+  end
+
 end
