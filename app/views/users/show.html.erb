@@ -1,4 +1,5 @@
 <div class ="container_user_profile">
+  <p>マイページ画面</p>
   <div class="user_profile_upper">
     <div class="user_profile_higher_left">
       <div class="user_profile_image">
@@ -14,9 +15,14 @@
         <p>Emailアドレス<%= @user.email %><p>
       </div>
       <div class="user_comment">
-        <p><%= @user.comment%><p>
+        <p>コメント<p>
+        <p><%= @user.comment %></p>
       </div>
     </div>
+  </div>
+
+  <div class ="user_profile_lower">
+    <p><%= link_to "編集する", edit_user_registration_path(current_user.id) %></p>
   </div>
 
 </div>

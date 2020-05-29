@@ -68,3 +68,4 @@ gem "devise"
 gem "devise-i18n"
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'bcrypt', '3.1.13'

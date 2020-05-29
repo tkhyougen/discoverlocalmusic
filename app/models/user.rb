@@ -4,10 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :name, presence: true, length:{ maximum:20 }
-  validates :email, presence: true, uniqueness: true
+
+  #emailをすべて小文字に強制変換
+  before_validation {email.downcase!}
+  validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :comment, length:{ maximum:255 }
 
+
+  #以下アソシエーション
   has_many :user_country_labellings, dependent: :destroy
   has_many :user_country_labelling_user_country_labels, through: :user_country_labellings, source: :user_country_label
-  mount_uploader :iamge, ImageUploader
+  mount_uploader :image, ImageUploader
 end

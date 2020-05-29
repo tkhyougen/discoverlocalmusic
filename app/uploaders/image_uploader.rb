@@ -5,12 +5,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   # MiniMagickをincludeすると画像サイズ調整ができるようになる
   include CarrierWave::MiniMagick
 
+  process :resize_to_fill => [200,200]
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
-
-
-  process :resize_to_limit => [400, 400]
 
   version :thumb do
     process :resize_to_fill => [200, 200]

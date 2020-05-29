@@ -62,6 +62,21 @@ end
 </nav>
 
 #### アセットコンパイル
+
+
 rails assets:precompile RAILS_ENV=production
 
 ###デプロイ前には例外処理
+
+###application.js 下記だとエラー
+//= require rails-ujs
+//= require activestorage
+//= require jquery
+//= require turbolinks
+
+// https://diver.diveintocode.jp/curriculums/1265
+//= require jquery_ujs
+
+//= require jquery/dist/jquery.js
+//= require bootstrap/dist/js/bootstrap.min
+//= require_tree .

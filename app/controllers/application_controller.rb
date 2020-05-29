@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # csrf
   protect_from_forgery with: :exception
+  
 
 
   # 下のdef configure..を実行

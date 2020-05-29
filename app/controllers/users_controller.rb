@@ -8,14 +8,13 @@ class UsersController < ApplicationController
   end
 
   def index
-    binding.pry
     @users = User.all
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :image, :image_cache, :comment, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :image, :image_cache, :remove_image, :comment, :password, :password_confirmation)
   end
 
 end

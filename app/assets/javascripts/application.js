@@ -13,10 +13,23 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-
-// https://diver.diveintocode.jp/curriculums/1265
-//= require jquery_ujs
-
 //= require jquery/dist/jquery.js
 //= require bootstrap/dist/js/bootstrap.min
 //= require_tree .
+
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#image_preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#user_image").change(function(){
+        readURL(this);
+    });
+  });
+</script>

@@ -20,11 +20,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    # super
     @user = User.new(user_params)
     if @user.save
-      # sign_in @user
-      binding.pry
+      sign_in @user
       redirect_to user_path(@user.id), notice:"ログインしました"
     else
       render :new

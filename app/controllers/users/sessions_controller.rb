@@ -8,9 +8,21 @@ class Users::SessionsController < Devise::SessionsController
     super
   end
 
-  # POST /users/sign_in
+
   def create
-    super
+    binding.pry
+    # super
+    user = User.find_by(email: params[:user][:email].downcase)
+    current_user = user
+    redirect_to user_path(user.id), notice:"riguin"
+    # user = User.find_by(email: params[:user][:email].downcase)
+    # if user.find_by(params[:user][:password])
+    #   session[:user_id] = user.id
+    #   redirect_to user_path(user.id), notice:"ろぐいんしました"
+    # else
+    #   flash.now[:danger] = "ログインに失敗しました"
+    #   render :new
+    # end
   end
 
   # DELETE /users/sign_out
