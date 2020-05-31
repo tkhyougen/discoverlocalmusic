@@ -9,23 +9,23 @@
     <% if @user.image.url %>
       <%= image_tag @user.image.url(:thumb), id: :image_preview %>
     <% else %>
-      <%# <%= image_tag "sample.jpg", id: :image_preview %> %>
+
     <% end %>
     <%= f.file_field :image, id: :user_image %>
-    <script type ="text/javascript">
+    <script type="text/javascript">
       $(function(){
-        function readURL(input){
+      function readURL(input){
         if(input.files && input.files[0]){
-        var reader = new FileReader();
-        reader.onload = function (e) {
-          $('#image_preview').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $('#image_preview').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
         }
       }
       $('#user_image').change(function(){
         readURL(this);
-      });
+        });
       });
     </script>
     <p><%= f.check_box :remove_image %>画像を削除</p>
@@ -47,16 +47,15 @@
   </div>
 
   <!-- #taggableにて追加 -->
-  <div class="field">
+  <div class="field", id='tag_list1'>
     <%= f.label :usercountry_list %><br />
     <%= f.text_field :usercountry_list, value: @user.usercountry_list.join(","), class:"form-control" %>
   </div>
-
-  <div class="field">
+    <!-- #taggableにて追加 -->
+  <div class="field", id='tag_list2'>
     <%= f.label :userartist_list %><br />
     <%= f.text_field :userartist_list, value: @user.userartist_list.join(","), class:"form-control" %>
   </div>
-
 
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -92,3 +91,10 @@
 <p><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
 
 <%= link_to t('devise.shared.links.back'), :back %>
+
+<!-- taggableにて追加 -->
+<%= javascript_tag do %>
+var myProject = {
+  all_tag_list: <%= raw @all_tag_list %>
+};
+<% end %>
