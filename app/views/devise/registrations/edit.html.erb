@@ -1,7 +1,35 @@
 <h2><%= t('.title', resource: resource.model_name.human) %></h2>
 
-<%= form_for(resource, as: resource_name, url: user_registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+  <!-- #画像を編集する -->
+  <div class="field>
+    <p><%= f.label :写真 %></p>
+    <% if @user.image.url %>
+      <%= image_tag @user.image.url(:thumb), id: :image_preview %>
+    <% else %>
+      <%# <%= image_tag "sample.jpg", id: :image_preview %> %>
+    <% end %>
+    <%= f.file_field :image, id: :user_image %>
+    <script type ="text/javascript">
+      $(function(){
+        function readURL(input){
+        if(input.files && input.files[0]){
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('#image_preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $('#user_image').change(function(){
+        readURL(this);
+      });
+      });
+    </script>
+    <p><%= f.check_box :remove_image %>画像を削除</p>
+  </div>
 
   <div class="field">
     <%= f.label :name %><br />
@@ -39,12 +67,6 @@
   <div class="field">
     <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <!-- #画像を編集する -->
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
   </div>
 
   <div class="actions">
