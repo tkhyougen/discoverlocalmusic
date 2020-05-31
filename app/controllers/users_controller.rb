@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # before_action :authenticate_user!, only:[:show,:index]
 
   def show
+    binding.pry
     @user = User.find(params[:id])
   end
 

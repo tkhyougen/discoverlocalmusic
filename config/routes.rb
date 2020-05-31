@@ -1,20 +1,18 @@
 Rails.application.routes.draw do
 
-  # devise_scope :user do
-  #   root "users/registrations#new"
-  # end
-  
-
 
   devise_for :users, controllers: {
-    registrations: "users/registrations",
-    sessions: "users/sessions"
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
-  # registrations: "devise/registrations",
-  # sessions: "devise/sessions"
+  # root "users#index"
 
   #usersのshow indexへのルーティングを追加する。deviseにはないため
   resources :users, only: [:show,:index]
+
+  devise_scope :user do
+    root "users/registrations#new"
+  end
 
 
 
