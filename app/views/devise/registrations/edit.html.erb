@@ -46,6 +46,14 @@
     <%= f.text_area :comment, autofocus: true %>
   </div>
 
+  <!-- #taggableにて追加 -->
+  <div class="field">
+    <%= f.label :usercountry_list %><br />
+    <%= f.text_field :usercountry_list, value: @user.usercountry_list.join(","), class:"form-control" %>
+  </div>
+
+
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
   <% end %>
