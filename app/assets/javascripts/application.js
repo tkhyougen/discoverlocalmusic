@@ -17,9 +17,10 @@
 //= require tag-it
 //= require activestorage
 //= require turbolinks
-//= require jquery/dist/jquery.js
-//= require bootstrap/dist/js/bootstrap.min
+// require jquery/dist/jquery.js
+// require bootstrap/dist/js/bootstrap.min
 //= require_tree .
+
 
 <script type="text/javascript">
   $(function() {

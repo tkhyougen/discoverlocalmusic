@@ -74,12 +74,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
   # end
   def after_sign_up_path_for(resource)
-    binding.pry
     user_path(resource)
   end
   # The path used after sign up.
   def after_update_path_for(resource)
-    binding.pry
     user_path(resource)
   end
   # If you have extra params to permit, append them to the sanitizer.

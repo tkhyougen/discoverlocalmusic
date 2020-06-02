@@ -49,13 +49,26 @@
   <!-- #taggableにて追加 -->
   <div class="field", id='tag_list1'>
     <%= f.label :usercountry_list %><br />
-    <%= f.text_field :usercountry_list, value: @user.usercountry_list.join(","), class:"form-control" %>
+    <%= f.text_field :usercountry_list, value: @user.usercountry_list.join(","), class:"form-control"  %>
   </div>
     <!-- #taggableにて追加 -->
-  <div class="field", id='tag_list2'>
+  <div class="field">
     <%= f.label :userartist_list %><br />
-    <%= f.text_field :userartist_list, value: @user.userartist_list.join(","), class:"form-control" %>
+    <ul id ="tag_list2">
+      <li>
+        <%= f.text_field :userartist_list, value: @user.userartist_list.join(","), class:"form-control"  %>
+      </li>
+    </ul>
   </div>
+
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $("tag_list2").tagit();
+      });
+  </script>
+
+
+
 
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

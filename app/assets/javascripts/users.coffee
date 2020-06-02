@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
+
+
   $(document).on 'ready page:load', ->
     $('#tag_list1').tagit()
       # singleField: true,
@@ -10,5 +12,6 @@
 
   $(document).on 'ready page:load', ->
     $('#tag_list2').tagit()
-      # singleField: true,
-      # availableTags: myProject.all_tag_list
+      fieldName: 'user[tag_list]'
+      singleField: true,
+      availableTags: myProject.all_tag_list
