@@ -15,10 +15,13 @@ class User < ApplicationRecord
   has_many :user_country_labellings, dependent: :destroy
   has_many :user_country_labelling_user_country_labels, through: :user_country_labellings, source: :user_country_label
 
+    #user.localartists
+  has_many :localartists
+
   #画像アップロード
   mount_uploader :image, ImageUploader
 
   #acts-as-tagable gemで以下のラベルを追加
-  acts_as_taggable
+  # acts_as_taggable
   acts_as_taggable_on :usercountrys, :userartists
 end

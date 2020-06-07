@@ -12,7 +12,7 @@
 
     <% end %>
     <%= f.file_field :image, id: :user_image %>
-    <script type="text/javascript">
+    <script>
       $(function(){
       function readURL(input){
         if(input.files && input.files[0]){
@@ -47,10 +47,21 @@
   </div>
 
   <!-- #taggableにて追加 -->
-  <div class="field", id='tag_list1'>
+  <div class="field">
     <%= f.label :usercountry_list %><br />
-    <%= f.text_field :usercountry_list, value: @user.usercountry_list.join(","), class:"form-control"  %>
+    <ul id ="tag_list1">
+      <li>
+        <%= f.text_field :usercountry_list, value: @user.usercountry_list.join(","), class:"form-control"  %>
+      </li>
+    </ul>
   </div>
+
+  <!-- <script type="text/javascript">
+      $(document).ready(function() {
+          $("tag_list1").tagit();
+      });
+  </script> -->
+
     <!-- #taggableにて追加 -->
   <div class="field">
     <%= f.label :userartist_list %><br />
@@ -61,15 +72,11 @@
     </ul>
   </div>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
       $(document).ready(function() {
           $("tag_list2").tagit();
       });
-  </script>
-
-
-
-
+  </script> -->
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
@@ -106,8 +113,3 @@
 <%= link_to t('devise.shared.links.back'), :back %>
 
 <!-- taggableにて追加 -->
-<%= javascript_tag do %>
-var myProject = {
-  all_tag_list: <%= raw @all_tag_list %>
-};
-<% end %>

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'localartists/index'
+  get 'localartists/show'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
   end
 
 
-
+  resources :localartists
 
   #中間テーブルuser_country_labellingsのcreateとdestroyを有効か
   resources :user_country_labellings, only: [:create, :destroy]
