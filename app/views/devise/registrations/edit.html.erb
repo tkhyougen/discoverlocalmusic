@@ -47,13 +47,9 @@
   </div>
 
   <!-- #taggableにて追加 -->
-  <div class="field">
+  <div class="field" id ="tag_lsit1">
     <%= f.label :usercountry_list %><br />
-    <ul id ="tag_list1">
-      <li>
-        <%= f.text_field :usercountry_list, value: @user.usercountry_list.join(","), class:"form-control"  %>
-      </li>
-    </ul>
+    <%= f.text_field :usercountry_list, value: @user.usercountry_list.join(","), class:"form-control"  %>
   </div>
 
   <!-- <script type="text/javascript">
