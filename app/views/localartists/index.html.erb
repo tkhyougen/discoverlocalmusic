@@ -1,15 +1,11 @@
+
+
+
+
+<%# 検索テーブル %>
+
+
 <h1>アーティスト一覧</h1>
-
-
-
-
-
-
-
-
-
-
-
 
   <% @localartists.each do |localartist| %>
     <div class="col mb-4">
@@ -18,7 +14,7 @@
           <% if localartist.image? %>
             <%= image_tag "#{localartist.image}",:size =>'100x100' ,class:"card-img-top" %>
             <%= localartist.name %>
-            #クリックするとshowに飛ぶようにしたい
+            <%# #クリックするとshowに飛ぶようにしたい %>
           <% else %>
             <%= image_tag 'default.jpg',:size =>'100x100' ,class:"card-img-top" %>
             <%= localartist.name %>
@@ -26,8 +22,8 @@
         </div>
       </div>
 
-        <div class="row d-flex justify-content-center">
-        </div>
+      <div class="row d-flex justify-content-center">
+      </div>
 
     </div>
   <% end %>

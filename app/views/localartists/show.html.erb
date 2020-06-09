@@ -2,6 +2,10 @@
 <!-- お気に入りボタン
 編集ボタン
  -->
+ <%= link_to "情報を編集する", edit_localartist_path(id) %>
+ <%= link_to "削除する", localartist_path(@localartist.id), method: :delete,
+ data: { confirm: '本当に削除していいですか？' } %>
+
 
   <div class="image">
     <% if @localartist.image.url %>

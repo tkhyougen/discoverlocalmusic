@@ -47,16 +47,10 @@
   </div>
 
   <!-- #taggableにて追加 -->
-  <div class="field" id ="tag_lsit1">
+  <div class="field" id="tag_list1">
     <%= f.label :usercountry_list %><br />
     <%= f.text_field :usercountry_list, value: @user.usercountry_list.join(","), class:"form-control"  %>
   </div>
-
-  <!-- <script type="text/javascript">
-      $(document).ready(function() {
-          $("tag_list1").tagit();
-      });
-  </script> -->
 
     <!-- #taggableにて追加 -->
   <div class="field">
@@ -68,11 +62,6 @@
     </ul>
   </div>
 
-  <!-- <script type="text/javascript">
-      $(document).ready(function() {
-          $("tag_list2").tagit();
-      });
-  </script> -->
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>

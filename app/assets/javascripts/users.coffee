@@ -1,11 +1,11 @@
-$(document).on 'ready page:load', ->
-  $('#tag_list1').tagit()
+# $(document).on 'ready page:load', ->
+#   $('#tag_list1').tagit()
 
-
-$(document).on 'ready page:load', ->
-  $('#tag_list1').tagit
-    fieldName: 'user[usercountry_list]'
-    singleField: true
+#
+# $(document).on 'ready page:load', ->
+#   $('#tag_list1').tagit
+#     fieldName: 'user[usercountry_list]'
+#     singleField: true
     # availableTags: myProject.all_tag_list
 
 

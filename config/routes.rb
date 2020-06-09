@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   end
 
 
-  resources :localartists
+  resources :localartists do
+    collection do
+      post :confirm
+    end
+  end
 
   #中間テーブルuser_country_labellingsのcreateとdestroyを有効か
   resources :user_country_labellings, only: [:create, :destroy]
