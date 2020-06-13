@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys:[:name])
     devise_parameter_sanitizer.permit(:account_update, keys:[:image])
     devise_parameter_sanitizer.permit(:account_update, keys:[:comment])
+    devise_parameter_sanitizer.permit(:account_update, keys:[:country_list])
+    devise_parameter_sanitizer.permit(:account_update, keys:[:artist_list])
+    devise_parameter_sanitizer.permit(:account_update, keys:[:remove_image])
+    devise_parameter_sanitizer.permit(:account_update, keys:[:tag_list])
   end
 
 

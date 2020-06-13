@@ -1,0 +1,40 @@
+<h3>以下の内容で、送信する。</h3>
+<%= form_with(model: @localartist, local: true ) do |form| %>
+
+  <div class="image">
+    <br />
+    <p><%= form.label :写真 %></p>
+    <% if @localartist.image %>
+      <%= image_tag(@localartist.image.thumb.url) if @localartist.image && @localartist.image.url %>
+    <% end %>
+  </div>
+
+  <div class="name">
+    <%= form.hidden_field :name %>
+    <p>アーティスト名：<%= @localartist.name %> </p>
+  </div>
+
+  <div class="country">
+    <%= form.hidden_field :country %>
+    <p>出身国：<%= @localartist.country %> </p>
+  </div>
+
+  <div class="wholikes">
+    <%= form.hidden_field :tag_list %>
+    <% @localartist.tag_list.each do |tag| %>
+      <span><%= tag %></span>
+    <% end %>
+  </div>
+
+  <div class="comment">
+    <%= form.hidden_field :post_comment %>
+    <p>コメント：<%= @localartist.post_comment %></p>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "投稿する" %>
+  </div>
+
+  <%= form.submit '戻る', name:"back"%>
+
+<% end %>
