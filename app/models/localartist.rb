@@ -1,4 +1,6 @@
 class Localartist < ApplicationRecord
-  #アソシエーション　ex.localartits.user.name
+  #アソシエーション　ex.localartists.user.name
   belongs_to :user
+
+  acts_as_taggable
 end

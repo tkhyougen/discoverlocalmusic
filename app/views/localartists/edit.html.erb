@@ -28,11 +28,13 @@
   </div>
 
   <div class="country">
-      <!-- #taggableで追加できるようにする paramsも追加-->
+      <%= form.label :国 %>
+      <%= form.text_field :country, class:"form-control" %>
   </div>
 
   <div class="wholikes">
-      <!-- #taggableで追加できるようにする paramsも追加-->
+    <%= form.label :tag_list, "このｱｰﾃｨｽﾄが好きな人にｵｽｽﾒ" %><br />
+    <%= form.text_field :tag_list,placeholder:"で区切って下さい", value: @localartist.tag_list.join(","),class:"form-control"  %>
   </div>
 
   <div class="comment">

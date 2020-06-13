@@ -20,7 +20,10 @@
   </div>
 
   <div class="wholikes">
-      <!-- #taggableで追加できるようにする paramsも追加-->
+    <%= form.hidden_field :tag_list %>
+    <% @localartist.tag_list.each do |tag| %>
+      <span><%= tag %></span>
+    <% end %>
   </div>
 
   <div class="comment">

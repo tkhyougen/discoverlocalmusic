@@ -56,7 +56,7 @@ class LocalartistsController < ApplicationController
   private
 
   def localartist_params
-    params.require(:localartist).permit(:image, :name, :comment,:country, :post_comment)
+    params.require(:localartist).permit(:image, :name, :comment,:country, :post_comment, :tag_list)
   end
 
   def set_localartist
