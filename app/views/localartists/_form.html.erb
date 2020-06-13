@@ -16,20 +16,20 @@
   <div class="image">
     <br />
     <p><%= form.label :写真 %></p>
-    <% if @localartist.image.url %>
+    <% if @localartist.image %>
       <%= image_tag(@localartist.image.thumb.url) if @localartist.image && @localartist.image.url %>
     <% end %>
-      <%= form.file_field :image, "画像をアップロード" %>
+      <%= form.file_field :image  %>
   </div>
 
   <div class="name">
     <%= form.label :アーティスト名 %>
-    <%= form.form_field :name, class:"form-control" %>
+    <%= form.text_field :name, class:"form-control" %>
   </div>
 
   <div class="country">
-      <!-- #taggableで追加できるようにする  paramsも追加 -->
-  </div>
+    <%= form.label :国 %>
+    <%= form.text_field :country, class:"form-control" %>
 
   <div class="wholikes">
       <!-- #taggableで追加できるようにする paramsも追加-->
@@ -37,7 +37,7 @@
 
   <div class="comment">
     <%= form.label :コメント %>
-    <%= form.text_field :comment, placeholder:"自由にコメントしてください", class:"form-control" %>
+    <%= form.text_area :post_comment, placeholder:"自由にコメントしてください", class:"form-control" %>
   </div>
 
   <div class="actions">

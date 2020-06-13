@@ -6,12 +6,16 @@ class LocalartistsController < ApplicationController
   end
 
   def new
+    if params[:back]
+    @localartist = Localartist.new(localartist_params)
+    else
     @localartist = Localartist.new
+    end
   end
 
   def confirm
     @localartist = Localartist.new(localartist_params)
-    @localartist.user.id = current_user.id
+    @localartist.user_id = current_user.id
     render :new if @localartist.invalid?
   end
 
@@ -21,7 +25,7 @@ class LocalartistsController < ApplicationController
     if params[:back]
       render :new
     else
-      if @localaritst.save
+      if @localartist.save!
         redirect_to localartists_path, notice:"作成しました"
       else
         render :new
@@ -30,11 +34,11 @@ class LocalartistsController < ApplicationController
   end
 
   def edit
-    #ser_localrtist
+    #set_localrtist
   end
 
   def update
-    #ser_localrtist
+    #set_localrtist
     @localartist.update(localartist_params)
     redirect_to localartists_path, notice: "情報を編集しました！"
   end
@@ -52,7 +56,7 @@ class LocalartistsController < ApplicationController
   private
 
   def localartist_params
-    params.require(:localartist).permit(:image, :name, :comment)
+    params.require(:localartist).permit(:image, :name, :comment,:country, :post_comment)
   end
 
   def set_localartist

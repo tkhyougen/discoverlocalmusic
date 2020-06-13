@@ -98,7 +98,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :image, :image_cache, :comment,:password, :password_confirmation,:tag_list,:usercountry_list,:userartist_list)
+    params.require(:user).permit(:name, :email, :image, :image_cache, :comment,:password, :password_confirmation,:tag_list,:country_list,:artist_list)
   end
 
 end

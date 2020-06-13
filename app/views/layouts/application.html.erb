@@ -28,6 +28,10 @@
             $("#tag_list1").tagit();
         });
 
+      $(document).ready(function() {
+            $("#tag_list2").tagit();
+        });
+
     </script>
 
   </head>
@@ -44,8 +48,8 @@
       <div class="header-right">
         <% if user_signed_in? %>
           <%= current_user.name %>
-          <%= link_to "投稿する", user_path(current_user.id) %>
-          <%= link_to "探す",user_path(current_user.id)  %>
+          <%= link_to "投稿する", new_localartist_path %>
+          <%= link_to "探す",localartists_path(current_user.id)  %>
           <%= link_to "マイページ",user_path(current_user.id) %>
           <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
         <% else %>
