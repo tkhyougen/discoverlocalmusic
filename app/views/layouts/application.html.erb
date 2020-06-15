@@ -1,28 +1,55 @@
 <!DOCTYPE html>
-<html>
+
+ <html>
+
   <head>
+
     <title>Discoverlocalmusic</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-  <!--スマホサイズに反映できるようにする -->
+
+        <!--スマホサイズに反映できるようにする -->
+
     <meta name="viewport" content="width=device-width">
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script> -->
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    <script src="user.js"></script> -->
+
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> -->
+
+    <script>
+      $(document).ready(function() {
+            $("#tag_list1").tagit();
+        });
+
+      $(document).ready(function() {
+            $("#tag_list2").tagit();
+        });
+
+    </script>
+
   </head>
 
-  <body>
-  <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
-  </script> -->
+
+   <body>
+
+
     <header>
       <div class="header-left">
         <a>Discover Local Music </a>
       </div>
+
       <div class="header-right">
         <% if user_signed_in? %>
           <%= current_user.name %>
-          <%= link_to "投稿する", user_path(current_user.id) %>
-          <%= link_to "探す",user_path(current_user.id)  %>
+          <%= link_to "投稿する", new_localartist_path %>
+          <%= link_to "探す",localartists_path(current_user.id)  %>
           <%= link_to "マイページ",user_path(current_user.id) %>
           <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
         <% else %>
@@ -32,7 +59,8 @@
       </div>
 
     </header>
-    <!-- noticeとalertを挿入 -->
+
+      <!-- noticeとalertを挿入 -->
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% end %>
@@ -41,6 +69,8 @@
     <% end %>
 
     <%= yield %>
+
+
   </body>
 
   <footer>

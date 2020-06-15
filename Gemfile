@@ -69,3 +69,6 @@ gem "devise-i18n"
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'bcrypt', '3.1.13'
+gem 'acts-as-taggable-on', '~> 6.0'
+gem "jquery-ui-rails"
+gem 'jquery-rails', '4.3.1'

@@ -1,0 +1,52 @@
+
+<!-- お気に入りボタン
+編集ボタン
+ -->
+ <%= link_to "情報を編集する", edit_localartist_path(@localartist.id) %>
+ <%= link_to "削除する", localartist_path(@localartist.id), method: :delete,
+ data: { confirm: '本当に削除していいですか？' } %>
+
+
+
+
+  <div class="image">
+    <% if @localartist.image.present? %>
+      <%= image_tag(@localartist.image.thumb,:size => "100x100") if @localartist.image.present? %>
+    <% else %>
+      <%= image_tag 'default.jpg',:size =>'100x100' ,class:"card-img-top" %>
+    <% end %>
+  </div>
+
+  <div class="comment">
+    <p>投稿者<%=@localartist.user.name %>のコメント</p>
+    <p><%=@localartist.post_comment %> </p>
+  </div>
+
+  <div class="name">
+    <p>アーティスト名 <%=@localartist.name %>  </p>
+  </div>
+
+  <div class="country">
+    <p>国名 <%= @localartist.country %></p>
+  </div>
+
+  <div class="wholikes">
+    <p>  </p>
+  </div>
+
+  <!-- Youtube ApI
+
+  他ユーザーコメント -->
+  <p>コメント一覧</p>
+ <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+  <div id="comments_area">
+   <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+    <%= render partial: 'comments/index', locals: { comments: @comments, localartist: @localartist } %>
+  </div>
+    <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+    <%= render partial: 'comments/form', locals: { comment: @comment, localartist: @localartist } %>
+
+
+
+  <%= link_to '編集', edit_localartist_path(@localartist) %> |
+  <%= link_to '戻る', localartists_path %>

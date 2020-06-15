@@ -12,16 +12,6 @@ class Users::SessionsController < Devise::SessionsController
   # def create
   #   binding.pry
   #   super
-  #   # user = User.find_by(email: params[:user][:email].downcase)
-  #   # current_user = user
-  #   # user = User.find_by(email: params[:user][:email].downcase)
-  #   # if user.find_by(params[:user][:password])
-  #   #   session[:user_id] = user.id
-  #   #   redirect_to user_path(user.id), notice:"ろぐいんしました"
-  #   # else
-  #   #   flash.now[:danger] = "ログインに失敗しました"
-  #   #   render :new
-  #   # end
   # end
 
   # DELETE /users/sign_out
@@ -31,7 +21,6 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
   def after_sign_in_path_for(resource)
-    binding.pry
     user_path(resource)
   end
   # If you have extra params to permit, append them to the sanitizer.

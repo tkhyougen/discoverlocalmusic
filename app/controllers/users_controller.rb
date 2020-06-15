@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   # before_action :authenticate_user!, only:[:show,:index]
 
   def show
-    binding.pry
     @user = User.find(params[:id])
   end
 
@@ -15,7 +14,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :image, :image_cache, :remove_image, :comment, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :image, :image_cache, :remove_image, :comment, :password, :password_confirmation,:tag_list,:country_list,:artist_list)
   end
 
 end

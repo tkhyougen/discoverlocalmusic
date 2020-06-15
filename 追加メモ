@@ -80,3 +80,33 @@ rails assets:precompile RAILS_ENV=production
 //= require jquery/dist/jquery.js
 //= require bootstrap/dist/js/bootstrap.min
 //= require_tree .
+
+
+
+
+
+
+<div class="search">
+    <form class="form-inline">
+      <%= form_with(scope: :search, url:localartists_path, local: true, method: :get) do |form| %>
+
+        <div class="flex-inline">
+          <%= form.label :name, "ｱｰﾃｨｽﾄ名" %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
+        <div class="flex-inline">
+          <%= form.label :country_search, "国名" %>
+          <%= form.text_field :country, class: "form-control" %>
+        </div>
+
+        <div class="flex-inline">
+          <%= form.label :userartist_search, "好きなアーティスト" %>
+          <%= form.select("tag_list", User.tag_list.pluck(:name, :id), { include_blank:"選択する",include_hidden: false }) %>
+            <!--label_idをパラメータ値として飛ばす pluckでlabelのidとnameを取り出す -->
+        </div>
+        <div class="flex-inline">
+          <%= form.submit name="検索する" %>
+        </div>
+      <% end %>
+    </form>
+</div>
