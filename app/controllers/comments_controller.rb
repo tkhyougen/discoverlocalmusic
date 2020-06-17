@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
 
 
   def index
+    @comments = @localartist.comments.all.order('created_at DESC')
   end
 
   def create

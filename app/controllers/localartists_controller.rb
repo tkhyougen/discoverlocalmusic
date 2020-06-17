@@ -1,8 +1,11 @@
 class LocalartistsController < ApplicationController
   before_action :set_localartist, only: [:show, :edit, :update, :destory]
 
+
+
   def index
     @localartists = Localartist.all.order(id: :desc)
+    @user = current_user
   end
 
   def new

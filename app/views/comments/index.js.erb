@@ -1,2 +1,2 @@
-$("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.localartist.comments, localartist: @comment.localartist }) %>")
+$("#comments_area").html("<%= j(render 'comments/index', { comments: @comment.localartist.comments.order('created_at DESC'), localartist: @comment.localartist }) %>")
 $("textarea").val('')

@@ -1,5 +1,6 @@
 <ul>
-  <% comments.each do |comment| %>
+  <!-- 最新5件だけ表示  -->
+  <% comments.first(5).each do |comment| %>
     <% if comment.id.present? %>
       <li>
         <div class ="comment-content" id ="this_comment_<%= comment.id %>"></div>
