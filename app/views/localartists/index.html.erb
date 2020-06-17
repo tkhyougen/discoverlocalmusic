@@ -1,3 +1,4 @@
+
 <form class="form-inline">
   <%= form_with(scope: :search, url:localartists_path, local: true, method: :get) do |form| %>
     <div class="flex-inline">
@@ -27,6 +28,7 @@
 </form>
 
 
+
 <h1>アーティスト一覧</h1>
 
   <% @localartists.each do |localartist| %>
@@ -34,11 +36,13 @@
       <div class="card card-cascade m-1">
         <div class="view view-cascade overlay">
           <% if localartist.image? %>
+
             <%= image_tag "#{localartist.image}",:size =>'100x100' ,class:"card-img-top"%>
             <%= localartist.name %>
             <%# #クリックするとshowに飛ぶようにしたい %>
           <% else %>
             <%= link_to (image_tag 'default.jpg',:size =>'100x100' ,class:"card-img-top"), localartist_path(localartist.id) %>
+
             <%= localartist.name %>
           <% end %>
         </div>

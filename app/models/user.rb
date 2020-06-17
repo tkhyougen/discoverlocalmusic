@@ -16,8 +16,10 @@ class User < ApplicationRecord
   has_many :user_country_labelling_user_country_labels, through: :user_country_labellings, source: :user_country_label
 
     #user.localartists
+
   has_many :localartists, dependent: :destroy
   has_many :comments, dependent: :destroy
+
 
   #画像アップロード
   mount_uploader :image, ImageUploader
