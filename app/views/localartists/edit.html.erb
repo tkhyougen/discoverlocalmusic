@@ -1,50 +1,7 @@
-<%= form_with(model: @localartist, local: true, url:confirm_localartists_path) do |form| %>
+<h2>編集する</h2>
 
-<!--エラー  -->
-  <% if @localartist.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@localartist.errors.count, "error") %> 件のエラーがあります</h2>
-      <ul>
-      <% @localartist.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<!--  -->
+<%= render 'form', localartist: @localartist %>
 
-  <div class="image">
-    <br />
-    <p><%= form.label :写真 %></p>
-    <% if @localartist.image.url %>
-      <%= image_tag(@localartist.image.thumb.url) if @localartist.image && @localartist.image.url %>
-    <% end %>
-      <%= form.file_field :image, "画像をアップロード" %>
-  </div>
-
-  <div class="name">
-    <%= form.label :アーティスト名 %>
-    <%= form.text_field :name, class:"form-control" %>
-  </div>
-
-  <div class="country">
-      <%= form.label :国 %>
-      <%= form.text_field :country, class:"form-control" %>
-  </div>
-
-  <div class="wholikes">
-    <%= form.label :tag_list, "このｱｰﾃｨｽﾄが好きな人にｵｽｽﾒ" %><br />
-    <%= form.text_field :tag_list,placeholder:"で区切って下さい", value: @localartist.tag_list.join(","),class:"form-control"  %>
-  </div>
-
-  <div class="comment">
-    <%= form.label :コメント %>
-    <%= form.text_field :comment, placeholder:"自由にコメントしてください", class:"form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "投稿する" %>
-  </div>
-
-
-<% end %>
+<div class="button">
+  <%= link_to '戻る', localartist_path %>
+</div>

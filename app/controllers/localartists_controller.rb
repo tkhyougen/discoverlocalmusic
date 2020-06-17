@@ -43,8 +43,11 @@ class LocalartistsController < ApplicationController
 
   def update
     #set_localrtist
-    @localartist.update(localartist_params)
-    redirect_to localartists_path, notice: "情報を編集しました！"
+    if @localartist.update(localartist_params)
+      redirect_to localartist_path, notice: "情報を編集しました！"
+    else
+      render :edit
+    end
   end
 
   def show
