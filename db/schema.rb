@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_154513) do
+
+ActiveRecord::Schema.define(version: 2020_06_14_104630) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "localartist_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["localartist_id"], name: "index_comments_on_localartist_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
 
   create_table "localartists", force: :cascade do |t|
     t.string "name"
@@ -83,6 +97,10 @@ ActiveRecord::Schema.define(version: 2020_06_03_154513) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+
+  add_foreign_key "comments", "localartists"
+  add_foreign_key "comments", "users"
 
   add_foreign_key "localartists", "users"
   add_foreign_key "taggings", "tags"

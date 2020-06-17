@@ -1,8 +1,32 @@
 
+<form class="form-inline">
+  <%= form_with(scope: :search, url:localartists_path, local: true, method: :get) do |form| %>
+    <div class="flex-inline">
+      <%= form.label :name_search, "アーティスト名" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="flex-inline">
+      <%= form.label :country_search, "好きな国から選択" %>
+      <%= form.select :country, @user.tag_list.map, {include_blank:"選択する",include_hidden:false} %>
+      <!-- %= form.hidden_field :search, value:"true" %> -->
+    </div>
 
+    <div class="flex-inline">
+      <%= form.label :artist_search, "好きなアーティストから選択" %>
+      <%= form.select :tag_list, @user.tag_list.map, {include_blank:"選択する",include_hidden:false} %>
+      <!-- %= form.hidden_field :search, value:"true" %> -->
+    </div>
+    <!-- <div class="flex-inline">
+      %= form.label :label_id_search, "ラベル絞込" %>
+      %= form.select("label_id", Label.all.pluck(:name, :id), { include_blank:"選択する",include_hidden: false }) %>
+        <!--label_idをパラメータ値として飛ばす pluckでlabelのidとnameを取り出す -->
+    <!-- </div> --> -->
+    <div class="flex-inline">
+      <%= form.submit name="検索する" %>
+    </div>
+  <% end %>
+</form>
 
-
-<%# 検索テーブル %>
 
 
 <h1>アーティスト一覧</h1>
@@ -12,11 +36,13 @@
       <div class="card card-cascade m-1">
         <div class="view view-cascade overlay">
           <% if localartist.image? %>
-            <%= image_tag "#{localartist.image}",:size =>'100x100' ,class:"card-img-top" %>
+
+            <%= image_tag "#{localartist.image}",:size =>'100x100' ,class:"card-img-top"%>
             <%= localartist.name %>
             <%# #クリックするとshowに飛ぶようにしたい %>
           <% else %>
-            <%= image_tag 'default.jpg',:size =>'100x100' ,class:"card-img-top" %>
+            <%= link_to (image_tag 'default.jpg',:size =>'100x100' ,class:"card-img-top"), localartist_path(localartist.id) %>
+
             <%= localartist.name %>
           <% end %>
         </div>

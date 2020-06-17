@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     collection do
       post :confirm
     end
+
+    resources :comments    #localaritstに対するコメントをネスト
+
   end
 
   #中間テーブルuser_country_labellingsのcreateとdestroyを有効か
