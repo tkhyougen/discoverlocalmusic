@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
+  before_action  :set_user_tags_to_gon, only: [:edit]
   # def after_sign_up_path_for(resource)
   #   '/users'
   # end
@@ -99,6 +99,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:user).permit(:name, :email, :image, :image_cache, :comment,:password, :password_confirmation,:tag_list,:country_list,:artist_list)
+  end
+
+  #editにてタグを表示
+  def set_user_tags_to_gon
+    gon.user_tags = @user.tag_list
+  end
+
+  #オートコンプリート
+  def set_available_tags_to_gon
+    gon.available_tags = User.tags_on(:tags).pluck(:name)
   end
 
 end
