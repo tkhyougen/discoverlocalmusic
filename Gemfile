@@ -73,3 +73,4 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem "jquery-ui-rails"
 gem 'jquery-rails', '4.3.1'
 gem "gon"
+gem "ransack"

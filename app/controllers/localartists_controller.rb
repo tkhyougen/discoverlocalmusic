@@ -6,7 +6,40 @@ class LocalartistsController < ApplicationController
   def index
     @localartists = Localartist.all.order(id: :desc)
     @user = current_user
+    #ransack
+    # @search = Localartist.ransack(params[:q])
+    # @posts = @search.result
+    #ransack
 
+    #検索結果の表示
+    if params[:search].present?
+      if params[:search][:name].present? && params[:search][:country].present? && params[:search][:tag_list].present?
+        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
+        @localartists = @localartists.all.where("country Like ?", "%#{params[:search][:country]}%")
+        @localartists = @localartists.tagged_with(params[:search][:tag_list])
+
+      elsif params[:search][:name].present? && params[:search][:country].present?
+        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
+        @localartists = @localartists.all.where("country Like ?", "%#{params[:search][:country]}%")
+
+      elsif params[:search][:country].present? && params[:search][:tag_list].present?
+        @localartists = Localartist.all.where("country Like ?", "%#{params[:search][:country]}%")
+        @localartists = @localartists.tagged_with(params[:search][:tag_list])
+
+      elsif params[:search][:name].present? && params[:search][:tag_list].present?
+        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
+        @localartists = @localartists.tagged_with(params[:search][:tag_list])
+
+      elsif params[:search][:name].present?
+        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
+
+      elsif params[:search][:country].present?
+        @localartists = Localartist.all.where("country Like ?", "%#{params[:search][:country]}%")
+
+      elsif params[:search][:tag_list].present?
+          @localartists = Localartist.tagged_with(params[:search][:tag_list])
+      end
+    end
   end
 
   def new
