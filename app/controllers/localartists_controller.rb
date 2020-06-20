@@ -1,6 +1,6 @@
 class LocalartistsController < ApplicationController
   before_action :set_localartist, only: [:show, :edit, :update, :destory]
-
+  before_action  :set_localartist_tags_to_gon, only: [:edit]
 
 
   def index
@@ -43,6 +43,7 @@ class LocalartistsController < ApplicationController
 
   def update
     #set_localrtist
+    binding.pry
     if @localartist.update(localartist_params)
       redirect_to localartist_path, notice: "情報を編集しました！"
     else
@@ -67,11 +68,16 @@ class LocalartistsController < ApplicationController
   private
 
   def localartist_params
-    params.require(:localartist).permit(:image, :name, :comment,:country, :post_comment, :tag_list)
+    params.require(:localartist).permit(:image, :name, :comment,:country, :post_comment, :tag_list, :who_list)
   end
 
   def set_localartist
     @localartist = Localartist.find(params[:id])
   end
+
+  def set_localartist_tags_to_gon
+    gon.localartist_tags = @localartist.tag_list
+  end
+
 
 end
