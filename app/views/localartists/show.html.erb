@@ -39,9 +39,16 @@
       <% end %>
   </div>
 
-  <!-- Youtube ApI
 
-  他ユーザーコメント -->
+ <!--youtube api -->
+  <% @youtube_data.each do |item| %>
+    <% snippet = item.snippet %>
+    <!-- <p>%= snippet.title %></p> -->
+    <div><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+  <% end %>
+
+
+
 
   <p>コメント一覧</p>
  <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->

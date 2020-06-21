@@ -110,3 +110,7 @@ rails assets:precompile RAILS_ENV=production
       <% end %>
     </form>
 </div>
+
+
+◎youtube api   helperの　def find_videos(keyword,XXXXXX)
+, after: 6.months.ago, before: Time.now
