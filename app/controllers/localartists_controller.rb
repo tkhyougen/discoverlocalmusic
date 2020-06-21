@@ -1,12 +1,45 @@
 class LocalartistsController < ApplicationController
   before_action :set_localartist, only: [:show, :edit, :update, :destory]
-
+  before_action  :set_localartist_tags_to_gon, only: [:edit]
 
 
   def index
     @localartists = Localartist.all.order(id: :desc)
     @user = current_user
+    #ransack
+    # @search = Localartist.ransack(params[:q])
+    # @posts = @search.result
+    #ransack
 
+    #検索結果の表示
+    if params[:search].present?
+      if params[:search][:name].present? && params[:search][:country].present? && params[:search][:tag_list].present?
+        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
+        @localartists = @localartists.all.where("country Like ?", "%#{params[:search][:country]}%")
+        @localartists = @localartists.tagged_with(params[:search][:tag_list])
+
+      elsif params[:search][:name].present? && params[:search][:country].present?
+        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
+        @localartists = @localartists.all.where("country Like ?", "%#{params[:search][:country]}%")
+
+      elsif params[:search][:country].present? && params[:search][:tag_list].present?
+        @localartists = Localartist.all.where("country Like ?", "%#{params[:search][:country]}%")
+        @localartists = @localartists.tagged_with(params[:search][:tag_list])
+
+      elsif params[:search][:name].present? && params[:search][:tag_list].present?
+        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
+        @localartists = @localartists.tagged_with(params[:search][:tag_list])
+
+      elsif params[:search][:name].present?
+        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
+
+      elsif params[:search][:country].present?
+        @localartists = Localartist.all.where("country Like ?", "%#{params[:search][:country]}%")
+
+      elsif params[:search][:tag_list].present?
+          @localartists = Localartist.tagged_with(params[:search][:tag_list])
+      end
+    end
   end
 
   def new
@@ -43,6 +76,7 @@ class LocalartistsController < ApplicationController
 
   def update
     #set_localrtist
+    binding.pry
     if @localartist.update(localartist_params)
       redirect_to localartist_path, notice: "情報を編集しました！"
     else
@@ -67,11 +101,16 @@ class LocalartistsController < ApplicationController
   private
 
   def localartist_params
-    params.require(:localartist).permit(:image, :name, :comment,:country, :post_comment, :tag_list)
+    params.require(:localartist).permit(:image, :name, :comment,:country, :post_comment, :tag_list, :who_list)
   end
 
   def set_localartist
     @localartist = Localartist.find(params[:id])
   end
+
+  def set_localartist_tags_to_gon
+    gon.localartist_tags = @localartist.tag_list
+  end
+
 
 end

@@ -33,13 +33,14 @@
   </div>
 
   <div class="wholikes">
-    <%= form.label :tag_list, "このｱｰﾃｨｽﾄが好きな人にｵｽｽﾒ" %><br />
+    <%= form.label :who_list, "このｱｰﾃｨｽﾄが好きな人にｵｽｽﾒ" %><br />
     <ul id="wholikes_list">
       <li>
-        <%= form.text_field :tag_list,placeholder:",で区切って下さい", value: @localartist.tag_list.join(","), class:"form-control"  %>
+        <%= form.text_field :tag_list, placeholder:",で区切って下さい", value: @localartist.tag_list.join(","), class:"form-control"  %>
       <li>
     </ul>
   </div>
+
       <!-- #taggableで追加できるようにする paramsも追加-->
 
   <div class="comment">

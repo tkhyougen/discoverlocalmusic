@@ -47,18 +47,18 @@
   </div>
 
   <!-- #taggableにて追加 -->
+  <!-- <div class="field">
+    %= f.label :country %><br />
+    %= f.text_field :country, class:"form-control"  %>
+  </div> -->
 
-  <div class="field", id="tag_list1">
-    <%= f.label :country_list %><br />
-    <%= f.text_field :country_list, value: @user.country_list.join(","), class:"form-control"  %>
-  </div>
 
     <!-- #taggableにて追加 -->
   <div class="field">
-    <%= f.label :artist_list %><br />
-    <ul id ="tag_list2">
+    <%= f.label :tag_list %><br />
+    <ul id="user_tag_list">
       <li>
-        <%= f.text_field :artist_list, value: @user.artist_list.join(","), class:"form-control"  %>
+          <%= f.text_field :tag_list, value: @user.tag_list.join(','), class:"form-control"  %>
       </li>
     </ul>
   </div>

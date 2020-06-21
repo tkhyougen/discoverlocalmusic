@@ -23,16 +23,12 @@
 
   <!-- taggableのラベル欄 -->
   <div class ="user_profile_lower">
-    <p>登録している国</p>
-    <% @user.country_list.each do |tag| %>
-      <span class="label label-primary"><%= tag %></span>
-    <% end %>
-    <br />
     <p>登録しているｱｰﾃｨｽﾄ</p>
-    <% @user.artist_list.each do |tag| %>
+    <% @user.tag_list.each do |tag| %>
       <span class="label label-danger"><%= tag %></span>
     <% end %>
   </div>
+  
   <div class ="user_profile_lower_button">
     <p><%= link_to "編集する", edit_user_registration_path(current_user.id) %></p>
   </div>

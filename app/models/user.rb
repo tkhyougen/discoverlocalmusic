@@ -26,5 +26,4 @@ class User < ApplicationRecord
 
   #acts-as-tagable gemで以下のラベルを追加
   acts_as_taggable
-  acts_as_taggable_on :countrys, :artists
 end

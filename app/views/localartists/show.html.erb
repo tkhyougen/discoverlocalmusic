@@ -9,9 +9,6 @@
  data: { confirm: '本当に削除していいですか？' } %>
 
 
-
-
-
   <div class="image">
     <% if @localartist.image.present? %>
       <%= image_tag(@localartist.image.thumb,:size => "100x100") if @localartist.image.present? %>
@@ -36,8 +33,10 @@
   </div>
 
   <div class="wholikes">
-    <p>  </p>
-
+      <p>このｱｰﾃｨｽﾄ好きにオススメ</p>
+      <% @localartist.tag_list.each do |tag| %>
+        <span class="label label-danger"><%= tag %></span>
+      <% end %>
   </div>
 
   <!-- Youtube ApI
@@ -46,7 +45,7 @@
 
   <p>コメント一覧</p>
  <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
-  <div id="comments_area">
+  <div id ="comments_area">
    <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
     <%= render partial: 'comments/index', locals: { comments: @comments, localartist: @localartist } %>
   </div>
@@ -57,4 +56,3 @@
 
   <%= link_to '編集', edit_localartist_path(@localartist) %> |
   <%= link_to '戻る', localartists_path %>
-

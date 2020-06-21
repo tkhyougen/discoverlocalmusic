@@ -3,29 +3,62 @@
   <%= form_with(scope: :search, url:localartists_path, local: true, method: :get) do |form| %>
     <div class="flex-inline">
       <%= form.label :name_search, "アーティスト名" %>
-      <%= form.text_field :name, class: "form-control" %>
+      <%= form.text_field :name %>
     </div>
     <div class="flex-inline">
-      <%= form.label :country_search, "好きな国から選択" %>
-      <%= form.select :country, @user.tag_list.map, {include_blank:"選択する",include_hidden:false} %>
+      <%= form.label :country_search, "出身国から" %>
+      <%= form.text_field :country, class: "form-control" %>
       <!-- %= form.hidden_field :search, value:"true" %> -->
     </div>
 
     <div class="flex-inline">
-      <%= form.label :artist_search, "好きなアーティストから選択" %>
+      <%= form.label :artist_search, "自分が好きなアーティストから" %>
       <%= form.select :tag_list, @user.tag_list.map, {include_blank:"選択する",include_hidden:false} %>
       <!-- %= form.hidden_field :search, value:"true" %> -->
     </div>
-    <!-- <div class="flex-inline">
-      %= form.label :label_id_search, "ラベル絞込" %>
-      %= form.select("label_id", Label.all.pluck(:name, :id), { include_blank:"選択する",include_hidden: false }) %>
-        <!--label_idをパラメータ値として飛ばす pluckでlabelのidとnameを取り出す -->
-    <!-- </div> --> -->
+
     <div class="flex-inline">
       <%= form.submit name="検索する" %>
     </div>
   <% end %>
 </form>
+
+<!-- <div class="flex-inline">
+  %= form.label :label_id_search, "ラベル絞込" %>
+  %= form.select("label_id", Label.all.pluck(:name, :id), { include_blank:"選択する",include_hidden: false }) %>
+    <!--label_idをパラメータ値として飛ばす pluckでlabelのidとnameを取り出す -->
+<!-- </div> -->
+
+
+
+  <!-- ransack -->
+<!-- <form class="form-inline">
+%= search_form_for @search, url: localartists_path do |f| %>
+    <div class="flex-inline">
+      %= f.label :name, 'アーティスト名' %>
+      %= f.search_field :name_cont %>
+    </div>
+
+    <div class="flex-inline">
+      %= f.label :country, "出身国から" %>
+      %= f.search_field :country_cont %>
+    </div>
+
+    <!--- tag_listで検索つけたい -->
+
+    <!-- <div class="flex-inline">
+      %= f.submit name="検索" %>
+    </div>
+  % end %>
+</form> --> -->
+
+
+  <!-- % @posts.each do |post| %>
+    <tr>
+      <td>%= post.name -%></td>
+    </tr>
+  % end %> -->
+  <!-- ransack -->
 
 
 
