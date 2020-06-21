@@ -3,7 +3,11 @@ class LocalartistsController < ApplicationController
   before_action  :set_localartist_tags_to_gon, only: [:edit]
 
 
+
+
+
   def index
+
     @localartists = Localartist.all.order(id: :desc)
     @user = current_user
     #ransack
@@ -42,6 +46,7 @@ class LocalartistsController < ApplicationController
     end
   end
 
+
   def new
     if params[:back]
     @localartist = Localartist.new(localartist_params)
@@ -49,6 +54,8 @@ class LocalartistsController < ApplicationController
     @localartist = Localartist.new
     end
   end
+
+
 
   def confirm
     @localartist = Localartist.new(localartist_params)
@@ -76,7 +83,6 @@ class LocalartistsController < ApplicationController
 
   def update
     #set_localrtist
-    binding.pry
     if @localartist.update(localartist_params)
       redirect_to localartist_path, notice: "情報を編集しました！"
     else
@@ -89,6 +95,9 @@ class LocalartistsController < ApplicationController
 
     @comments = @localartist.comments.all.order('created_at DESC')
     @comment = @localartist.comments.build
+
+    #youtube api
+    @youtube_data = find_videos("#{@localartist.name}")
 
   end
 
