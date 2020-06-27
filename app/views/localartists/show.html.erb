@@ -1,5 +1,5 @@
 <div class="mypagetitle">
-  <p><%= @localartist.name%>のページ</p>
+  <p><%= @localartist.name%></p>
 </div>
 
 <div class ="container_profile">
@@ -76,15 +76,16 @@
 
 
     <div class="localartist_profile_lower_button_show">
-      <% if @localartist.user = current_user %>
+      <% if @localartist.user == current_user %>
         <!--投稿ユーザー -->
          <p class="lower_button 1"><%= link_to "アーティストを編集する", edit_localartist_path(@localartist.id),class:"btn btn-primary btn-block btn-lg" %></p>
          <p class="lower_button 2"><%= link_to "削除する", localartist_path(@localartist.id), method: :delete,class:"btn btn-danger btn-block btn-lg",
          data: { confirm: '本当に削除していいですか？' } %></p>
-      <% else%>
+      <% else %>
   　   <!--非投稿ユーザー -->
         <p class="lower_button 1"><%= link_to 'タグを追加する', edit_localartist_path(@localartist),class:"btn btn-primary btn-block btn-lg" %></p>
         <p class="lower_button 2"><%= link_to "お気に入りに追加する", edit_localartist_path(@localartist.id),class:"btn btn-danger btn-block btn-lg" %></p>
+        <p class="lower_button 3"><%= link_to "投稿ユーザーのプロフィールへ", user_path(@localartist.user.id),class:"btn btn-danger btn-block btn-lg"  %></p>
       <% end %>
     </div>
     <div class="localartist_profile_lower_button_show">
