@@ -1,40 +1,61 @@
-<h3>以下の内容で、送信する。</h3>
+<div class="mypagetitle">
+  <p>以下の内容で、投稿する</p>
+</div>
+
 <%= form_with(model: @localartist, local: true ) do |form| %>
 
-  <div class="image">
-    <br />
-    <p><%= form.label :写真 %></p>
-    <% if @localartist.image %>
-      <%= image_tag(@localartist.image.thumb.url) if @localartist.image && @localartist.image.url %>
-    <% end %>
+<div class ="container_profile">
+  <div class="user_profile_upper">
+    <div class="user_profile_upper_left">
+      <div class="user_profile_image">
+        <p><%= form.label :写真 %></p>
+          <% if @localartist.image %>
+            <%= image_tag @localartist.image.url,:size =>'350x350' %>
+          <% else %>
+            <%= image_tag 'default.jpg',:size =>'350x350' %>
+          <% end %>
+      </div>
+    </div>
+
+    <div class="user_profile_upper_right">
+      <div class="user_name">
+        <%= form.hidden_field :name %>
+        <p class="profile_data">アーティスト名</p>
+        <p><%= @localartist.name %> </p>
+      </div>
+
+      <div class="user_email">
+        <%= form.hidden_field :country %>
+        <p class="profile_data">出身国</p>
+        <p><%= @localartist.country %> </p>
+      </div>
+
+      <div class="user_comment">
+        <%= form.hidden_field :post_comment %>
+        <p class="profile_data">コメント</p>
+        <p><%= @localartist.post_comment %></p>
+      </div>
+    </div>
   </div>
 
-  <div class="name">
-    <%= form.hidden_field :name %>
-    <p>アーティスト名：<%= @localartist.name %> </p>
-  </div>
 
-  <div class="country">
-    <%= form.hidden_field :country %>
-    <p>出身国：<%= @localartist.country %> </p>
-  </div>
-
-  <div class="wholikes">
+  <div class ="user_profile_lower">
+    <p>このアーティスト好きにおすすめ</p>
     <%= form.hidden_field :tag_list %>
     <% @localartist.tag_list.each do |tag| %>
-      <span><%= tag %></span>
+      <span class="label label-danger"><%= tag %></span>
     <% end %>
   </div>
 
-  <div class="comment">
-    <%= form.hidden_field :post_comment %>
-    <p>コメント：<%= @localartist.post_comment %></p>
+
+
+  <div class ="user_profile_lower_button_edit">
+    <div class="update_field">
+      <p><%= form.submit "投稿する",class:"btn btn-primary btn-block btn-lg" %></p>
+      <p><%= form.submit '戻る', name:"back"%></p>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit "投稿する" %>
-  </div>
 
-  <%= form.submit '戻る', name:"back"%>
 
 <% end %>

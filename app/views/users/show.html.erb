@@ -1,21 +1,30 @@
-<div class ="container_user_profile">
-  <p>マイページ画面</p>
+<div class="mypagetitle">
+  <p><%= @user.name%>のページ</p>
+</div>
+
+<div class ="container_profile">
   <div class="user_profile_upper">
-    <div class="user_profile_higher_left">
+    <div class="user_profile_upper_left">
       <div class="user_profile_image">
-        <%= image_tag @user.image.thumb.url if @user.image.present? && @user.image.url.present? %>
+        <% if @user.image.url.present? && @user.image.present? %>
+          <%= image_tag @user.image.thumb.url, :size =>'350x350' %>
+        <% else %>
+          <%= image_tag 'default.jpg',:size =>'350x350' %>
+        <% end %>
       </div>
     </div>
 
-    <div class="user_profile_higer_right">
+    <div class="user_profile_upper_right">
       <div class="user_name">
-        <p>ユーザー名<%= @user.name %></p>
+        <p class="profile_data">ユーザー名</p>
+        <p><%= @user.name %></p>
       </div>
       <div class="user_email">
-        <p>Emailアドレス<%= @user.email %><p>
+        <p class="profile_data">Emailアドレス</p>
+        <p><%= @user.email %></p>
       </div>
       <div class="user_comment">
-        <p>コメント<p>
+        <p class="profile_data">コメント</p>
         <p><%= @user.comment %></p>
       </div>
     </div>
@@ -23,14 +32,82 @@
 
   <!-- taggableのラベル欄 -->
   <div class ="user_profile_lower">
-    <p>登録しているｱｰﾃｨｽﾄ</p>
-    <% @user.tag_list.each do |tag| %>
-      <span class="label label-danger"><%= tag %></span>
+    <p>登録している好きなアーティスト</p>
+    <% if @user.tag_list.present? %>
+      <% @user.tag_list.each do |tag| %>
+        <span class="label label-danger"><%= tag %></span>
+      <% end %>
+    <% else %>
+      <h4>登録がありません</h4>
     <% end %>
   </div>
-  
-  <div class ="user_profile_lower_button">
-    <p><%= link_to "編集する", edit_user_registration_path(current_user.id) %></p>
+
+  <div class ="user_profile_myposts artists">
+    <p>投稿したアーティスト</p>
+    <div class="user_profile_posts">
+      <% if @user.localartists.present? %>
+      <% @user.localartists.each do |localartist| %>
+        <table>
+          <div class="user_profile_each">
+            <tr>
+              <td>
+                <%= link_to localartist_path(localartist.id) do%>
+                  <% if localartist.image? %>
+                    <%= image_tag "#{localartist.image}",:size =>'120x120' ,class:"card-img-top" %>
+                  <% else %>
+                    <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top"), localartist_path(localartist.id) %>
+                  <% end %>
+                <% end %>
+              </td>
+            <tr>
+              <td>
+                <p><%= localartist.name %></p>
+              </td>
+            </tr>
+          </div>
+        </table>
+      <% end %>
+      <% else %>
+        <h4 style="margin:0 auto;">登録がありません</h4>
+      <% end %>
+    </div>
+  </div>
+  <div class ="user_profile_myposts spots">
+    <p>投稿したスポット</p>
+    <div class="user_profile_posts">
+      <% if @user.localartists.present? %>
+        <% @user.localartists.each do |localartist| %>
+          <table>
+            <div class="user_profile_each">
+              <tr>
+                <td>
+                  <%= link_to localartist_path(localartist.id) do%>
+                    <% if localartist.image? %>
+                      <%= image_tag "#{localartist.image}",:size =>'120x120' ,class:"card-img-top" %>
+                    <% else %>
+                      <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top") %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <tr>
+                <td>
+                  <p><%= localartist.name %></p>
+                </td>
+              </tr>
+            </div>
+          </table>
+        <% end %>
+      <% else %>
+        <h4 style="margin:0 auto;">登録がありません</h4>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="user_profile_lower_button_show">
+    <% if current_user.id == @user.id %>
+      <p class="lower_button 1"><%= link_to "プロフィール編集", edit_user_registration_path(current_user.id),class:"btn btn-primary btn-block btn-lg" %></p>
+      <p class="lower_button 2"><%= link_to "お気に入りをみる", edit_user_registration_path(current_user.id),class:"btn btn-danger btn-block btn-lg" %></p>
+    <% end %>
   </div>
 
 </div>

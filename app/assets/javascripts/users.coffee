@@ -3,11 +3,13 @@ $(document).on 'ready page:load', ->
   $('#user_tag_list').tagit
     fieldName: 'user[tag_list]'
     singleField: true
-    vailableTags: gon.available_tags
+    # availableTags: gon.available_tags
 #
   if gon.user_tags?
     for tag in gon.user_tags
       $('#user_tag_list').tagit 'createTag',tag
+
+
 
 # $(document).on 'ready page:load', ->
 #   $('#tag_list2').tagit()
