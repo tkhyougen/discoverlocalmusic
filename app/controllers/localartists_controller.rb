@@ -3,9 +3,6 @@ class LocalartistsController < ApplicationController
   before_action :set_localartist_tags_to_gon, only: [:edit]
 
 
-
-
-
   def index
 
     @localartists = Localartist.all.order(id: :desc)
@@ -92,7 +89,6 @@ class LocalartistsController < ApplicationController
 
   def show
     #ser_localrtist
-
     @comments = @localartist.comments.all.order('created_at DESC')
     @comment = @localartist.comments.build
 
@@ -119,7 +115,9 @@ class LocalartistsController < ApplicationController
   end
 
   def set_localartist_tags_to_gon
-    gon.localartist_tags = @localartist.tag_list
+    if @localartist.tag_list.present?
+      gon.localartist_tags = @localartist.tag_list
+    end
   end
 
 

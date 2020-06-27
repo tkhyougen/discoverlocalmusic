@@ -1,65 +1,93 @@
+<div class="mypagetitle">
+  <p><%= @localartist.name%>のページ</p>
+</div>
 
-<!-- お気に入りボタン
-編集ボタン
- -->
+<div class ="container_profile">
+  <div class="user_profile_upper">
+    <div class="user_profile_upper_left">
+      <div class="user_profile_image">
+          <% if @localartist.image.present? %>
+            <%= image_tag(@localartist.image.thumb,:size => "350x350") %>
+          <% else %>
+            <%= image_tag 'default.jpg',:size =>'350x350' ,class:"card-img-top" %>
+          <% end %>
+      </div>
+    </div>
 
- <%= link_to "情報を編集する", edit_localartist_path(@localartist.id) %>
+    <div class="user_profile_upper_right">
+      <div class="user_name">
+        <p class="profile_data">アーティスト名</p>
+        <p><%=@localartist.name %></p>
+      </div>
 
- <%= link_to "削除する", localartist_path(@localartist.id), method: :delete,
- data: { confirm: '本当に削除していいですか？' } %>
+      <div class="user_email">
+        <p class="profile_data">国名</p>
+        <p> <%= @localartist.country %></p>
+      </div>
 
-
-  <div class="image">
-    <% if @localartist.image.present? %>
-      <%= image_tag(@localartist.image.thumb,:size => "100x100") if @localartist.image.present? %>
-    <% else %>
-      <%= image_tag 'default.jpg',:size =>'100x100' ,class:"card-img-top" %>
-    <% end %>
+      <div class="user_comment">
+        <p class="profile_data">投稿者<%=@localartist.user.name %>のコメント</p>
+        <p><%=@localartist.post_comment %> </p>
+      </div>
+    </div>
   </div>
 
-  <div class="comment">
 
-    <p>投稿者<%=@localartist.user.name %>のコメント</p>
-    <p><%=@localartist.post_comment %> </p>
 
-  </div>
-
-  <div class="name">
-    <p>アーティスト名 <%=@localartist.name %>  </p>
-  </div>
-
-  <div class="country">
-    <p>国名 <%= @localartist.country %></p>
-  </div>
-
-  <div class="wholikes">
+  <div class="user_profile_lower">
       <p>このｱｰﾃｨｽﾄ好きにオススメ</p>
       <% @localartist.tag_list.each do |tag| %>
         <span class="label label-danger"><%= tag %></span>
       <% end %>
   </div>
 
+    <div class ="user_profile_myposts artists">
+      <p>Youtube</p>
+      <div class="user_profile_posts">
+      <!--youtube api -->
+      <% @youtube_data.each do |item| %>
+        <table>
+          <div class="user_profile_each">
+            <tr>
+              <td>
+                <% snippet = item.snippet %><!-- <p>%= snippet.title %></p> -->
+                <div><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <% end %>
+              </td>
+            </tr>
+          </div>
+        </table>
+      </div>
+    </div>
 
- <!--youtube api -->
-  <% @youtube_data.each do |item| %>
-    <% snippet = item.snippet %>
-    <!-- <p>%= snippet.title %></p> -->
-    <div><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-  <% end %>
+    <div class="localartist_profile_lower">
+      <p class="localartist_profile_comment_title">一言コメント(最新5件を表示)</p>
+     <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+      <div id ="comments_area">
+       <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
+        <%= render partial: 'comments/index', locals: { comments: @comments, localartist: @localartist } %>
+      </div>
+        <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+      <div class="localartist_profile_comment_form">
+        <%= render partial: 'comments/form', locals: { comment: @comment, localartist: @localartist } %>
+      </div>
+    </div>
 
 
 
-
-  <p>コメント一覧</p>
- <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
-  <div id ="comments_area">
-   <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
-    <%= render partial: 'comments/index', locals: { comments: @comments, localartist: @localartist } %>
-  </div>
-    <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
-    <%= render partial: 'comments/form', locals: { comment: @comment, localartist: @localartist } %>
-
-
-
-  <%= link_to '編集', edit_localartist_path(@localartist) %> |
-  <%= link_to '戻る', localartists_path %>
+    <div class="localartist_profile_lower_button_show">
+      <% if @localartist.user = current_user %>
+        <!--投稿ユーザー -->
+         <p class="lower_button 1"><%= link_to "アーティストを編集する", edit_localartist_path(@localartist.id),class:"btn btn-primary btn-block btn-lg" %></p>
+         <p class="lower_button 2"><%= link_to "削除する", localartist_path(@localartist.id), method: :delete,class:"btn btn-danger btn-block btn-lg",
+         data: { confirm: '本当に削除していいですか？' } %></p>
+      <% else%>
+  　   <!--非投稿ユーザー -->
+        <p class="lower_button 1"><%= link_to 'タグを追加する', edit_localartist_path(@localartist),class:"btn btn-primary btn-block btn-lg" %></p>
+        <p class="lower_button 2"><%= link_to "お気に入りに追加する", edit_localartist_path(@localartist.id),class:"btn btn-danger btn-block btn-lg" %></p>
+      <% end %>
+    </div>
+    <div class="localartist_profile_lower_button_show">
+      <%= link_to '戻る', :back %>
+    </div>
+</div>

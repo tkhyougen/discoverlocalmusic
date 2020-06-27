@@ -1,86 +1,98 @@
-
-<form class="form-inline">
-  <%= form_with(scope: :search, url:localartists_path, local: true, method: :get) do |form| %>
-    <div class="flex-inline">
-      <%= form.label :name_search, "アーティスト名" %>
-      <%= form.text_field :name %>
-    </div>
-    <div class="flex-inline">
-      <%= form.label :country_search, "出身国から" %>
-      <%= form.text_field :country, class: "form-control" %>
-      <!-- %= form.hidden_field :search, value:"true" %> -->
-    </div>
-
-    <div class="flex-inline">
-      <%= form.label :artist_search, "自分が好きなアーティストから" %>
-      <%= form.select :tag_list, @user.tag_list.map, {include_blank:"選択する",include_hidden:false} %>
-      <!-- %= form.hidden_field :search, value:"true" %> -->
-    </div>
-
-    <div class="flex-inline">
-      <%= form.submit name="検索する" %>
-    </div>
-  <% end %>
-</form>
-
-<!-- <div class="flex-inline">
-  %= form.label :label_id_search, "ラベル絞込" %>
-  %= form.select("label_id", Label.all.pluck(:name, :id), { include_blank:"選択する",include_hidden: false }) %>
-    <!--label_idをパラメータ値として飛ばす pluckでlabelのidとnameを取り出す -->
-<!-- </div> -->
+<div class="mypagetitle">
+  <p>アーティストを探す</p>
+</div>
 
 
+<div class="container_profile">
+  <div class="localartist_search_upper">
+    <%= form_with(scope: :search, url:localartists_path, local: true, method: :get) do |form| %>
+      <div class="search_form">
+        <%= form.label :name_search, "アーティスト名から" %>
+        <%= form.text_field :name, placeholder:"アーティスト名を入力", class:"form-control" %>
+      </div>
+      <div class="search_form">
+        <%= form.label :country_search, "出身国から" %>
+        <%= form.text_field :country, placeholder:"探したい国を入力", class:"form-control" %>
+      </div>
 
-  <!-- ransack -->
-<!-- <form class="form-inline">
-%= search_form_for @search, url: localartists_path do |f| %>
-    <div class="flex-inline">
-      %= f.label :name, 'アーティスト名' %>
-      %= f.search_field :name_cont %>
-    </div>
-
-    <div class="flex-inline">
-      %= f.label :country, "出身国から" %>
-      %= f.search_field :country_cont %>
-    </div>
-
-    <!--- tag_listで検索つけたい -->
+      <div class="search_form">
+        <%= form.label :artist_search, "自分のお気に入りｱｰﾃｨｽﾄから" %>
+        <%= form.select :tag_list, @user.tag_list.map, {include_blank:"このﾀｸﾞが付いているｱｰﾃｨｽﾄを検索",include_hidden:false}, class:"form-control" %>
+      </div>
+  </div>
+  <div class="search_button">
+      <div class="localartist_search_button">
+        <%= form.submit name="検索する",class:"btn btn-primary btn-block btn-lg"  %>
+      </div>
+  </div>
+      <% end %>
 
     <!-- <div class="flex-inline">
-      %= f.submit name="検索" %>
-    </div>
-  % end %>
-<!-- </form> --> --> -->
+      %= form.label :label_id_search, "ラベル絞込" %>
+      %= form.select("label_id", Label.all.pluck(:name, :id), { include_blank:"選択する",include_hidden: false }) %>
+        <!--label_idをパラメータ値として飛ばす pluckでlabelのidとnameを取り出す -->
+    <!-- </div> -->
 
-
-  <!-- % @posts.each do |post| %>
-    <tr>
-      <td>%= post.name -%></td>
-    </tr>
-  % end %> -->
-  <!-- ransack -->
-
-
-<h1>アーティスト一覧</h1>
-
-  <% @localartists.each do |localartist| %>
-    <div class="col mb-4">
-      <div class="card card-cascade m-1">
-        <div class="view view-cascade overlay">
-          <% if localartist.image? %>
-
-            <%= image_tag "#{localartist.image}",:size =>'100x100' ,class:"card-img-top"%>
-            <%= localartist.name %>
-            <%# #クリックするとshowに飛ぶようにしたい %>
-          <% else %>
-            <%= link_to (image_tag 'default.jpg',:size =>'100x100' ,class:"card-img-top"), localartist_path(localartist.id) %>
-            <%= localartist.name %>
-          <% end %>
+      <!-- ransack -->
+    <!-- <form class="form-inline">
+    %= search_form_for @search, url: localartists_path do |f| %>
+        <div class="flex-inline">
+          %= f.label :name, 'アーティスト名' %>
+          %= f.search_field :name_cont %>
         </div>
-      </div>
 
-      <div class="row d-flex justify-content-center">
-      </div>
+        <div class="flex-inline">
+          %= f.label :country, "出身国から" %>
+          %= f.search_field :country_cont %>
+        </div>
 
+        <!--- tag_listで検索つけたい -->
+
+        <!-- <div class="flex-inline">
+          %= f.submit name="検索" %>
+        </div>
+      % end %>
+    <!-- </form> -->
+
+      <!-- % @posts.each do |post| %>
+        <tr>
+          <td>%= post.name -%></td>
+        </tr>
+      % end %> -->
+      <!-- ransack -->
+
+    <div class ="localartist_index_posts">
+      <p>アーティスト検索結果一覧</p>
+      <div class="user_profile_posts">
+        <% @localartists.each do |localartist| %>
+          <!-- <div class="col mb-4"> -->
+            <!-- <div class="card card-cascade m-1">
+              <div class="view view-cascade overlay"> -->
+          <table>
+            <div class="user_profile_each">
+              <tr>
+                <td>
+                  <% if localartist.image? %>
+                    <%= image_tag "#{localartist.image}",:size =>'120x120' ,class:"card-img-top" %>
+                  <% else %>
+                    <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top"), localartist_path(localartist.id) %>
+                  <% end %>
+                </td>
+              <tr>
+                <td>
+                  <p><%= localartist.name %></p>
+                </td>
+              </tr>
+            </div>
+          </table>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+
+    <div class="user_profile_lower_button_edit">
+        <div class="localartist_search_button">
+          <%= link_to "戻る", localartists_path %>
+        </div>
+    </div>
+
+</div>

@@ -13,7 +13,7 @@ end
 require 'google/apis/youtube_v3'
 require 'active_support/all'
 
-GOOGLE_API_KEY="AIzaSyABBXApRG3M_9A9j4txhZ2yJAdqgpcJWwk" #API作成キー
+GOOGLE_API_KEY="AIzaSyCEDU86_P2ia6AtE4wGbYZwR-AjDAJcT2I" #API作成キー
 
 def find_videos(keyword) #検索キーワードと検索範囲を変えれるように引数に値を取っています
   service = Google::Apis::YoutubeV3::YouTubeService.new
