@@ -1,43 +1,55 @@
-<h2>devise Sign up</h2>
-
-<% resource = User.new unless resource %>
-<%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-
-<%# <%= form_with(model: @user, local: true) do |f| %> %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+<div class="sign_up-image">
+  <div class="sign_up-logo">
+    <h1>DiscoverLocalMusic</h1>
+    <h3>世界中の音楽を探そう</h3>
+    <h4>あなたの好きな音楽から世界中のｱｰﾃｨｽﾄ、音楽スポットを探すことができます</h4>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="sign_up-form">
+  <h2>アカウント登録</h2>
 
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment, autofocus: true %>
-  </div>
+  <% resource = User.new unless resource %>
+  <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :名前 %><br />
+      <%= f.text_field :name, autofocus: true, class:"form-control",placeholder:"アプリの名前を入力"  %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit t('.sign_up') %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :メールアドレス %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control",placeholder:"XXX@example.com" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="field">
+      <%= f.label :"プロフィールコメント　255文字まで" %><br />
+      <%= f.text_area :comment, autofocus: true, size: "20x10", class:"form-control",placeholder:"プロフィール用のコメントを自由入力(255文字まで)",id: "input-text" %>
+      <p id="counter">0文字</p>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class:"form-control",placeholder:"パスワードを入力" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control",placeholder:"パスワードを再入力"  %>
+    </div>
+
+    <div class="field">
+      <%= f.submit t('.sign_up'),class:"btn btn-primary btn-block btn-lg" %>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <a><%= link_to "登録済みユーザーのログインはこちら", new_user_session_path %></a>
+    </div>
+
+</div>

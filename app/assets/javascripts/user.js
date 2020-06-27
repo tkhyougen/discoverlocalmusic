@@ -12,3 +12,11 @@ $(function() {
       readURL(this);
   });
 });
+
+// ユーザー登録のコメントカウント
+$(function(){
+ $("#input-text").on("keyup", function() {
+   let countNum = String($(this).val().length);
+   $("#counter").text(countNum + "文字");
+ });
+});

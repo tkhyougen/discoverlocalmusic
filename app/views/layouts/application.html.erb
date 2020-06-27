@@ -28,6 +28,21 @@
       // $(document).ready(function() {
       //       $("#user_tag_list").tagit();
       //   });
+      
+      $(function(){
+      function readURL(input){
+        if(input.files && input.files[0]){
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $('#image_preview').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $('#user_image').change(function(){
+        readURL(this);
+        });
+      });
 
     </script>
 
@@ -36,24 +51,62 @@
 
    <body>
 
-
     <header>
-      <div class="header-left">
-        <a>Discover Local Music </a>
-      </div>
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
+        <!-- <div class="header-left"> -->
+          <a class="navbar-brand" style="font-size:3rem">Discover Local Music </a>
+        <!-- </div> -->
 
-      <div class="header-right">
-        <% if user_signed_in? %>
-          <%= current_user.name %>
-          <%= link_to "投稿する", new_localartist_path %>
-          <%= link_to "探す",localartists_path(current_user.id)  %>
-          <%= link_to "マイページ",user_path(current_user.id) %>
-          <%= link_to "ログアウト",destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to "ログイン", new_user_session_path %>
-          <%= link_to "新規登録", new_user_registration_path %>
-        <% end %>
-      </div>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav">
+            <div class="header-right">
+              <% if user_signed_in? %>
+              <li class="nav-item" style="font-weight:bold">
+                <p>ログイン中のユーザー:<%= current_user.name %></p>
+              </li>
+
+
+              <li class="nav-item dropdown">
+                 <div class= "dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:blue">
+                 投稿する
+                 <span class="caret"></span>
+                 </div>
+                 <div class ="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
+                   <p><%= link_to "アーティスト", new_localartist_path %></p>
+                   <p><%= link_to "スポット", new_localartist_path %></p>
+                 </div>
+              </li>
+
+
+              <li class="nav-item dropdown">
+                 <div class= "dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:blue">
+                 探す
+                 <span class="caret"></span>
+                 </div>
+                 <div class="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
+                   <p><%= link_to "アーティスト", localartists_path(current_user.id) %></p>
+                   <p><%= link_to "スポット", localartists_path(current_user.id) %></p>
+                 </div>
+              </li>
+
+              <li class="nav-item">
+                <a><%= link_to "マイページ",user_path(current_user.id) %></a>
+              </li>
+              <li class="nav-item">
+                <a><%= link_to "ログアウト",destroy_user_session_path, method: :delete %></a>
+              </li>
+              <% else %>
+              <li class="nav-item">
+                <a><%= link_to "ログイン", new_user_session_path %></a>
+              </li>
+              <li class="nav-item">
+                <a><%= link_to "新規登録", new_user_registration_path %></a>
+              </li>
+              <% end %>
+            </div>
+          </ul>
+        </div>
+      </nav>
 
     </header>
 
@@ -71,7 +124,9 @@
   </body>
 
   <footer>
-
+    <div class="footer-logo">
+      <p>© 2020. Discoverlocalmusic All Rights Reserved. </p>
+    </div>
   </footer>
 
 </html>

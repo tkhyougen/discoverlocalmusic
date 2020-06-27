@@ -2,7 +2,205 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html,head, body, footer {
+  font-family: -apple-system;
+}
 
 .ui-helper-hidden-accessible {
   display: none;
+}
+
+.collapse ul{
+  list-style: none;
+  float: right;
+  padding-top: 15px;
+}
+
+
+.header-right li{
+  float:left;
+  padding-right: 15px;
+}
+
+.bg-dark{
+  background-color:#f8f9fa;
+}
+
+.navbar-brand{
+  color:black;
+  font-weight:bold;
+}
+
+.nav-item a{
+  color:blue;
+}
+
+body{
+  height:100%;
+  padding-bottom:40px;/*フッターの高さと同じにする*/
+}
+
+footer{
+  width:100%;
+  margin-top:30px;
+  background-color:#f8f9fa;
+  clear:both;
+  bottom:0;
+  z-index:1;
+  height:0px;
+  // position:absolute;
+}
+
+.footer-logo{
+  text-align: center;
+}
+
+
+/*以下sigb_upページ*/
+.sign_up-image{
+  height:500px;
+  background-image:image-url("sign_up1.jpg");
+  background-size:cover;
+  color: white;
+  position:relative;
+}
+
+.sign_up-logo{
+  position:absolute;
+  text-align: center;
+  top:  180px;                     /* 位置指定 */
+  bottom:  0;                  /* 位置指定 */
+  left:  0;                    /* 位置指定 */
+  right:  0;                   /* 位置指定 */
+  margin:  auto;
+}
+
+
+.sign_up-form{
+  text-align: center;
+  margin:50px 450px;
+  padding:10px 20px;
+  background-color:#f8f9fa;
+  border:solid 3px #f8f9fa;
+  border-radius: 6px;
+  box-shadow:0px 0px 5px;
+}
+
+.field{
+  margin-top:5px;
+  margin-bottom:5px;
+}
+
+// ユーザーedit/show
+
+.mypagetitle{
+  text-align:center;
+}
+.mypagetitle p{
+  font-size: 3rem;
+  color:blue;
+}
+
+
+.container_profile{
+  width:95%;
+  height:100%;
+  background-color:#f8f9fa;
+  margin:0 auto;
+  border:solid 3px #f8f9fa;
+  box-shadow:0px 0px 5px;
+  padding:15px;
+}
+
+  .user_profile_upper{
+    display:flex;
+    height:400px;
+  }
+
+    .user_profile_upper_left{
+      width:50%;
+      padding-top:20px;
+      text-align:center;
+    }
+
+    .user_profile_upper_right{
+      width:50%;
+      padding-top:20px;
+      font-size:1.5rem;
+    }
+
+    .image_file_field{
+      padding-left:150px;
+    }
+
+      .profile_data{
+        font-size:2rem;
+        font-weight:bold;
+      }
+
+      .user_name{
+        height:25%;
+      }
+      .user_name_edit{
+        height:25%;
+        width:50%;
+      }
+      .user_email{
+        height:25%;
+      }
+      .user_email_edit{
+        height:25%;
+        width:50%;
+      }
+      .user_comment{
+        height:40%;
+        word-wrap:break-word;
+      }
+
+.user_profile_lower{
+  display:block;
+  height:150px;
+  text-align:center;
+  font-size:2rem;
+  font-weight:bold;
+  word-wrap:break-word;
+  margin-top:50px;
+}
+
+.user_profile_myposts p {
+  font-weight:bold;
+  text-align:center;
+  font-size:2rem;
+}
+
+.user_profile_posts{
+    display:flex;
+    flex-wrap: wrap;
+    margin-bottom:20px;
+}
+.user_profile_each{
+  margin-right:15px;
+}
+.user_profile_lower_button{
+  display:flex;
+  justify-content:space-around;
+}
+.lower_button{
+  width:25%;
+}
+
+.user_profile_lower_button_edit{
+  text-align: center;
+}
+
+.password_field{
+  width:25%;
+}
+.update_field{
+  width:25%;
+  margin:0 auto;
+}
+
+.account_destroy{
+  color:red;
 }

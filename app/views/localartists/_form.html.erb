@@ -13,44 +13,56 @@
   <% end %>
 <!--  -->
 
-  <div class="image">
-    <br />
-    <p><%= form.label :写真 %></p>
-    <% if @localartist.image %>
-      <%= image_tag(@localartist.image.thumb.url) if @localartist.image && @localartist.image.url %>
-    <% end %>
-      <%= form.file_field :image  %>
-  </div>
+<div class ="container_profile">
+  <div class="user_profile_upper">
+    <div class="user_profile_upper_left">
+      <div class="user_profile_image">
+          <p><%= form.label :写真 %></p>
+          <% if @localartist.image %>
+            <%= image_tag @localartist.image.url,:size =>'350x350', id: :image_preview %>
+          <% else %>
+            <%= image_tag 'default.jpg',:size =>'350x350', id: :image_preview %>
+          <% end %>
+            <p class="image_file_field"><%= form.file_field :image, id: :user_image %></p>
+      </div>
+    </div>
 
-  <div class="name">
-    <%= form.label :アーティスト名 %>
-    <%= form.text_field :name, class:"form-control" %>
-  </div>
+    <div class="user_profile_upper_right">
+      <div class="user_name_edit">
+          <p class="profile_data"><%= form.label :アーティスト名 %></p>
+          <p><%= form.text_field :name,autofocus: true, class:"form-control" %></p>
+      </div>
+      <div class="user_email_edit">
+          <p class="profile_data"><%= form.label :国 %></p>
+          <p><%= form.text_field :country, class:"form-control" %></p>
+      </div>
 
-  <div class="country">
-    <%= form.label :国 %>
-    <%= form.text_field :country, class:"form-control" %>
-  </div>
-
-  <div class="wholikes">
-    <%= form.label :who_list, "このｱｰﾃｨｽﾄが好きな人にｵｽｽﾒ" %><br />
-    <ul id="wholikes_list">
-      <li>
-        <%= form.text_field :tag_list, placeholder:",で区切って下さい", value: @localartist.tag_list.join(","), class:"form-control"  %>
-      <li>
-    </ul>
-  </div>
-
-      <!-- #taggableで追加できるようにする paramsも追加-->
-
-  <div class="comment">
-    <%= form.label :コメント %>
-    <%= form.text_area :post_comment, placeholder:"自由にコメントしてください", class:"form-control" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "投稿する" %>
+      <div class="user_comment">
+        <p class="profile_data">  <%= form.label :コメント %></p>
+        <p><%= form.text_area :post_comment, placeholder:"アーティストについてコメントしてください",autofocus: true,size: "20x5", class:"form-control",id: "input-text" %></p>
+        <a id="counter">0</a><a>/255文字まで</a>
+      </div>
+    </div>
   </div>
 
 
-<% end %>
+  <div class ="user_profile_lower">
+    <div class="wholikes">
+      <p><%= form.label :who_list, "このｱｰﾃｨｽﾄが好きな人にｵｽｽﾒ" %></p>
+      <ul id="wholikes_list">
+        <li>
+          <%= form.text_field :tag_list, placeholder:",で区切って下さい", value: @localartist.tag_list.join(","), class:"form-control"  %>
+        <li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="user_profile_lower_button_edit">
+    <div class="update_field">
+        <div class="actions">
+          <p><%= form.submit "投稿する",class:"btn btn-primary btn-block btn-lg" %></p>
+        </div>
+    </div>
+  </div>
+  <% end %>
+</div>

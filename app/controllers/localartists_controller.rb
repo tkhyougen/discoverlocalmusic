@@ -1,6 +1,6 @@
 class LocalartistsController < ApplicationController
-  before_action :set_localartist, only: [:show, :edit, :update, :destory]
-  before_action  :set_localartist_tags_to_gon, only: [:edit]
+  before_action :set_localartist, only: [:show, :edit, :update, :destroy]
+  before_action :set_localartist_tags_to_gon, only: [:edit]
 
 
 
@@ -97,13 +97,14 @@ class LocalartistsController < ApplicationController
     @comment = @localartist.comments.build
 
     #youtube api
-    @youtube_data = find_videos("#{@localartist.name}")
+    @youtube_data = find_videos("#{@localartist.country} #{@localartist.name}")
 
   end
 
   def destroy
-    @loalartist.destroy
-    redirect_to localartists_path, notice:"削除しました"
+    binding.pry
+    @localartist.destroy
+    redirect_to edit_user_registration_path(current_user.id), notice:"削除しました"
   end
 
 
