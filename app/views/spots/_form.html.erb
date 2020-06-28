@@ -34,12 +34,12 @@
       </div>
       <div class="user_email_edit">
           <p class="profile_data"><%= form.label :国 %></p>
-          <p><%= form.text_field :country, class:"form-control" %></p>
+          <p><%= form.text_field :country, placeholder:"自動で先頭大文字なります(japan=>Japan)",class:"form-control" %></p>
       </div>
 
       <div class="spot_place">
         <%= form.label :場所の種類 %>
-        <%= form.select :genre, {"レコードCDショップ":"shop", "ライブハウス/バー":"venue","施設/聖地":"mecca","その他":"other"},{include_blank:"選択",include_hidden:false}, class:"form-control" %>
+        <%= form.select :genre, {"レコードCDショップ":"ショップ", "ライブハウス/バー":"ライブハウス/バー","施設/聖地":"施設/聖地","その他":"その他"},{include_blank:"選択",include_hidden:false}, class:"form-control" %>
       </div>
 
       <div class="user_comment">

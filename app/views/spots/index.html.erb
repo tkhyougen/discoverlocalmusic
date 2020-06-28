@@ -11,8 +11,8 @@
         <%= form.text_field :name, placeholder:"スポット名を入力", class:"form-control" %>
       </div>
       <div class="search_form">
-        <%= form.label :country_search, "国から" %>
-        <%= form.text_field :country, placeholder:"探したい国を入力", class:"form-control" %>
+        <%= form.label :country, "国から" %>
+        <%= form.collection_select :country, Spot.all.order("country ASC"), :country, :country,{include_blank:"アルファベット順"}, class:"form-control" %>
       </div>
 
       <div class="search_form">
