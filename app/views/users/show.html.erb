@@ -75,15 +75,15 @@
   <div class ="user_profile_myposts spots">
     <p>投稿したスポット</p>
     <div class="user_profile_posts">
-      <% if @user.localartists.present? %>
-        <% @user.localartists.each do |localartist| %>
+      <% if @user.spots.present? %>
+        <% @user.spots.each do |spot| %>
           <table>
             <div class="user_profile_each">
               <tr>
                 <td>
-                  <%= link_to localartist_path(localartist.id) do%>
-                    <% if localartist.image? %>
-                      <%= image_tag "#{localartist.image}",:size =>'120x120' ,class:"card-img-top" %>
+                  <%= link_to spot_path(spot.id) do%>
+                    <% if spot.image? %>
+                      <%= image_tag "#{spot.image}",:size =>'120x120' ,class:"card-img-top" %>
                     <% else %>
                       <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top") %>
                     <% end %>
@@ -91,7 +91,7 @@
                 </td>
               <tr>
                 <td>
-                  <p><%= localartist.name %></p>
+                  <p><%= spot.name %></p>
                 </td>
               </tr>
             </div>

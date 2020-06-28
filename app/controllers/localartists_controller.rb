@@ -15,27 +15,27 @@ class LocalartistsController < ApplicationController
     #検索結果の表示
     if params[:search].present?
       if params[:search][:name].present? && params[:search][:country].present? && params[:search][:tag_list].present?
-        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
-        @localartists = @localartists.all.where("country Like ?", "%#{params[:search][:country]}%")
+        @localartists = Localartist.all.where("name ilike ?", "%#{params[:search][:name]}%")
+        @localartists = @localartists.all.where("country ilike ?", "%#{params[:search][:country]}%")
         @localartists = @localartists.tagged_with(params[:search][:tag_list])
 
       elsif params[:search][:name].present? && params[:search][:country].present?
-        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
-        @localartists = @localartists.all.where("country Like ?", "%#{params[:search][:country]}%")
+        @localartists = Localartist.all.where("name ilike ?", "%#{params[:search][:name]}%")
+        @localartists = @localartists.all.where("country ilike ?", "%#{params[:search][:country]}%")
 
       elsif params[:search][:country].present? && params[:search][:tag_list].present?
-        @localartists = Localartist.all.where("country Like ?", "%#{params[:search][:country]}%")
+        @localartists = Localartist.all.where("country ilike ?", "%#{params[:search][:country]}%")
         @localartists = @localartists.tagged_with(params[:search][:tag_list])
 
       elsif params[:search][:name].present? && params[:search][:tag_list].present?
-        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
+        @localartists = Localartist.all.where("name ilike ?", "%#{params[:search][:name]}%")
         @localartists = @localartists.tagged_with(params[:search][:tag_list])
 
       elsif params[:search][:name].present?
-        @localartists = Localartist.all.where("name Like ?", "%#{params[:search][:name]}%")
+        @localartists = Localartist.all.where("name ilike ?", "%#{params[:search][:name]}%")
 
       elsif params[:search][:country].present?
-        @localartists = Localartist.all.where("country Like ?", "%#{params[:search][:country]}%")
+        @localartists = Localartist.all.where("country ilike ?", "%#{params[:search][:country]}%")
 
       elsif params[:search][:tag_list].present?
           @localartists = Localartist.tagged_with(params[:search][:tag_list])
@@ -46,19 +46,18 @@ class LocalartistsController < ApplicationController
 
   def new
     if params[:back]
-    @localartist = Localartist.new(localartist_params)
+      @localartist = Localartist.new(localartist_params)
     else
-    @localartist = Localartist.new
+      @localartist = Localartist.new
     end
   end
-
-
 
   def confirm
     @localartist = Localartist.new(localartist_params)
     @localartist.user_id = current_user.id
     render :new if @localartist.invalid?
   end
+  
 
   def create
     @localartist = Localartist.new(localartist_params)
@@ -98,7 +97,6 @@ class LocalartistsController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @localartist.destroy
     redirect_to edit_user_registration_path(current_user.id), notice:"削除しました"
   end

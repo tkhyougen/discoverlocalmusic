@@ -16,15 +16,22 @@ Rails.application.routes.draw do
     root "users/registrations#new"
   end
 
-
+#localaritstへのルート
   resources :localartists do
     collection do
       post :confirm
     end
-
     resources :comments    #localaritstに対するコメントをネスト
-
   end
+
+#localspotへのルート
+  resources :spots do
+    collection do
+      post :confirm
+    end
+      resources :comments    #localaritstに対するコメントをネスト
+  end
+
 
   #中間テーブルuser_country_labellingsのcreateとdestroyを有効か
   resources :user_country_labellings, only: [:create, :destroy]
