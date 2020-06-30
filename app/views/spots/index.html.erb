@@ -5,63 +5,30 @@
 
 <div class="container_profile">
   <div class="localartist_search_upper">
-    <%= form_with(scope: :search, url:spots_path, local: true, method: :get) do |form| %>
+      <%= search_form_for @search do |f| %>
       <div class="search_form">
-        <%= form.label :name_search, "スポット名から" %>
-        <%= form.text_field :name, placeholder:"スポット名を入力", class:"form-control" %>
+        <%= f.label :name_cont, 'スポット名' %>
+        <%= f.search_field :name_cont, placeholder:"スポット名を入力", class:"form-control" %>
       </div>
       <div class="search_form">
-        <%= form.label :country, "国から" %>
-        <%= form.collection_select :country, Spot.all.order("country ASC"), :country, :country,{include_blank:"アルファベット順"}, class:"form-control" %>
+        <%= f.label :country, "国から" %>
+        <%= f.collection_select :country_eq, Spot.all.order("country ASC"), :country, :country,{include_blank:"アルファベット順"}, class:"form-control" %>
       </div>
 
       <div class="search_form">
-        <%= form.label :genre_search, "スポットの種類から" %>
-        <%= form.select :genre,{"レコードCDショップ":"shop", "ライブハウス/バー":"venue","施設/聖地":"mecca","その他":"other"},{include_blank:"選択する"}, class:"form-control" %>
-        <%= form.hidden_field :search, value:"true" %>
+        <%= f.label :genre, "スポットの種類から" %>
+        <%= f.select :genre_eq,{"レコードCDショップ":"shop", "ライブハウス/バー":"venue","施設/聖地":"mecca","その他":"other"},{include_blank:"選択する"}, class:"form-control" %>
       </div>
 
   </div>
-  <div class="search_button">
-      <div class="localartist_search_button">
-        <%= form.submit name="検索する",class:"btn btn-primary btn-block btn-lg"  %>
-      </div>
-  </div>
+    <div class="search_button">
+        <div class="localartist_search_button">
+          <%= f.submit "検索",class:"btn btn-primary btn-block btn-lg"  %>
+        </div>
+    </div>
       <% end %>
 
-    <!-- <div class="flex-inline">
-      %= form.label :label_id_search, "ラベル絞込" %>
-      %= form.select("label_id", Label.all.pluck(:name, :id), { include_blank:"選択する",include_hidden: false }) %>
-        <!--label_idをパラメータ値として飛ばす pluckでlabelのidとnameを取り出す -->
-    <!-- </div> -->
 
-      <!-- ransack -->
-    <!-- <form class="form-inline">
-    %= search_form_for @search, url: localartists_path do |f| %>
-        <div class="flex-inline">
-          %= f.label :name, 'アーティスト名' %>
-          %= f.search_field :name_cont %>
-        </div>
-
-        <div class="flex-inline">
-          %= f.label :country, "出身国から" %>
-          %= f.search_field :country_cont %>
-        </div>
-
-        <!--- tag_listで検索つけたい -->
-
-        <!-- <div class="flex-inline">
-          %= f.submit name="検索" %>
-        </div>
-      % end %>
-    <!-- </form> -->
-
-      <!-- % @posts.each do |post| %>
-        <tr>
-          <td>%= post.name -%></td>
-        </tr>
-      % end %> -->
-      <!-- ransack -->
 
     <div class ="localartist_index_posts">
       <p>スポット検索結果一覧</p>
