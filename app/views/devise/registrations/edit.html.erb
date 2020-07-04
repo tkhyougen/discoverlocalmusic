@@ -78,14 +78,14 @@
   <div class ="user_profile_myposts spots">
     <p>自分が投稿したスポット</p>
     <div class="user_profile_posts">
-      <% @user.localartists.each do |localartist| %>
+      <% @user.spots.each do |spot| %>
         <table>
           <div class="user_profile_each">
             <tr>
               <td>
-                <%= link_to localartist_path(localartist.id) do%>
-                  <% if localartist.image? %>
-                    <%= image_tag "#{localartist.image}",:size =>'120x120' ,class:"card-img-top" %>
+                <%= link_to spot_path(spot.id) do%>
+                  <% if spot.image? %>
+                    <%= image_tag "#{spot.image}",:size =>'120x120' ,class:"card-img-top" %>
                   <% else %>
                     <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top") %>
                   <% end %>
@@ -93,7 +93,9 @@
               </td>
             <tr>
               <td>
-                <p><%= localartist.name %></p>
+                <p><%= spot.name %></p>
+                <a style="font-size:1.2rem;"><%= link_to '編集', edit_spot_path(spot) %></a>
+                <a style="font-size:1.2rem;"><%= link_to '削除', spot, method: :delete, data: { confirm: '本当に削除しますか?' } %></a>
               </td>
             </tr>
           </div>

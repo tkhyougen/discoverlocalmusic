@@ -73,7 +73,7 @@
                  </div>
                  <div class ="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
                    <p><%= link_to "アーティスト", new_localartist_path %></p>
-                   <p><%= link_to "スポット", new_localartist_path %></p>
+                   <p><%= link_to "スポット", new_spot_path %></p>
                  </div>
               </li>
 
@@ -85,7 +85,7 @@
                  </div>
                  <div class="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
                    <p><%= link_to "アーティスト", localartists_path(current_user.id) %></p>
-                   <p><%= link_to "スポット", localartists_path(current_user.id) %></p>
+                   <p><%= link_to "スポット", spots_path(current_user.id) %></p>
                  </div>
               </li>
 

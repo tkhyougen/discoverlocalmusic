@@ -1,0 +1,57 @@
+<div class="mypagetitle">
+  <p>以下の内容で、投稿する</p>
+</div>
+
+<%= form_with(model: @spot, local: true ) do |form| %>
+
+<div class ="container_profile">
+  <div class="user_profile_upper">
+    <div class="user_profile_upper_left">
+      <div class="user_profile_image">
+        <p><%= form.label :写真 %></p>
+          <% if @spot.image %>
+            <%= image_tag @spot.image.url,:size =>'350x350' %>
+          <% else %>
+            <%= image_tag 'default.jpg',:size =>'350x350' %>
+          <% end %>
+      </div>
+    </div>
+
+    <div class="user_profile_upper_right">
+      <div class="user_name">
+        <%= form.hidden_field :name %>
+        <p class="profile_data">スポット名</p>
+        <p><%= @spot.name %> </p>
+      </div>
+
+      <div class="user_email">
+        <%= form.hidden_field :country %>
+        <p class="profile_data">国</p>
+        <p><%= @spot.country %> </p>
+      </div>
+
+      <div class="spot_place">
+        <%= form.hidden_field :genre %>
+        <p class="profile_data">種類</p>
+        <p><%= @spot.genre %></p>
+      </div>
+
+      <div class="user_comment">
+        <%= form.hidden_field :post_comment %>
+        <p class="profile_data">コメント</p>
+        <p><%= @spot.post_comment %></p>
+      </div>
+    </div>
+  </div>
+
+  <br /><br /><br /><br /><br /><br />
+
+  <div class ="user_profile_lower_button_edit">
+    <div class="update_field">
+      <p><%= form.submit "投稿する",class:"btn btn-primary btn-block btn-lg" %></p>
+      <p><%= form.submit '戻る', name:"back"%></p>
+    </div>
+  </div>
+
+
+<% end %>

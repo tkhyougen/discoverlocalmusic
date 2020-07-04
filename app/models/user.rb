@@ -15,10 +15,13 @@ class User < ApplicationRecord
   has_many :user_country_labellings, dependent: :destroy
   has_many :user_country_labelling_user_country_labels, through: :user_country_labellings, source: :user_country_label
 
-    #user.localartists
-
+  #user.localartists
   has_many :localartists, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  #user.spots
+  has_many :spots, dependent: :destroy
+  has_many :spotcomments, dependent: :destroy
 
 
   #画像アップロード
