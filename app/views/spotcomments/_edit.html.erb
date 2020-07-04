@@ -1,0 +1,19 @@
+<%= form_with(model: [spot, spotcomment]) do |form| %>
+  <% if spotcomment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(spotcomment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <ul>
+      <% spotcomment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.text_area :content, id: "comment_content_#{spot.id}" %>
+    <%= form.label :content %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

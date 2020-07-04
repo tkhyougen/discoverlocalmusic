@@ -4,12 +4,13 @@ class SpotsController < ApplicationController
 
   def index
     # @spots = Spot.all.order(id: :desc)
-    # @user = current_user
+    @spots = Spot.all.order(id: :desc)
+    @user = current_user
 
     #ransack
     @search = Spot.ransack(params[:q])
     @spots = @search.result
-    
+
   end
 
   def new
@@ -55,6 +56,9 @@ class SpotsController < ApplicationController
 
   def show
     #set_spot
+    @spotcomments = @spot.spotcomments.all.order('created_at DESC')
+    @spotcomment = @spot.spotcomments.build
+
   end
 
 

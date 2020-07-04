@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+  #set_localrtist
   #@localartistのidをlocalritst_idにあらかじめいれた状態でcommentのinstanceを作成できる
     @comment = @localartist.comments.build(comment_params)
     @comment.user_id = current_user.id
@@ -17,7 +18,6 @@ class CommentsController < ApplicationController
       if @comment.save
         format.js { render :index }
       else
-        binding.pry
         format.html { redirect_to localartist_path(@localartist), notice:"投稿できません"}
       end
     end
@@ -47,7 +47,6 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    binding.pry
     respond_to do |format|
       flash.now[:notice] = 'コメントが削除されました'
       format.js { render :index }
@@ -59,7 +58,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:loalartist_id, :content)
+    params.require(:comment).permit(:localartist_id, :content)
   end
 
     # localaritstをパラメータの値から探し出し,localaritstに紐づくcommentsとしてbuild

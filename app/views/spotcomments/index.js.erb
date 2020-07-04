@@ -1,0 +1,2 @@
+$("#comments_area").html("<%= j(render 'spotcomments/index', { spotcomments: @spotcomment.spot.spotcomments.order('created_at DESC'), spot: @spotcomment.spot }) %>")
+$("textarea").val('')

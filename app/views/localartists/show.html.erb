@@ -41,24 +41,24 @@
       <% end %>
   </div>
 
-    <div class ="user_profile_myposts artists">
-      <p>Youtube</p>
-      <div class="user_profile_posts">
-      <!--youtube api -->
-      <% @youtube_data.each do |item| %>
-        <table>
-          <div class="user_profile_each">
-            <tr>
-              <td>
-                <% snippet = item.snippet %><!-- <p>%= snippet.title %></p> -->
-                <div><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-                <% end %>
-              </td>
-            </tr>
-          </div>
-        </table>
-      </div>
+  <div class ="user_profile_myposts artists">
+    <p>Youtube</p>
+    <div class="user_profile_posts">
+    <!--youtube api -->
+    <% @youtube_data.each do |item| %>
+      <table>
+        <div class="user_profile_each">
+          <tr>
+            <td>
+              <% snippet = item.snippet %><!-- <p>%= snippet.title %></p> -->
+              <div><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+              <% end %>
+            </td>
+          </tr>
+        </div>
+      </table>
     </div>
+  </div>
 
     <div class="localartist_profile_lower">
       <p class="localartist_profile_comment_title">一言コメント(最新5件を表示)</p>
@@ -72,7 +72,6 @@
         <%= render partial: 'comments/form', locals: { comment: @comment, localartist: @localartist } %>
       </div>
     </div>
-
 
 
     <div class="localartist_profile_lower_button_show">

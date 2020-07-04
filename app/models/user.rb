@@ -21,6 +21,7 @@ class User < ApplicationRecord
 
   #user.spots
   has_many :spots, dependent: :destroy
+  has_many :spotcomments, dependent: :destroy
 
 
   #画像アップロード

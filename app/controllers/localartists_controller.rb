@@ -9,7 +9,7 @@ class LocalartistsController < ApplicationController
     @user = current_user
     #ransack
     # @search = Localartist.ransack(params[:q])
-    # @posts = @search.result
+    # @localartists = @search.result
     #ransack
 
     #検索結果の表示
@@ -57,7 +57,6 @@ class LocalartistsController < ApplicationController
     @localartist.user_id = current_user.id
     render :new if @localartist.invalid?
   end
-  
 
   def create
     @localartist = Localartist.new(localartist_params)
@@ -87,7 +86,7 @@ class LocalartistsController < ApplicationController
   end
 
   def show
-    #ser_localrtist
+    #set_localrtist
     @comments = @localartist.comments.all.order('created_at DESC')
     @comment = @localartist.comments.build
 

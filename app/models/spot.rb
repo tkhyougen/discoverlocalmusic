@@ -1,7 +1,7 @@
 class Spot < ApplicationRecord
 
   belongs_to :user
-
+  has_many :spotcomments, dependent: :destroy
 
   validates :name, presence: true, length:{ maximum:20 },uniqueness: true
   before_validation {country.capitalize!}
