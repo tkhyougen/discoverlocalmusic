@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  # get 'localartists/index'
-  # get 'localartists/show'
+  get 'localartists/index'
+  get 'localartists/show'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'

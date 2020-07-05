@@ -1,4 +1,4 @@
-<%= form_with(model: @localartist, local: true, url: choose_new_or_edit) do |form| %>
+<%= form_with(model: @localartist, local: true, url: choose_new_or_edit_localartists) do |form| %>
 
 <!--エラー  -->
   <% if @localartist.errors.any? %>
@@ -54,6 +54,11 @@
         <li>
       </ul>
     </div>
+  </div>
+
+  <div class ="user_profile_lower">
+    <p class="profile_data"><%= form.label :おすすめのyoutube動画 %></p>
+    <p><%= form.text_field :youtube_url,placeholder:"Youtubeアドレスを貼ってください(e.g. https://www.youtube.com/watch?v=XXXXXX)", autofocus: true, class:"form-control" %></p>
   </div>
 
   <div class="user_profile_lower_button_edit">

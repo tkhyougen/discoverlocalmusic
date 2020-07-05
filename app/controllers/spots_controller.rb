@@ -3,7 +3,7 @@ class SpotsController < ApplicationController
 
 
   def index
-    # @spots = Spot.all.order(id: :desc)
+
     @spots = Spot.all.order(id: :desc)
     @user = current_user
 
@@ -22,6 +22,7 @@ class SpotsController < ApplicationController
   end
 
   def confirm
+    binding.pry
     @spot = Spot.new(spot_params)
     @spot.user_id = current_user.id
     render :new if @spot.invalid?

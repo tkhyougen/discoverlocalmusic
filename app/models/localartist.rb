@@ -9,4 +9,5 @@ class Localartist < ApplicationRecord
   validates :post_comment, length:{ maximum:255 }
 
   acts_as_taggable
+
 end
