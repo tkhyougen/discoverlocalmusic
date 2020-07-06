@@ -1,16 +1,18 @@
 class SpotsController < ApplicationController
   before_action :set_spot, only: [:show, :edit, :update, :destroy]
 
+  PER = 14
 
   def index
-    # @spots = Spot.all.order(id: :desc)
-    @spots = Spot.all.order(id: :desc)
+
+    @spots = Spot.all.order(id: :asc)
     @user = current_user
 
     #ransack
     @search = Spot.ransack(params[:q])
     @spots = @search.result
 
+    @spots = @spots.page(params[:page]).per(PER)
   end
 
   def new
@@ -75,6 +77,6 @@ class SpotsController < ApplicationController
     end
 
     def spot_params
-      params.require(:spot).permit(:name, :country, :image, :post_comment, :genre)
+      params.require(:spot).permit(:name, :country, :image, :post_comment, :genre, :address,:latitude, :longitude)
     end
 end

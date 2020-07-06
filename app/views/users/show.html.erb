@@ -46,7 +46,7 @@
     <p>投稿したアーティスト</p>
     <div class="user_profile_posts">
       <% if @user.localartists.present? %>
-      <% @user.localartists.each do |localartist| %>
+      <% @userartistlists.each do |localartist| %>
         <table>
           <div class="user_profile_each">
             <tr>
@@ -71,12 +71,17 @@
         <h4 style="margin:0 auto;">登録がありません</h4>
       <% end %>
     </div>
+    <div class="paginate">
+      <%= paginate @userartistlists %>
+    </div>
   </div>
+
+
   <div class ="user_profile_myposts spots">
     <p>投稿したスポット</p>
     <div class="user_profile_posts">
       <% if @user.spots.present? %>
-        <% @user.spots.each do |spot| %>
+        <% @userspots.each do |spot| %>
           <table>
             <div class="user_profile_each">
               <tr>
@@ -101,6 +106,9 @@
         <h4 style="margin:0 auto;">登録がありません</h4>
       <% end %>
     </div>
+      <div class="paginate">
+        <%= paginate @userspots %>
+      </div>
   </div>
 
   <div class="user_profile_lower_button_show">

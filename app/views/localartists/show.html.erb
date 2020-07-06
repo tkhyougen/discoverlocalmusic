@@ -32,8 +32,6 @@
     </div>
   </div>
 
-
-
   <div class="user_profile_lower">
       <p>このｱｰﾃｨｽﾄ好きにオススメ</p>
       <% @localartist.tag_list.each do |tag| %>
@@ -42,9 +40,9 @@
   </div>
 
   <div class ="user_profile_myposts artists">
-    <p>Youtube</p>
+    <p>Youtube(再生数最多動画と自身で登録した動画を表示)</p>
     <div class="user_profile_posts">
-    <!--youtube api -->
+    <!--youtube apiで自動表示-->
     <% @youtube_data.each do |item| %>
       <table>
         <div class="user_profile_each">
@@ -52,11 +50,16 @@
             <td>
               <% snippet = item.snippet %><!-- <p>%= snippet.title %></p> -->
               <div><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-              <% end %>
             </td>
           </tr>
         </div>
       </table>
+      <% end %>
+
+      <!-- 自分が貼り付けたyoutbe -->
+      <div class="user_profile_each">
+        <p><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= @localartist.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+      </div>
     </div>
   </div>
 

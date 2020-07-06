@@ -13,7 +13,6 @@ class SpotcommentsController < ApplicationController
     #@spotのidをspot_idにあらかじめいれた状態でspotcommentのinstanceを作成できる
       @spotcomment = @spot.spotcomments.build(comment_params)
       @spotcomment.user_id = current_user.id
-      binding.pry
 
       respond_to do |format|
         if @spotcomment.save

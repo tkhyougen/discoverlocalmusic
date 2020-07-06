@@ -1,4 +1,4 @@
-<%= form_with(model: @localartist, local: true, url: choose_new_or_edit) do |form| %>
+<%= form_with(model: @localartist, local: true, url: choose_new_or_edit_localartists) do |form| %>
 
 <!--エラー  -->
   <% if @localartist.errors.any? %>
@@ -30,11 +30,11 @@
     <div class="user_profile_upper_right">
       <div class="user_name_edit">
           <p class="profile_data"><%= form.label :アーティスト名 %></p>
-          <p><%= form.text_field :name,autofocus: true, class:"form-control" %></p>
+          <p><%= form.text_field :name,autofocus: true,placeholder:"自動で先頭大文字なります", class:"form-control" %></p>
       </div>
       <div class="user_email_edit">
           <p class="profile_data"><%= form.label :国 %></p>
-          <p><%= form.text_field :country, class:"form-control" %></p>
+          <p><%= form.text_field :country,placeholder:"自動で先頭大文字なります(japan=>Japan)", class:"form-control" %></p>
       </div>
 
       <div class="user_comment">
@@ -54,6 +54,11 @@
         <li>
       </ul>
     </div>
+  </div>
+
+  <div class ="user_profile_lower">
+    <p class="profile_data"><%= form.label :おすすめのyoutube動画 %></p>
+    <p><%= form.text_field :youtube_url,placeholder:"Youtubeアドレスを貼ってください(e.g. https://www.youtube.com/watch?v=XXXXXX)", autofocus: true, class:"form-control" %></p>
   </div>
 
   <div class="user_profile_lower_button_edit">
