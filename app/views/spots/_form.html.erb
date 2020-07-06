@@ -30,7 +30,7 @@
     <div class="user_profile_upper_right">
       <div class="user_name_edit">
           <p class="profile_data"><%= form.label :スポット名 %></p>
-          <p><%= form.text_field :name,autofocus: true, class:"form-control" %></p>
+          <p><%= form.text_field :name,autofocus: true,placeholder:"自動で先頭大文字なります",class:"form-control" %></p>
       </div>
       <div class="user_email_edit">
           <p class="profile_data"><%= form.label :国 %></p>
@@ -48,9 +48,16 @@
         <a id="counter">0</a><a>/255文字まで</a>
       </div>
     </div>
+
   </div>
 
   <br /><br /><br /><br /><br /><br />
+
+  <div class ="spot_address_lower">
+    <p class="profile_data">  <%= form.label :住所 %></p>
+    <p><%= form.text_area :address, placeholder:"住所を入力すればgooglemapで検索します",autofocus: true,size: "10x1", class:"form-control" %></p>
+  </div>
+
 
   <div class="user_profile_lower_button_edit">
     <div class="update_field">

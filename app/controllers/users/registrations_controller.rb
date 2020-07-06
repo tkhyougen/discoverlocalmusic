@@ -8,6 +8,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   '/users'
   # end
 
+  #paginateでの表示数
+  PER = 3
+
   # アカウント編集後、プロフィール画面に移動する
   # def after_update_path_for(resource)
   #   user_path(id: current_user.id)
@@ -45,6 +48,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def edit
     # @user = User.find(params[:id])
     @all_tag_list = ActsAsTaggableOn::Tag.all.pluck(:name)
+    @userartistlists = @user.localartists.page(params[:page]).per(PER)
+    @userspots = @user.spots.page(params[:page]).per(PER)
     super
   end
   #

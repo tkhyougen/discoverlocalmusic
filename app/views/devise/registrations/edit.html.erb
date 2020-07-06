@@ -50,7 +50,7 @@
   <div class ="user_profile_myposts artists">
     <p>自分が投稿したアーティスト</p>
     <div class="user_profile_posts">
-      <% @user.localartists.each do |localartist| %>
+      <% @userartistlists.each do |localartist| %>
         <table>
           <div class="user_profile_each">
             <tr>
@@ -73,6 +73,9 @@
           </div>
         </table>
       <% end %>
+    </div>
+    <div class="paginate">
+      <%= paginate @userartistlists %>
     </div>
   </div>
   <div class ="user_profile_myposts spots">
@@ -102,6 +105,10 @@
         </table>
       <% end %>
     </div>
+    <div class="paginate">
+      <%= paginate @userspots %>
+    </div>
+
   </div>
 
   <div class="password_change">

@@ -46,6 +46,13 @@
 
   <br /><br /><br /><br /><br /><br />
 
+  <div class ="spot_address_lower">
+    <%= form.hidden_field :address %>
+    <p class="profile_data">住所</p>
+    <p><%= @spot.address %></p>
+  </div>
+
+
   <div class ="user_profile_lower_button_edit">
     <div class="update_field">
       <p><%= form.submit "投稿する",class:"btn btn-primary btn-block btn-lg" %></p>

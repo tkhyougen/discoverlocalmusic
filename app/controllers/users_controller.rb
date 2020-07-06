@@ -4,9 +4,13 @@ class UsersController < ApplicationController
   # before_action :authenticate_user!, only:[:show,:index]
   before_action  :set_user_tags_to_gon, only: [:edit]
 
+  #paginateでの表示数
+  PER = 6
 
   def show
     @user = User.find(params[:id])
+    @userartistlists = @user.localartists.page(params[:page]).per(PER)
+    @userspots = @user.spots.page(params[:page]).per(PER)
   end
 
   def index

@@ -3,6 +3,9 @@ class LocalartistsController < ApplicationController
   before_action :set_localartist_tags_to_gon, only: [:edit]
   before_action :set_youtube, only: [:update]
 
+
+  PER = 14
+
   def index
 
     @localartists = Localartist.all.order(id: :desc)
@@ -41,6 +44,8 @@ class LocalartistsController < ApplicationController
           @localartists = Localartist.tagged_with(params[:search][:tag_list])
       end
     end
+
+    @localartists = @localartists.page(params[:page]).per(PER)
   end
 
 
@@ -62,8 +67,8 @@ class LocalartistsController < ApplicationController
     @localartist = Localartist.new(localartist_params)
     @localartist.user_id = current_user.id
 
+    #youtubeのアドレス下11桁を取り出し、viewにあてはめ
     url = params[:localartist][:youtube_url]
-    binding.pry
     url = url.last(11)
     @localartist.youtube_url = url
 
@@ -71,7 +76,6 @@ class LocalartistsController < ApplicationController
       render :new
     else
       if @localartist.save!
-
 
         # @youtube_data = Yotube.new
         # @youtube_data.url = find_videos("#{@localartist.country}, #{@localartist.name}")
