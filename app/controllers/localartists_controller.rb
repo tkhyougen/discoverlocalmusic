@@ -95,10 +95,8 @@ class LocalartistsController < ApplicationController
   def update
     #set_localrtist
     #set_youtube
-    binding.pry
     @localartist.save
     if @localartist.update(localartist_params)
-    binding.pry
       redirect_to localartist_path, notice: "情報を編集しました！"
     else
       render :edit
@@ -107,14 +105,14 @@ class LocalartistsController < ApplicationController
 
   def show
     #set_localrtist
-
     @comments = @localartist.comments.all.order('created_at DESC')
     @comment = @localartist.comments.build
 
     #youtube api
-    @youtube_data = find_videos("#{@localartist.country} #{@localartist.name}")
+    # @youtube_data = find_videos("#{@localartist.country} #{@localartist.name}")
 
-    binding.pry
+    @favorite = current_user.favorites.find_by(localartist_id: @localartist.id)
+
   end
 
   def destroy

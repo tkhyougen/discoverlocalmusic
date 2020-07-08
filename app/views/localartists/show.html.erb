@@ -43,6 +43,7 @@
     <p>Youtube(再生数最多動画と自身で登録した動画を表示)</p>
     <div class="user_profile_posts">
     <!--youtube apiで自動表示-->
+    <% if @youtube_data.present? %>
     <% @youtube_data.each do |item| %>
       <table>
         <div class="user_profile_each">
@@ -54,6 +55,8 @@
           </tr>
         </div>
       </table>
+      <% end %>
+      <% else %>
       <% end %>
 
       <!-- 自分が貼り付けたyoutbe -->
@@ -86,8 +89,12 @@
       <% else %>
   　   <!--非投稿ユーザー -->
         <p class="lower_button 1"><%= link_to 'タグを追加する', edit_localartist_path(@localartist),class:"btn btn-primary btn-block btn-lg" %></p>
-        <p class="lower_button 2"><%= link_to "お気に入りに追加する", edit_localartist_path(@localartist.id),class:"btn btn-danger btn-block btn-lg" %></p>
-        <p class="lower_button 3"><%= link_to "投稿ユーザーのプロフィールへ", user_path(@localartist.user.id),class:"btn btn-danger btn-block btn-lg"  %></p>
+        <% if @favorite.present? %>
+          <p class="lower_button 2"><%= link_to "お気に入りを解除する", favorite_path(id: @favorite.id), method: :delete, class:"btn btn-danger btn-block btn-lg" %></p>
+        <% else %>
+          <p class="lower_button 2"><%= link_to "お気に入りに追加する", favorites_path(localartist_id: @localartist.id), method: :post,class:"btn btn-success btn-block btn-lg" %></p>
+        <% end %>
+        <p class="lower_button 3"><%= link_to "投稿ユーザーのプロフィールへ", user_path(@localartist.user.id),class:"btn btn-warning btn-block btn-lg"  %></p>
       <% end %>
     </div>
     <div class="localartist_profile_lower_button_show">
