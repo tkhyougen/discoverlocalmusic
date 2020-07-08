@@ -9,6 +9,11 @@ class Spot < ApplicationRecord
   validates :country, presence: true, length:{ maximum:20 }
   validates :post_comment, length:{ maximum:255 }
 
+  #favoriteのアソシエーション
+  has_many :spotfavorites, dependent: :destroy
+  has_many :spotfavorite_users, through: :spotfavorites, source: :user
+
+  #spotのmap検索
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 end

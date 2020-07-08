@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_170402) do
+ActiveRecord::Schema.define(version: 2020_07_08_162637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(version: 2020_07_06_170402) do
     t.bigint "user_id"
     t.index ["spot_id"], name: "index_spotcomments_on_spot_id"
     t.index ["user_id"], name: "index_spotcomments_on_user_id"
+  end
+
+  create_table "spotfavorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "spot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "spots", force: :cascade do |t|

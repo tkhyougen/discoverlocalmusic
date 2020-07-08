@@ -26,6 +26,9 @@ class User < ApplicationRecord
   #localartsitのfavorite
   has_many :favorites, dependent: :destroy
 
+  #spotのfavorite
+  has_many :spotfavorites, dependent: :destroy
+
   #画像アップロード
   mount_uploader :image, ImageUploader
 
