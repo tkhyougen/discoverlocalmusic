@@ -31,6 +31,7 @@ class SpotcommentsController < ApplicationController
       end
     end
 
+
     def update
       @spotcomment = @spot.spotcomments.find(params[:id])
       respond_to do |format|

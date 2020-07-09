@@ -5,12 +5,12 @@ class SpotsController < ApplicationController
 
   def index
 
-    @spots = Spot.all.order(id: :asc)
+    @spots = Spot.all.order(id: :desc)
     @user = current_user
 
     #ransack
     @search = Spot.ransack(params[:q])
-    @spots = @search.result
+    @spots = @search.result(id: :desc)
 
     @spots = @spots.page(params[:page]).per(PER)
   end
@@ -60,6 +60,8 @@ class SpotsController < ApplicationController
     #set_spot
     @spotcomments = @spot.spotcomments.all.order('created_at DESC')
     @spotcomment = @spot.spotcomments.build
+
+    @spotfavorite = current_user.spotfavorites.find_by(spot_id: @spot.id)
 
   end
 

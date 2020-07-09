@@ -88,7 +88,7 @@
 
 
 
-    <div class="localartist_profile_lower_button_show">
+    <div class="spot_profile_lower_button_show">
       <% if @spot.user == current_user %>
         <!--投稿ユーザー -->
          <p class="lower_button 1"><%= link_to "スポットを編集する", edit_spot_path(@spot.id),class:"btn btn-primary btn-block btn-lg" %></p>
@@ -96,8 +96,12 @@
          data: { confirm: '本当に削除していいですか？' } %></p>
       <% else %>
   　   <!--非投稿ユーザー -->
-        <p class="lower_button 2"><%= link_to "お気に入りに追加する", edit_spot_path(@spot.id),class:"btn btn-danger btn-block btn-lg" %></p>
-        <p class="lower_button 3"><%= link_to "投稿ユーザーのプロフィールへ", user_path(@spot.user.id),class:"btn btn-danger btn-block btn-lg"  %></p>
+        <% if @spotfavorite.present? %>
+          <div class="lower_button 1"><%= link_to "お気に入りを解除する", spotfavorite_path(id: @spotfavorite.id), method: :delete, class:"btn btn-danger btn-block btn-lg" %></div>
+        <% else %>
+          <div class="lower_button 1"><%= link_to "お気に入りに追加する", spotfavorites_path(spot_id: @spot.id), method: :post, class:"btn btn-success btn-block btn-lg" %></div>
+        <% end %>
+        <div class="lower_button 2"><%= link_to "投稿ユーザーのプロフィールへ", user_path(@spot.user.id),class:"btn btn-warning btn-block btn-lg"  %></div>
       <% end %>
     </div>
     <div class="localartist_profile_lower_button_show">

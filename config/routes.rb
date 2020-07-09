@@ -31,6 +31,12 @@ Rails.application.routes.draw do
       resources :spotcomments    #spotに対する一言コメントをネスト
   end
 
+  #localartistのfavrotiesのビュー
+  resources :favorites, only:[:create, :destroy, :index]
+
+  #Spotのfavrotiesのビュー
+  resources :spotfavorites, only:[:create, :destroy, :index]
+
 
   #中間テーブルuser_country_labellingsのcreateとdestroyを有効か
   resources :user_country_labellings, only: [:create, :destroy]
