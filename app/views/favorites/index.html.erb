@@ -1,0 +1,90 @@
+<div class="mypagetitle">
+  <p><%= current_user.name %>のお気に入り一覧</p>
+</div>
+
+
+<div class ="container_profile">
+  <!-- <div class="user_profile_upper">
+  </div>
+
+  <div class ="user_profile_lower">
+  </div> -->
+
+  <div class ="user_profile_myposts artists">
+    <p>自分がお気に入りしたアーティスト</p>
+    <div class="user_profile_posts">
+      <% if @userfavartists.present? %>
+        <% @userfavartists.each do |localartist| %>
+          <table>
+            <div class="user_profile_each">
+              <tr>
+                <td>
+                  <%= link_to localartist_path(localartist.id) do%>
+                    <% if localartist.image? %>
+                      <%= image_tag "#{localartist.image}",:size =>'120x120' ,class:"card-img-top" %>
+                    <% else %>
+                      <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top"), localartist_path(localartist.id) %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <tr>
+                <td>
+                  <p><%= localartist.name %></p>
+                  <a style="font-size:1.2rem;"><%= link_to '解除', favorite_path(id:localartist.id), method: :delete, data: { confirm: '本当にお気に入り解除しますか?' } %></a>
+                </td>
+              </tr>
+            </div>
+          </table>
+        <% end %>
+      <% else %>
+        <div class="user_profile_each">
+          <h5 style="margin:0 auto;">登録がありません</h5>
+        </div>
+      <% end %>
+    </div>
+    <div class="paginate">
+      <%= paginate @userfavartists %>
+    </div>
+  </div>
+
+  <div class ="user_profile_myposts spots">
+    <p>自分がお気に入りしたスポット</p>
+    <div class="user_profile_posts">
+      <% if @userfavspots.present? %>
+        <% @userfavspots.each do |spot| %>
+          <table>
+            <div class="user_profile_each">
+              <tr>
+                <td>
+                  <%= link_to spot_path(spot.id) do%>
+                    <% if spot.image? %>
+                      <%= image_tag "#{spot.image}",:size =>'120x120' ,class:"card-img-top" %>
+                    <% else %>
+                      <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top") %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <tr>
+                <td>
+                  <p><%= spot.name %></p>
+                  <a style="font-size:1.2rem;"><%= link_to '解除', spotfavorite_path(id:spot.id), method: :delete, data: { confirm: '本当にお気に入り解除しますか?' } %></a>
+                </td>
+              </tr>
+            </div>
+          </table>
+        <% end %>
+      <% else %>
+        <div class="user_profile_each">
+          <h5 style="margin:0 auto;">登録がありません</h5>
+        </div>
+      <% end %>
+    </div>
+    <div class="paginate">
+      <%= paginate @userfavspots %>
+    </div>
+  </div>
+
+  <div class="localartist_profile_lower_button_show">
+    <%= link_to '戻る', user_path(current_user.id) %>
+  </div>
+</div>

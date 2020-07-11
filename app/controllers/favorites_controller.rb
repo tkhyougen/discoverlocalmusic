@@ -1,7 +1,14 @@
 class FavoritesController < ApplicationController
 
-  def index
+  PER = 12
 
+  def index
+    @userfavartists = current_user.favorite_localartists.all.order('created_at DESC')
+    @userfavartists = @userfavartists.page(params[:page]).per(PER)
+    @userfavspots = current_user.spotfavorite_spots.all.order('created_at DESC')
+    @userfavspots = @userfavspots.page(params[:page]).per(PER)
+
+    # @favorite = current_user.favorites.find_by(localartist_id: @localartist.id)
   end
 
   def create
@@ -9,7 +16,19 @@ class FavoritesController < ApplicationController
     redirect_to localartist_path(id:params[:localartist_id]), notice: "この投稿をお気に入り登録しました"
   end
   def destroy
-    favorite = current_user.favorites.find_by(id: params[:id]).destroy
-    redirect_to localartists_url, notice: "お気に入り解除しました"
+
+    path = Rails.application.routes.recognize_path(request.referer)
+    #path[:contoller]で遷移元によってredirect_toでの戻り先を変更
+    if path[:controller] == "localartists"
+    #localartist showから直接
+      favorite = current_user.favorites.find_by(id: params[:id]).destroy
+      binding.pry
+      redirect_to localartist_path(id:favorite.localartist_id), notice: "お気に入り解除しました"
+    else
+    #user profileから
+      favorite = current_user.favorites.find_by(localartist_id: params[:id]).destroy
+      binding.pry
+      redirect_to favorites_path(current_user.id), notice: "お気に入り解除しました"
+    end
   end
 end
