@@ -4,7 +4,7 @@ class LocalartistsController < ApplicationController
   before_action :set_youtube, only: [:update]
 
 
-  PER = 14
+  PER = 12
 
   def index
 

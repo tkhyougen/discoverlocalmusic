@@ -1,7 +1,7 @@
 class SpotsController < ApplicationController
   before_action :set_spot, only: [:show, :edit, :update, :destroy]
 
-  PER = 14
+  PER = 12
 
   def index
 

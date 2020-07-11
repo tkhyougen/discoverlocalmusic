@@ -82,7 +82,11 @@ rails assets:precompile RAILS_ENV=production
 //= require_tree .
 
 
-
+### jqueryがloadしないと動作しない場合
+以下の二つの対策を行う
+https://qiita.com/Terunaga/items/19d4f49f3abd3316f098
+https://yurutsubu.com/rails-5-x-javascript-does-not-work-well-6745.html
+Gemfile の turbolinks 行をコメントアウトする　の項目 bundle installは行わず
 
 
 
