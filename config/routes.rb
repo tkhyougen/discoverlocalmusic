@@ -37,7 +37,4 @@ Rails.application.routes.draw do
   #Spotのfavrotiesのビュー
   resources :spotfavorites, only:[:create, :destroy, :index]
 
-
-  #中間テーブルuser_country_labellingsのcreateとdestroyを有効か
-  resources :user_country_labellings, only: [:create, :destroy]
 end

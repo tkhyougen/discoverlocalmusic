@@ -22,12 +22,10 @@ class FavoritesController < ApplicationController
     if path[:controller] == "localartists"
     #localartist showから直接
       favorite = current_user.favorites.find_by(id: params[:id]).destroy
-      binding.pry
       redirect_to localartist_path(id:favorite.localartist_id), notice: "お気に入り解除しました"
     else
     #user profileから
       favorite = current_user.favorites.find_by(localartist_id: params[:id]).destroy
-      binding.pry
       redirect_to favorites_path(current_user.id), notice: "お気に入り解除しました"
     end
   end

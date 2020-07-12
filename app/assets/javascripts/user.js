@@ -20,3 +20,11 @@ $(function(){
    $("#counter").text(countNum + "文字");
  });
 });
+
+
+// $(document).ready(
+//   function(){
+//   $('#wholikes_list').tagit
+//     fieldName: 'localartist[tag_list]'
+//     singleField: true
+//   });

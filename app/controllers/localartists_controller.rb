@@ -1,10 +1,11 @@
 class LocalartistsController < ApplicationController
   before_action :set_localartist, only: [:show, :edit, :update, :destroy]
-  before_action :set_localartist_tags_to_gon, only: [:edit]
+  before_action :set_availables_tags_to_gon, only: [:new, :edit, :confirm]
+  before_action :set_localartist_tags_to_gon, only: [:edit, :confirm]
   before_action :set_youtube, only: [:update]
 
 
-  PER = 14
+  PER = 12
 
   def index
 
@@ -131,10 +132,17 @@ class LocalartistsController < ApplicationController
     @localartist = Localartist.find(params[:id])
   end
 
+  def set_availables_tags_to_gon
+      #自分の好きなアーティストと、全データのｱｰﾃｨｽﾄ名を入力保管候補として保存
+      gon.available_tags = current_user.tag_list
+      localartiststags = Localartist.pluck(:name)
+      gon.available_tags.concat(localartiststags)
+  end
+
   def set_localartist_tags_to_gon
-    if @localartist.tag_list.present?
+      #edit時にあらかじめ登録したタグを表示する
       gon.localartist_tags = @localartist.tag_list
-    end
+      binding.pry
   end
 
   def set_youtube

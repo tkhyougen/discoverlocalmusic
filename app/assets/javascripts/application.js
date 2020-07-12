@@ -4,6 +4,7 @@
 //= require jquery-ui
 //= require tag-it
 //= require activestorage
-//= require turbolinks
+//= require jquery.turbolinks
+// require turbolinks
 //= require bootstrap/dist/js/bootstrap.min
 //= require_tree .
