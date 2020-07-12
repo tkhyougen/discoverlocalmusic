@@ -47,7 +47,7 @@
 
   <div class ="user_profile_lower">
     <div class="wholikes">
-      <p><%= form.label :who_list, "このｱｰﾃｨｽﾄが好きな人にｵｽｽﾒ" %></p>
+      <p><%= form.label :who_list, "このｱｰﾃｨｽﾄが好きな人にｵｽｽﾒ(「,」で区切ってください)" %></p>
       <ul id="wholikes_list">
         <li>
           <%= form.text_field :tag_list, placeholder:",で区切って下さい", value: @localartist.tag_list.join(","), class:"form-control"  %>

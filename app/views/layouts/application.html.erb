@@ -18,11 +18,13 @@
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
 
      <script src="user.js"></script> -->
+
+
     <%= stylesheet_link_tag 'application', media:'all' %>
-     <!-- 'data-turbolinks-track': 'reload' %> -->
-    <%= include_gon %>
+      <!-- 'data-turbolinks-track': 'reload' %> -->
+    <%= include_gon(:init => true) %>
     <%= javascript_include_tag 'application'%>
-     <!-- , 'data-turbolinks-track': 'reload'  -->
+      <!-- , 'data-turbolinks-track': 'reload'  -->
 
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyABBXApRG3M_9A9j4txhZ2yJAdqgpcJWwk&callback=initMap">
@@ -48,7 +50,6 @@
         readURL(this);
         });
       });
-
 
     </script>
 
