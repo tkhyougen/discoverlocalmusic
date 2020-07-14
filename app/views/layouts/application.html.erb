@@ -9,26 +9,26 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!--スマホサイズに反映できるようにする -->
+      <!--スマホサイズに反映できるようにする -->
 
     <meta name="viewport" content="width=device-width">
 
-    <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
-    <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script> -->
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+      <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
+      <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script> -->
+      <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
 
-     <script src="user.js"></script> -->
-
-
-    <%= stylesheet_link_tag 'application', media:'all' %>
-      <!-- 'data-turbolinks-track': 'reload' %> -->
-    <%= include_gon(:init => true) %>
-    <%= javascript_include_tag 'application'%>
-      <!-- , 'data-turbolinks-track': 'reload'  -->
+      <script src="user.js"></script> -->
 
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyABBXApRG3M_9A9j4txhZ2yJAdqgpcJWwk&callback=initMap">
-    </script>
+     <%= stylesheet_link_tag 'application', media:'all' %>
+        <!-- 'data-turbolinks-track': 'reload' %> -->
+     <%= include_gon(:init => true) %>
+     <%= javascript_include_tag 'application'%>
+        <!-- , 'data-turbolinks-track': 'reload'  -->
+
+
+     <script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyABBXApRG3M_9A9j4txhZ2yJAdqgpcJWwk&callback=initMap">
+     </script>
 
 
     <script>
@@ -69,47 +69,47 @@
           <ul class="navbar-nav">
             <div class="header-right">
               <% if user_signed_in? %>
-              <li class="nav-item" style="font-weight:bold">
-                <p>ログイン中のユーザー:<%= current_user.name %></p>
-              </li>
+                <li class="nav-item" style="font-weight:bold">
+                  <p>ログイン中のユーザー:<%= current_user.name %></p>
+                </li>
 
 
-              <li class="nav-item dropdown">
-                 <div class= "dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:blue">
-                 投稿する
-                 <span class="caret"></span>
-                 </div>
-                 <div class ="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
-                   <p><%= link_to "アーティスト", new_localartist_path %></p>
-                   <p><%= link_to "スポット", new_spot_path %></p>
-                 </div>
-              </li>
+                <li class="nav-item dropdown">
+                   <div class= "dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:blue">
+                   投稿する
+                   <span class="caret"></span>
+                   </div>
+                   <div class ="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
+                     <p><%= link_to "アーティスト", new_localartist_path %></p>
+                     <p><%= link_to "スポット", new_spot_path %></p>
+                   </div>
+                </li>
 
 
-              <li class="nav-item dropdown">
-                 <div class= "dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:blue">
-                 探す
-                 <span class="caret"></span>
-                 </div>
-                 <div class="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
-                   <p><%= link_to "アーティスト", localartists_path(current_user.id) %></p>
-                   <p><%= link_to "スポット", spots_path(current_user.id) %></p>
-                 </div>
-              </li>
+                <li class="nav-item dropdown">
+                   <div class= "dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:blue">
+                   探す
+                   <span class="caret"></span>
+                   </div>
+                   <div class="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
+                     <p><%= link_to "アーティスト", localartists_path(current_user.id) %></p>
+                     <p><%= link_to "スポット", spots_path(current_user.id) %></p>
+                   </div>
+                </li>
 
-              <li class="nav-item">
-                <a><%= link_to "マイページ",user_path(current_user.id) %></a>
-              </li>
-              <li class="nav-item">
-                <a><%= link_to "ログアウト",destroy_user_session_path, method: :delete %></a>
-              </li>
+                <li class="nav-item">
+                  <a><%= link_to "マイページ",user_path(current_user.id) %></a>
+                </li>
+                <li class="nav-item">
+                  <a><%= link_to "ログアウト",destroy_user_session_path, method: :delete %></a>
+                </li>
               <% else %>
-              <li class="nav-item">
-                <a><%= link_to "ログイン", new_user_session_path %></a>
-              </li>
-              <li class="nav-item">
-                <a><%= link_to "新規登録", new_user_registration_path %></a>
-              </li>
+                <li class="nav-item">
+                  <a><%= link_to "ログイン", new_user_session_path %></a>
+                </li>
+                <li class="nav-item">
+                  <a><%= link_to "新規登録", new_user_registration_path %></a>
+                </li>
               <% end %>
             </div>
           </ul>

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action  :set_user_tags_to_gon, only: [:edit]
+
   # def after_sign_up_path_for(resource)
   #   '/users'
   # end
@@ -108,12 +108,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   #editにてタグを表示
   def set_user_tags_to_gon
+    binding.pry
     gon.user_tags = @user.tag_list
   end
 
   #オートコンプリート
   def set_available_tags_to_gon
+    binding.pry
     gon.available_tags = User.tags_on(:tags).pluck(:name)
   end
+
+
 
 end

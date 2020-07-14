@@ -75,7 +75,7 @@
                   <% if localartist.image? %>
                     <%= image_tag "#{localartist.image}",:size =>'120x120' ,class:"card-img-top" %>
                   <% else %>
-                    <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top"), localartist_path(localartist.id) %>
+                    <%= link_to (image_tag 'artisticon.jpg',:size =>'120x120' ,class:"card-img-top"), localartist_path(localartist.id) %>
                   <% end %>
                 </td>
               <tr>

@@ -9,7 +9,7 @@
           <% if @localartist.image.present? %>
             <%= image_tag(@localartist.image.thumb,:size => "350x350") %>
           <% else %>
-            <%= image_tag 'default.jpg',:size =>'350x350' ,class:"card-img-top" %>
+            <%= image_tag 'artisticon.jpg',:size =>'350x350' ,class:"card-img-top" %>
           <% end %>
       </div>
     </div>
@@ -98,6 +98,6 @@
       <% end %>
     </div>
     <div class="localartist_profile_lower_button_show">
-      <%= link_to '戻る', localartists_path(current_user.id) %>
+      <%= link_to '戻る', localartists_path %>
     </div>
 </div>

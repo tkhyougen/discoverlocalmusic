@@ -8,11 +8,14 @@
   <div class="user_profile_upper">
     <div class="user_profile_upper_left">
       <div class="user_profile_image">
+
         <p><%= form.label :写真 %></p>
           <% if @localartist.image %>
-            <%= image_tag @localartist.image.url,:size =>'350x350' %>
+            <%= image_tag @localartist.image, :size =>'350x350' %>
+            <%= form.hidden_field :image_cache %>
           <% else %>
-            <%= image_tag 'default.jpg',:size =>'350x350' %>
+            <%= image_tag 'artisticon.jpg', :size =>'350x350' %>
+            <%= form.hidden_field :image_cache %>
           <% end %>
       </div>
     </div>
@@ -59,7 +62,6 @@
       <p><%= form.submit '戻る', name:"back"%></p>
     </div>
   </div>
-
 
 
 <% end %>

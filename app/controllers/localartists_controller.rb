@@ -1,7 +1,7 @@
 class LocalartistsController < ApplicationController
   before_action :set_localartist, only: [:show, :edit, :update, :destroy]
   before_action :set_availables_tags_to_gon, only: [:new, :edit, :confirm]
-  before_action :set_localartist_tags_to_gon, only: [:edit, :confirm]
+  before_action :set_localartist_tags_to_gon, only: [:edit]
   before_action :set_youtube, only: [:update]
 
 
@@ -14,7 +14,6 @@ class LocalartistsController < ApplicationController
     #ransack
     # @search = Localartist.ransack(params[:q])
     # @localartists = @search.result
-    #ransack
 
     #検索結果の表示
     if params[:search].present?
@@ -125,7 +124,7 @@ class LocalartistsController < ApplicationController
   private
 
   def localartist_params
-    params.require(:localartist).permit(:image, :name, :comment,:country, :post_comment, :tag_list, :who_list, :youtube_url)
+    params.require(:localartist).permit(:image,:image_cache, :name, :comment,:country, :post_comment, :tag_list, :who_list, :youtube_url)
   end
 
   def set_localartist
@@ -142,7 +141,6 @@ class LocalartistsController < ApplicationController
   def set_localartist_tags_to_gon
       #edit時にあらかじめ登録したタグを表示する
       gon.localartist_tags = @localartist.tag_list
-      binding.pry
   end
 
   def set_youtube
