@@ -1,6 +1,6 @@
 class LocalartistsController < ApplicationController
   before_action :set_localartist, only: [:show, :edit, :update, :destroy]
-  before_action :set_availables_tags_to_gon, only: [:new, :edit, :confirm]
+  before_action :set_availables_tags_to_gon, only: [:new, :edit]
   before_action :set_localartist_tags_to_gon, only: [:edit]
   before_action :set_youtube, only: [:update]
 
