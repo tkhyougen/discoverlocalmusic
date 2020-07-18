@@ -2,7 +2,7 @@
   <p>以下の内容で、投稿する</p>
 </div>
 
-<%= form_with(model: @localartist, local: true ) do |form| %>
+<%= form_with(model: @localartist, url: localartists_path, local: true ) do |form| %>
 
 <div class ="container_profile">
   <div class="user_profile_upper">
@@ -10,8 +10,8 @@
       <div class="user_profile_image">
 
         <p><%= form.label :写真 %></p>
-          <% if @localartist.image %>
-            <%= image_tag @localartist.image, :size =>'350x350' %>
+          <% if @localartist.image && @localartist.image.url %>
+            <%= image_tag @localartist.image.url, :size =>'350x350' %>
             <%= form.hidden_field :image_cache %>
           <% else %>
             <%= image_tag 'artisticon.jpg', :size =>'350x350' %>
@@ -51,6 +51,7 @@
   </div>
 
   <div class ="user_profile_lower">
+    <p>Youtubeアドレス</p>
     <p class="profile_data"><%= form.hidden_field :youtube_url %></p>
     <p><%= @localartist.youtube_url %></p>
   </div>
@@ -59,7 +60,8 @@
   <div class ="user_profile_lower_button_edit">
     <div class="update_field">
       <p><%= form.submit "投稿する",class:"btn btn-primary btn-block btn-lg" %></p>
-      <p><%= form.submit '戻る', name:"back"%></p>
+      <!-- #cretateアクションでbackパラメーター送る -->
+      <p><%= form.submit '戻る', name:"back" %></p>
     </div>
   </div>
 

@@ -6,6 +6,7 @@ class SpotcommentsController < ApplicationController
 
     def index
       @spotcomments = @spot.spotcomments.all.order('created_at DESC')
+      binding.pry
     end
 
     def create

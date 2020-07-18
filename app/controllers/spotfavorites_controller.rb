@@ -4,7 +4,7 @@ class SpotfavoritesController < ApplicationController
   PER = 12
 
   def index
-    @userfavartists = current_user.favorite_localartists.all.order('created_at DESC')
+    @userfavartists = current_user.favorite_localartists.all.order('created_at ASC')
     @userfavartists = @userfavartists.page(params[:page]).per(PER)
 
   end

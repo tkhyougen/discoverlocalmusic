@@ -7,7 +7,7 @@
     <div class="user_profile_upper_left">
       <div class="user_profile_image">
           <% if @localartist.image.present? %>
-            <%= image_tag(@localartist.image.thumb,:size => "350x350") %>
+            <%= image_tag @localartist.image.thumb.url,:size => "350x350" %>
           <% else %>
             <%= image_tag 'artisticon.jpg',:size =>'350x350' ,class:"card-img-top" %>
           <% end %>
@@ -44,7 +44,7 @@
     <div class="user_profile_posts">
     <!--youtube apiで自動表示-->
     <% if @youtube_data.present? %>
-    <% @youtube_data.each do |item| %>
+      <% @youtube_data.each do |item| %>
       <table>
         <div class="user_profile_each">
           <tr>
@@ -56,12 +56,14 @@
         </div>
       </table>
       <% end %>
-      <% else %>
-      <% end %>
+    <% else %>
+    <% end %>
 
       <!-- 自分が貼り付けたyoutbe -->
       <div class="user_profile_each">
+      <% if @localartist.youtube_url.present? %>
         <p><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= @localartist.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+      <% end %>
       </div>
     </div>
   </div>

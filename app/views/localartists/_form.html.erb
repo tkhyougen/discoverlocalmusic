@@ -1,5 +1,6 @@
 <!--新規作成newの場合、もしくは投稿者による編集の場合はすべての項目を入力できる -->
-<% if controller.action_name == 'new' || controller.action_name == 'edit'&&current_user == @localartist.user %>
+    <% binding.pry %>
+<% unless controller.action_name == 'edit' && current_user != @localartist.user %>
 
       <%= form_with(model: @localartist, local: true, url: choose_new_or_edit_localartists) do |form| %>
 
@@ -21,7 +22,7 @@
           <div class="user_profile_upper_left">
             <div class="user_profile_image">
                 <p><%= form.label :写真 %></p>
-                <% if @localartist.image %>
+                <% if @localartist.image && @localartist.image.url %>
                   <%= image_tag @localartist.image.url,:size =>'350x350', id: :image_preview %>
                 <% else %>
                   <%= image_tag 'artisticon.jpg',:size =>'350x350', id: :image_preview %>
@@ -68,6 +69,7 @@
           <div class="update_field">
               <div class="actions">
                 <p><%= form.submit "投稿する",class:"btn btn-primary btn-block btn-lg" %></p>
+                <p><%= link_to '戻る', localartist_path %></p>
               </div>
           </div>
         </div>
@@ -75,70 +77,75 @@
       </div>
 
 
+
+
 <!--日投稿者による編集はタグ追加のみ-->
 <% else %>
-      <%= form_with(model: @localartist, local: true, url: choose_new_or_edit_localartists) do |form| %>
+     <% binding.pry %>
+    <%= form_with(model: @localartist, local: true, url: choose_new_or_edit_localartists) do |form| %>
+        <div class ="container_profile">
+          <div class="user_profile_upper">
+            <div class="user_profile_upper_left">
+              <div class="user_profile_image">
 
-      <div class ="container_profile">
-        <div class="user_profile_upper">
-          <div class="user_profile_upper_left">
-            <div class="user_profile_image">
-              <p><%= form.label :写真 %></p>
-                <% if @localartist.image %>
-                  <%= image_tag @localartist.image.url,:size =>'350x350' %>
-                  <%= form.file_field :image %>
-                  <%= form.hidden_field :image_cache %>
-                <% else %>
-                  <%= image_tag 'default.jpg',:size =>'350x350' %>
-                <% end %>
+                <p><%= form.label :写真 %></p>
+                  <% if @localartist.image && @localartist.image.url %>
+                    <%= image_tag @localartist.image.url, :size =>'350x350' %>
+                    <%= form.hidden_field :image_cache %>
+                  <% else %>
+                    <%= image_tag 'artisticon.jpg', :size =>'350x350' %>
+                    <%= form.hidden_field :image_cache %>
+                  <% end %>
+              </div>
+            </div>
+
+            <div class="user_profile_upper_right">
+              <div class="user_name">
+                <%= form.hidden_field :name %>
+                <p class="profile_data">アーティスト名</p>
+                <p><%= @localartist.name %> </p>
+              </div>
+
+              <div class="user_email">
+                <%= form.hidden_field :country %>
+                <p class="profile_data">出身国</p>
+                <p><%= @localartist.country %> </p>
+              </div>
+
+              <div class="user_comment">
+                <%= form.hidden_field :post_comment %>
+                <p class="profile_data">コメント</p>
+                <p><%= @localartist.post_comment %></p>
+              </div>
             </div>
           </div>
 
-          <div class="user_profile_upper_right">
-            <div class="user_name">
-              <%= form.hidden_field :name %>
-              <p class="profile_data">アーティスト名</p>
-              <p><%= @localartist.name %> </p>
+
+          <div class ="user_profile_lower">
+            <div class="wholikes">
+              <p><%= form.label :who_list, "このｱｰﾃｨｽﾄが好きな人にｵｽｽﾒ(「,」で区切ってください)" %></p>
+              <ul id="wholikes_list">
+                <li>
+                  <%= form.text_field :tag_list, placeholder:",で区切って下さい", value: @localartist.tag_list.join(","), class:"form-control"  %>
+                <li>
+              </ul>
             </div>
 
-            <div class="user_email">
-              <%= form.hidden_field :country %>
-              <p class="profile_data">出身国</p>
-              <p><%= @localartist.country %> </p>
+          </div>
+
+          <div class ="user_profile_lower">
+            <p>Youtubeアドレス</p>
+            <p class="profile_data"><%= form.hidden_field :youtube_url %></p>
+            <p><%= @localartist.youtube_url %></p>
+          </div>
+
+
+          <div class ="user_profile_lower_button_edit">
+            <div class="update_field">
+              <p><%= form.submit "投稿する",class:"btn btn-primary btn-block btn-lg" %></p>
+              <p><%= link_to '戻る', localartist_path %></p>
             </div>
-
-            <div class="user_comment">
-              <%= form.hidden_field :post_comment %>
-              <p class="profile_data">コメント</p>
-              <p><%= @localartist.post_comment %></p>
-            </div>
           </div>
-        </div>
-
-
-        <div class ="user_profile_lower">
-          <div class="wholikes">
-            <p><%= form.label :who_list, "このｱｰﾃｨｽﾄが好きな人にｵｽｽﾒ(「,」で区切ってください)" %></p>
-            <ul id="wholikes_list">
-              <li>
-                <%= form.text_field :tag_list, placeholder:",で区切って下さい", value: @localartist.tag_list.join(","), class:"form-control"  %>
-              <li>
-            </ul>
-          </div>
-        </div>
-
-        <div class ="user_profile_lower">
-          <p class="profile_data">Youtube URL<%= form.hidden_field :youtube_url %></p>
-          <p><%= @localartist.youtube_url %></p>
-        </div>
-
-
-        <div class ="user_profile_lower_button_edit">
-          <div class="update_field">
-            <p><%= form.submit "投稿する",class:"btn btn-primary btn-block btn-lg" %></p>
-            <p><%= form.submit '戻る', name:"back"%></p>
-          </div>
-        </div>
-      <% end %>
+<% end %>
 
 <% end %>
