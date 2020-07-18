@@ -9,7 +9,7 @@
         <% if @user.image.url.present? && @user.image.present? %>
           <%= image_tag @user.image.thumb.url, :size =>'350x350' %>
         <% else %>
-          <%= image_tag 'default.jpg',:size =>'350x350' %>
+          <%= image_tag 'usericondefault.png',:size =>'350x350' %>
         <% end %>
       </div>
     </div>
@@ -38,7 +38,7 @@
         <span class="label label-danger"><%= tag %></span>
       <% end %>
     <% else %>
-      <h4>登録がありません</h4>
+      <h5>登録がありません</h5>
     <% end %>
   </div>
 
@@ -55,7 +55,7 @@
                   <% if localartist.image? %>
                     <%= image_tag "#{localartist.image}",:size =>'120x120' ,class:"card-img-top" %>
                   <% else %>
-                    <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top"), localartist_path(localartist.id) %>
+                    <%= link_to (image_tag 'artisticon.jpg',:size =>'120x120' ,class:"card-img-top"), localartist_path(localartist.id) %>
                   <% end %>
                 <% end %>
               </td>
@@ -89,7 +89,7 @@
                     <% if spot.image? %>
                       <%= image_tag "#{spot.image}",:size =>'120x120' ,class:"card-img-top" %>
                     <% else %>
-                      <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top") %>
+                      <%= link_to (image_tag 'spoticon.png',:size =>'120x120' ,class:"card-img-top") %>
                     <% end %>
                   <% end %>
                 </td>

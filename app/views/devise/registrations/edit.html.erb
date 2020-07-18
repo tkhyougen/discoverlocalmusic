@@ -13,7 +13,7 @@
           <% if @user.image.url %>
             <%= image_tag @user.image.url(:thumb),:size =>'350x350', id: :image_preview %>
           <% else %>
-            <%= image_tag 'default.jpg',:size =>'350x350', id: :image_preview %>
+            <%= image_tag 'usericondefault.png',:size =>'350x350', id: :image_preview %>
           <% end %>
         <p class="image_file_field"><%= f.file_field :image, id: :user_image %></p>
         <p><%= f.check_box :remove_image %>画像を削除</p>
@@ -38,11 +38,11 @@
   </div>
 
   <div class ="user_profile_lower">
-    <p>登録しているアーティスト</p>
-      <%= f.label :tag_list %><br />
+    <p></p>
+      <%= f.label :登録しているアーティスト%><div>（「,」で区切ってください）</div><br />
       <ul id="user_tag_list">
         <li>
-            <%= f.text_field :tag_list, value: @user.tag_list.join(','), class:"form-control" %>
+            <%= f.text_field :tag_list, value: @user.tag_list.join(','),placeholder:"区切り", class:"form-control" %>
         </li>
       </ul>
   </div>

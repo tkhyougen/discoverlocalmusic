@@ -9,7 +9,7 @@
           <% if @spot.image.present? %>
             <%= image_tag(@spot.image.thumb,:size => "350x350") %>
           <% else %>
-            <%= image_tag 'default.jpg',:size =>'350x350' ,class:"card-img-top" %>
+            <%= image_tag 'spoticon.png',:size =>'350x350' ,class:"card-img-top" %>
           <% end %>
       </div>
     </div>
@@ -87,7 +87,6 @@
   </div>
 
 
-
     <div class="spot_profile_lower_button_show">
       <% if @spot.user == current_user %>
         <!--投稿ユーザー -->
@@ -105,6 +104,6 @@
       <% end %>
     </div>
     <div class="localartist_profile_lower_button_show">
-      <%= link_to '戻る', :back %>
+      <%= link_to '戻る', spots_path %>
     </div>
 </div>

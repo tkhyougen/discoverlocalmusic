@@ -21,7 +21,7 @@
           <% if @spot.image %>
             <%= image_tag @spot.image.url,:size =>'350x350', id: :image_preview %>
           <% else %>
-            <%= image_tag 'default.jpg',:size =>'350x350', id: :image_preview %>
+            <%= image_tag 'spoticon.png',:size =>'350x350', id: :image_preview %>
           <% end %>
             <p class="image_file_field"><%= form.file_field :image, id: :user_image %></p>
       </div>

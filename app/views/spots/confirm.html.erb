@@ -10,9 +10,9 @@
       <div class="user_profile_image">
         <p><%= form.label :写真 %></p>
           <% if @spot.image %>
-            <%= image_tag @spot.image.url,:size =>'350x350' %>
+            <%= image_tag @spot.image,:size =>'350x350' %>
           <% else %>
-            <%= image_tag 'default.jpg',:size =>'350x350' %>
+            <%= image_tag 'spoticon.png',:size =>'350x350' %>
           <% end %>
       </div>
     </div>
