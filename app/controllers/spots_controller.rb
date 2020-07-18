@@ -12,7 +12,7 @@ class SpotsController < ApplicationController
     @search = Spot.ransack(params[:q])
     @spots = @search.result(id: :desc)
 
-    @spots = @spots.page(params[:page]).per(PER)
+    @spots = @spots.order(id: :desc).page(params[:page]).per(PER)
   end
 
   def new
@@ -79,6 +79,6 @@ class SpotsController < ApplicationController
     end
 
     def spot_params
-      params.require(:spot).permit(:name, :country, :image, :post_comment, :genre, :address,:latitude,:longitude)
+      params.require(:spot).permit(:name, :country, :image, :image_cache, :post_comment, :genre, :address,:latitude,:longitude)
     end
 end

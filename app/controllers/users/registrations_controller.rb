@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   #paginateでの表示数
-  PER = 3
+  PER = 6
 
   # アカウント編集後、プロフィール画面に移動する
   # def after_update_path_for(resource)
@@ -54,9 +54,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
   #
   # # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
   #
   # # DELETE /resource
   # def destroy

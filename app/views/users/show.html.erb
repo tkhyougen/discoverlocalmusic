@@ -89,7 +89,7 @@
                     <% if spot.image? %>
                       <%= image_tag "#{spot.image}",:size =>'120x120' ,class:"card-img-top" %>
                     <% else %>
-                      <%= link_to (image_tag 'spoticon.png',:size =>'120x120' ,class:"card-img-top") %>
+                      <%= link_to (image_tag 'spoticon.png',:size =>'120x120' ,class:"card-img-top"), spot_path(spot.id) %>
                     <% end %>
                   <% end %>
                 </td>

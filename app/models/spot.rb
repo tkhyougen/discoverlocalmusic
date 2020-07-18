@@ -16,4 +16,8 @@ class Spot < ApplicationRecord
   #spotのmap検索
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+
+  #画像アップロード
+  mount_uploader :image, ImageUploader
+  
 end

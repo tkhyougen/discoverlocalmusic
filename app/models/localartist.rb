@@ -15,4 +15,7 @@ class Localartist < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user
 
+  #画像アップロード
+  mount_uploader :image, ImageUploader
+
 end

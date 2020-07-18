@@ -45,13 +45,16 @@ class LocalartistsController < ApplicationController
       end
     end
 
-    @localartists = @localartists.page(params[:page]).per(PER)
+    @localartists = @localartists.order(id: :desc).page(params[:page]).per(PER)
   end
 
 
   def new
+    # "path"を取得 viewで場合わけ
+    path = Rails.application.routes.recognize_path(request.referer)
     if params[:back]
       @localartist = Localartist.new(localartist_params)
+
     else
       @localartist = Localartist.new
     end
@@ -67,20 +70,21 @@ class LocalartistsController < ApplicationController
     @localartist = Localartist.new(localartist_params)
     @localartist.user_id = current_user.id
 
+    binding.pry
     #youtubeのアドレス下11桁を取り出し、viewにあてはめ
-    url = params[:localartist][:youtube_url]
-    url = url.last(11)
-    @localartist.youtube_url = url
+    set_youtube
 
     if params[:back]
+      #戻るで再入力の際にタグを残す
+      set_localartist_tags_to_gon
       render :new
     else
       if @localartist.save!
-
         # @youtube_data = Yotube.new
         # @youtube_data.url = find_videos("#{@localartist.country}, #{@localartist.name}")
         # @youtube_data.save
 
+        binding.pry
         redirect_to localartists_path, notice:"作成しました"
       else
         render :new

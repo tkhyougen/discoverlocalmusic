@@ -3,10 +3,11 @@ class FavoritesController < ApplicationController
   PER = 12
 
   def index
+    binding.pry
     @userfavartists = current_user.favorite_localartists.all.order('created_at DESC')
-    @userfavartists = @userfavartists.page(params[:page]).per(PER)
+    @userfavartists = @userfavartists.order('created_at DESC').page(params[:page]).per(PER)
     @userfavspots = current_user.spotfavorite_spots.all.order('created_at DESC')
-    @userfavspots = @userfavspots.page(params[:page]).per(PER)
+    @userfavspots = @userfavspots.order('created_at DESC').page(params[:page]).per(PER)
 
     # @favorite = current_user.favorites.find_by(localartist_id: @localartist.id)
   end
