@@ -86,4 +86,8 @@ gem "geocoder"
 gem "kaminari"
 gem "jquery-turbolinks"
 gem "webdrivers"
+<<<<<<< HEAD
 gem "faker"
+=======
+gem "dotenv-rails"
+>>>>>>> 4ca4e1bd303ca2165cc62e0e9313527a2632309a

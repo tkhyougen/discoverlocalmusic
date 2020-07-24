@@ -33,4 +33,4 @@ gon
 ransack
 etc.
 
-https://peaceful-atoll-36393.herokuapp.com/ 
+https://peaceful-atoll-36393.herokuapp.com/
