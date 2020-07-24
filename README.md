@@ -20,13 +20,15 @@ https://cacoo.com/diagrams/56CCE08v2xbxbKSK/86245
 ## ワイヤーフレーム (spreadsheet)
 https://docs.google.com/spreadsheets/d/1ViRNdom4mMu-KTN0M29tJE90dhl5rVygPVR3cg8nozY/edit?usp=sharing
 
-## 使用予定Gem
-AWS  
+## 使用Gem
 devise  (login/out)  
 kaminari (paginate)  
 spec-Rails (test)  
-google maps API  
+google geocoder (map)
 google/api_client (youtube)  
 carrierwave  (image upload)  
 mini_magick  (image resize)  
-etc  
+acts_as_taggable_on
+gon
+ransack
+etc.

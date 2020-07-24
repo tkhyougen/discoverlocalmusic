@@ -7,11 +7,12 @@ rails assets:precompile RAILS_ENV=production
 config/environments/development.rb
 config.consider_all_requests_local = falseに変更することでエラー画面表示
 
-###herokuでのシードデータ
+
+###heroku
+
+# herokuでのシードデータ
  config/initializers/local.rbの:jaをコメントアウトしてからrails db:seed
 （Heroku上でrails cを実行するためにはheroku run rails c、seedコマンドは、heroku run rails db:seedを実行）
-
-##heroku
 
 # Heokuへのデプロイ
 `$ git push heroku master `
