@@ -1,7 +1,4 @@
 class Localartist < ApplicationRecord
-  #アソシエーション　ex.localartists.user.name
-  belongs_to :user
-  has_many :comments, dependent: :destroy  #localaritstに対するコメントをネスト
 
   before_validation {name.capitalize!}
   validates :name, presence: true, length:{ maximum:20 },uniqueness: true
@@ -9,6 +6,11 @@ class Localartist < ApplicationRecord
   validates :country, presence: true, length:{ maximum:20 }
   validates :post_comment, length:{ maximum:255 }
 
+  #アソシエーション　ex.localartists.user.name
+  belongs_to :user
+  has_many :comments, dependent: :destroy  #localaritstに対するコメントをネスト
+
+  #ラベル機能に必要
   acts_as_taggable
 
   #favorite機能

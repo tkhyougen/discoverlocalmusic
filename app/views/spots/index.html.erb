@@ -1,42 +1,35 @@
 <div class="mypagetitle">
-  <p>スポットを探す</p>
+  <p><%= t("message.spotindex") %></p>
 </div>
-
 
 <div class="container_profile">
   <div class="localartist_search_upper">
       <%= search_form_for @search do |f| %>
-      <div class="search_form">
-        <%= f.label :name_cont, 'スポット名' %>
-        <%= f.search_field :name_cont, placeholder:"スポット名を入力", class:"form-control" %>
-      </div>
-      <div class="search_form">
-        <%= f.label :country, "国から" %>
-        <%= f.collection_select :country_eq, Spot.all.order("country ASC"), :country, :country,{include_blank:"アルファベット順"}, class:"form-control" %>
-      </div>
-
-      <div class="search_form">
-        <%= f.label :genre, "スポットの種類から" %>
-        <%= f.select :genre_eq,{"レコードCDショップ":"shop", "ライブハウス/バー":"venue","施設/聖地":"mecca","その他":"other"},{include_blank:"選択する"}, class:"form-control" %>
-      </div>
-
-  </div>
-    <div class="search_button">
-        <div class="localartist_search_button">
-          <%= f.submit "検索",class:"btn btn-primary btn-block btn-lg"  %>
+        <div class="search_form">
+          <%= f.label :name %>
+          <%= f.search_field :name_cont, placeholder:"スポット名を入力", class:"form-control" %>
         </div>
-    </div>
+        <div class="search_form">
+          <%= f.label :country %>
+          <%= f.collection_select :country_eq, Spot.all.order("country ASC"), :country, :country,{include_blank:"アルファベット順"}, class:"form-control" %>
+        </div>
+
+        <div class="search_form">
+          <%= f.label :genre %>
+          <%= f.select :genre_eq,{"レコードCDショップ":"shop", "ライブハウス/バー":"venue","施設/聖地":"mecca","その他":"other"},{include_blank:"選択する"}, class:"form-control" %>
+        </div>
+  </div>
+        <div class="search_button">
+            <div class="localartist_search_button">
+              <%= f.submit t("search"),class:"btn btn-primary btn-block btn-lg"  %>
+            </div>
+        </div>
       <% end %>
 
-
-
     <div class ="localartist_index_posts">
-      <p>スポット検索結果一覧</p>
+      <p><%= t("result.spot") %></p>
       <div class="user_profile_posts">
         <% @spots.each do |spot| %>
-          <!-- <div class="col mb-4"> -->
-            <!-- <div class="card card-cascade m-1">
-              <div class="view view-cascade overlay"> -->
           <table>
             <div class="user_profile_each">
               <tr>
@@ -63,8 +56,7 @@
 
     <div class="user_profile_lower_button_edit">
         <div class="localartist_search_button">
-          <%= link_to "戻る", spots_path %>
+          <%= link_to t("back"), spots_path %>
         </div>
     </div>
-
 </div>

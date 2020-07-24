@@ -2,154 +2,152 @@
   <p><%= t('.title', resource: resource.model_name.human) %></p>
 </div>
 
-  <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
+<%= render "devise/shared/error_messages", resource: resource %>
 
-<div class ="container_profile">
-  <div class="user_profile_upper">
-    <div class="user_profile_upper_left">
-      <div class="user_profile_image">
-         <p><%= f.label:写真 %></p>
-          <% if @user.image.url %>
-            <%= image_tag @user.image.url(:thumb),:size =>'350x350', id: :image_preview %>
-          <% else %>
-            <%= image_tag 'usericondefault.png',:size =>'350x350', id: :image_preview %>
+  <div class ="container_profile">
+    <div class="user_profile_upper">
+      <div class="user_profile_upper_left">
+        <div class="user_profile_image">
+           <p><%= f.label:image %></p>
+            <% if @user.image.url %>
+              <%= image_tag @user.image.url(:thumb),:size =>'350x350', id: :image_preview %>
+            <% else %>
+              <%= image_tag 'usericondefault.png',:size =>'350x350', id: :image_preview %>
+            <% end %>
+          <p class="image_file_field"><%= f.file_field :image, id: :user_image %></p>
+          <p><%= f.check_box :remove_image %>画像を削除</p>
+        </div>
+      </div>
+
+      <div class="user_profile_upper_right">
+        <div class="user_name_edit">
+          <p class="profile_data"><%= f.label :name %></p>
+          <p><%= f.text_field :name, autofocus: true, class:"form-control" %></p>
+        </div>
+        <div class="user_email_edit">
+          <p class="profile_data"><%= f.label :email %></p>
+          <p><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %></p>
+        </div>
+        <div class="user_comment">
+          <p class="profile_data"><%= f.label :comment %></p>
+          <p><%= f.text_area :comment, autofocus: true,size: "20x5", class:"form-control",id: "input-text" %></p>
+          <a id="counter">0</a><a><%= t("count.255") %></a>
+        </div>
+      </div>
+    </div>
+
+    <div class ="user_profile_lower">
+        <%= f.label :tag_list %><div>（「,」で区切ってください）</div><br />
+        <ul id="user_tag_list">
+          <li>
+              <%= f.text_field :tag_list, value: @user.tag_list.join(','),placeholder:"区切り", class:"form-control" %>
+          </li>
+        </ul>
+    </div>
+
+    <div class ="user_profile_myposts artists">
+      <p>自分が<%= t("artistpost") %></p>
+      <div class="user_profile_posts">
+        <% if @user.localartists.present? %>
+          <% @userartistlists.each do |localartist| %>
+            <table>
+              <div class="user_profile_each">
+                <tr>
+                  <td>
+                    <%= link_to localartist_path(localartist.id) do%>
+                      <% if localartist.image? %>
+                        <%= image_tag "#{localartist.image}",:size =>'120x120' ,class:"card-img-top" %>
+                      <% else %>
+                        <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top"), localartist_path(localartist.id) %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                <tr>
+                  <td>
+                    <p><%= localartist.name %></p>
+                    <a style="font-size:1.2rem;"><%= link_to '編集', edit_localartist_path(localartist) %></a>
+                    <a style="font-size:1.2rem;"><%= link_to '削除', localartist, method: :delete, data: { confirm: '本当に削除しますか?' } %></a>
+                  </td>
+                </tr>
+              </div>
+            </table>
           <% end %>
-        <p class="image_file_field"><%= f.file_field :image, id: :user_image %></p>
-        <p><%= f.check_box :remove_image %>画像を削除</p>
+        <% else %>
+          <h5 style="margin:0 auto;"><%= t("nopost") %></h5>
+        <% end %>
+      </div>
+      <div class="paginate">
+        <%= paginate @userartistlists %>
+      </div>
+    </div>
+    <div class ="user_profile_myposts spots">
+      <p>自分が投稿したスポット</p>
+      <div class="user_profile_posts">
+        <% if @user.spots.present? %>
+          <% @user.spots.each do |spot| %>
+            <table>
+              <div class="user_profile_each">
+                <tr>
+                  <td>
+                    <%= link_to spot_path(spot.id) do%>
+                      <% if spot.image? %>
+                        <%= image_tag "#{spot.image}",:size =>'120x120' ,class:"card-img-top" %>
+                      <% else %>
+                        <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top") %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                <tr>
+                  <td>
+                    <p><%= spot.name %></p>
+                    <a style="font-size:1.2rem;"><%= link_to t("editbutton"), edit_spot_path(spot) %></a>
+                    <a style="font-size:1.2rem;"><%= link_to t("deletebutton"), spot, method: :delete, data: { confirm: '本当に削除しますか?' } %></a>
+                  </td>
+                </tr>
+              </div>
+            </table>
+          <% end %>
+        <% else %>
+          <h5 style="margin:0 auto;"><%= t("nopost") %></h5>
+        <% end %>
+      </div>
+      <div class="paginate">
+        <%= paginate @userspots %>
       </div>
     </div>
 
-    <div class="user_profile_upper_right">
-      <div class="user_name_edit">
-        <p class="profile_data"><%= f.label :ユーザー名 %></p>
-        <p><%= f.text_field :name, autofocus: true, class:"form-control" %></p>
+    <div class="password_change">
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
+      <% end %>
+      <div class="password_field">
+        <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+        <% end %>
       </div>
-      <div class="user_email_edit">
-        <p class="profile_data"><%= f.label :email %></p>
-        <p><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %></p>
-      </div>
-      <div class="user_comment">
-        <p class="profile_data"><%= f.label :コメント %></p>
-        <p><%= f.text_area :comment, autofocus: true,size: "20x5", class:"form-control",id: "input-text" %></p>
-        <a id="counter">0</a><a>/255文字まで</a>
+      <div class="password_field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
       </div>
     </div>
-  </div>
 
-  <div class ="user_profile_lower">
-    <p></p>
-      <%= f.label :好きなアーティスト%><div>（「,」で区切ってください）</div><br />
-      <ul id="user_tag_list">
-        <li>
-            <%= f.text_field :tag_list, value: @user.tag_list.join(','),placeholder:"区切り", class:"form-control" %>
-        </li>
-      </ul>
-  </div>
-
-  <div class ="user_profile_myposts artists">
-    <p>自分が投稿したアーティスト</p>
-    <div class="user_profile_posts">
-      <% if @user.localartists.present? %>
-      <% @userartistlists.each do |localartist| %>
-        <table>
-          <div class="user_profile_each">
-            <tr>
-              <td>
-                <%= link_to localartist_path(localartist.id) do%>
-                  <% if localartist.image? %>
-                    <%= image_tag "#{localartist.image}",:size =>'120x120' ,class:"card-img-top" %>
-                  <% else %>
-                    <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top"), localartist_path(localartist.id) %>
-                  <% end %>
-                <% end %>
-              </td>
-            <tr>
-              <td>
-                <p><%= localartist.name %></p>
-                <a style="font-size:1.2rem;"><%= link_to '編集', edit_localartist_path(localartist) %></a>
-                <a style="font-size:1.2rem;"><%= link_to '削除', localartist, method: :delete, data: { confirm: '本当に削除しますか?' } %></a>
-              </td>
-            </tr>
-          </div>
-        </table>
-      <% end %>
-      <% else %>
-        <h5 style="margin:0 auto;">登録がありません</h5>
-      <% end %>
-    </div>
-    <div class="paginate">
-      <%= paginate @userartistlists %>
-    </div>
-  </div>
-  <div class ="user_profile_myposts spots">
-    <p>自分が投稿したスポット</p>
-    <div class="user_profile_posts">
-      <% if @user.spots.present? %>
-      <% @user.spots.each do |spot| %>
-        <table>
-          <div class="user_profile_each">
-            <tr>
-              <td>
-                <%= link_to spot_path(spot.id) do%>
-                  <% if spot.image? %>
-                    <%= image_tag "#{spot.image}",:size =>'120x120' ,class:"card-img-top" %>
-                  <% else %>
-                    <%= link_to (image_tag 'default.jpg',:size =>'120x120' ,class:"card-img-top") %>
-                  <% end %>
-                <% end %>
-              </td>
-            <tr>
-              <td>
-                <p><%= spot.name %></p>
-                <a style="font-size:1.2rem;"><%= link_to '編集', edit_spot_path(spot) %></a>
-                <a style="font-size:1.2rem;"><%= link_to '削除', spot, method: :delete, data: { confirm: '本当に削除しますか?' } %></a>
-              </td>
-            </tr>
-          </div>
-        </table>
-      <% end %>
-      <% else %>
-        <h5 style="margin:0 auto;">登録がありません</h5>
-      <% end %>
-    </div>
-    <div class="paginate">
-      <%= paginate @userspots %>
-    </div>
-
-  </div>
-
-  <div class="password_change">
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
-    <% end %>
-    <div class="password_field">
-      <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-      <% if @minimum_password_length %>
+    <div class="user_profile_lower_button_edit">
+      <div class="update_field">
+        <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
         <br />
-        <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+        <p><%= f.submit t('.update'),class:"btn btn-primary btn-block btn-lg" %> </p>
+      </div>
       <% end %>
-    </div>
-    <div class="password_field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+
+      <div class="account_destroy">
+        <p><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
+      </div>
+
+        <%= link_to t('devise.shared.links.back'), :back %>
     </div>
   </div>
-
-  <div class="user_profile_lower_button_edit">
-    <div class="update_field">
-      <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
-      <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
-      <br />
-      <p><%= f.submit t('.update'),class:"btn btn-primary btn-block btn-lg" %> </p>
-    </div>
-    <% end %>
-
-    <div class="account_destroy">
-      <p><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
-    </div>
-
-      <%= link_to t('devise.shared.links.back'), :back %>
-  </div>
-</div>

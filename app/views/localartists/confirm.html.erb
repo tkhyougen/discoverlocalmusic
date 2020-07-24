@@ -1,69 +1,65 @@
 <div class="mypagetitle">
-  <p>以下の内容で、投稿する</p>
+  <p><%= t("message.confirm") %></p>
 </div>
 
 <%= form_with(model: @localartist, url: localartists_path, local: true ) do |form| %>
 
-<div class ="container_profile">
-  <div class="user_profile_upper">
-    <div class="user_profile_upper_left">
-      <div class="user_profile_image">
+  <div class ="container_profile">
+    <div class="user_profile_upper">
+      <div class="user_profile_upper_left">
+        <div class="user_profile_image">
+          <p><%= form.label :image %></p>
+            <% if @localartist.image && @localartist.image.url %>
+              <%= image_tag @localartist.image.url, :size =>'350x350' %>
+              <%= form.hidden_field :image_cache %>
+            <% else %>
+              <%= image_tag 'artisticon.jpg', :size =>'350x350' %>
+              <%= form.hidden_field :image_cache %>
+            <% end %>
+        </div>
+      </div>
 
-        <p><%= form.label :写真 %></p>
-          <% if @localartist.image && @localartist.image.url %>
-            <%= image_tag @localartist.image.url, :size =>'350x350' %>
-            <%= form.hidden_field :image_cache %>
-          <% else %>
-            <%= image_tag 'artisticon.jpg', :size =>'350x350' %>
-            <%= form.hidden_field :image_cache %>
-          <% end %>
+      <div class="user_profile_upper_right">
+        <div class="user_name">
+          <%= form.hidden_field :name %>
+          <p class="profile_data"><%= t("localartist.name") %></p>
+          <p><%= @localartist.name %> </p>
+        </div>
+
+        <div class="user_email">
+          <%= form.hidden_field :country %>
+          <p class="profile_data"><%= t("localartist.country") %></p>
+          <p><%= @localartist.country %> </p>
+        </div>
+
+        <div class="user_comment">
+          <%= form.hidden_field :post_comment %>
+          <p class="profile_data"><%= t("localartist.comment") %></p>
+          <p><%= @localartist.post_comment %></p>
+        </div>
       </div>
     </div>
 
-    <div class="user_profile_upper_right">
-      <div class="user_name">
-        <%= form.hidden_field :name %>
-        <p class="profile_data">アーティスト名</p>
-        <p><%= @localartist.name %> </p>
-      </div>
+    <div class ="user_profile_lower">
+      <p><%= t("localartist.recommend") %></p>
+      <%= form.hidden_field :tag_list %>
+        <% @localartist.tag_list.each do |tag| %>
+          <span class="label label-danger"><%= tag %></span>
+      <% end %>
+    </div>
 
-      <div class="user_email">
-        <%= form.hidden_field :country %>
-        <p class="profile_data">出身国</p>
-        <p><%= @localartist.country %> </p>
-      </div>
+    <div class ="user_profile_lower">
+      <p><%= t("localartist.youtube_url") %></p>
+      <p class="profile_data"><%= form.hidden_field :youtube_url %></p>
+      <p><%= @localartist.youtube_url %></p>
+    </div>
 
-      <div class="user_comment">
-        <%= form.hidden_field :post_comment %>
-        <p class="profile_data">コメント</p>
-        <p><%= @localartist.post_comment %></p>
+    <div class ="user_profile_lower_button_edit">
+      <div class="update_field">
+        <p><%= form.submit t("submit"),class:"btn btn-primary btn-block btn-lg" %></p>
+        <p><%= form.submit t("back"), name:"back" %></p> <!-- #cretateアクションでbackパラメーター送る -->
       </div>
     </div>
   </div>
-
-
-  <div class ="user_profile_lower">
-    <p>このアーティスト好きにおすすめ</p>
-    <%= form.hidden_field :tag_list %>
-    <% @localartist.tag_list.each do |tag| %>
-      <span class="label label-danger"><%= tag %></span>
-    <% end %>
-  </div>
-
-  <div class ="user_profile_lower">
-    <p>Youtubeアドレス</p>
-    <p class="profile_data"><%= form.hidden_field :youtube_url %></p>
-    <p><%= @localartist.youtube_url %></p>
-  </div>
-
-
-  <div class ="user_profile_lower_button_edit">
-    <div class="update_field">
-      <p><%= form.submit "投稿する",class:"btn btn-primary btn-block btn-lg" %></p>
-      <!-- #cretateアクションでbackパラメーター送る -->
-      <p><%= form.submit '戻る', name:"back" %></p>
-    </div>
-  </div>
-
 
 <% end %>

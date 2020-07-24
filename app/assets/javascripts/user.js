@@ -13,7 +13,7 @@ $(function() {
   });
 });
 
-// ユーザー登録のコメントカウント
+// ユーザー登録のコメント文字カウント
 $(function(){
  $("#input-text").on("keyup", function() {
    let countNum = String($(this).val().length);

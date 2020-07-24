@@ -16,61 +16,56 @@
 
     <div class="user_profile_upper_right">
       <div class="user_name">
-        <p class="profile_data">アーティスト名</p>
+        <p class="profile_data"><%= t("localartist.name") %></p>
         <p><%=@localartist.name %></p>
       </div>
-
       <div class="user_email">
-        <p class="profile_data">国名</p>
+        <p class="profile_data"><%= t("localartist.country") %></p>
         <p> <%= @localartist.country %></p>
       </div>
-
       <div class="user_comment">
-        <p class="profile_data">投稿者<%=@localartist.user.name %>のコメント</p>
+        <p class="profile_data"><%= t("poster") %><%=@localartist.user.name %>のコメント</p>
         <p><%=@localartist.post_comment %> </p>
       </div>
     </div>
   </div>
 
   <div class="user_profile_lower">
-      <p>このｱｰﾃｨｽﾄ好きにオススメ</p>
+      <p><%= t("localartist.recommend") %></p>
       <% @localartist.tag_list.each do |tag| %>
         <span class="label label-danger"><%= tag %></span>
       <% end %>
   </div>
 
   <div class ="user_profile_myposts artists">
-    <p>Youtube(再生数最多動画と自身で登録した動画を表示)</p>
+    <p> <%= t("localartist.youtube") %></p>
     <div class="user_profile_posts">
-    <!--youtube apiで自動表示-->
-    <% if @youtube_data.present? %>
-      <% @youtube_data.each do |item| %>
-      <table>
-        <div class="user_profile_each">
-          <tr>
-            <td>
-              <% snippet = item.snippet %><!-- <p>%= snippet.title %></p> -->
-              <div><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-            </td>
-          </tr>
-        </div>
-      </table>
+      <% if @youtube_data.present? %>     <!--youtube apiで自動表示-->
+        <% @youtube_data.each do |item| %>
+          <table>
+            <div class="user_profile_each">
+              <tr>
+                <td>
+                  <% snippet = item.snippet %><!-- <p>%= snippet.title %></p> -->
+                  <div><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                </td>
+              </tr>
+            </div>
+          </table>
+        <% end %>
       <% end %>
-    <% else %>
-    <% end %>
 
-      <!-- 自分が貼り付けたyoutbe -->
-      <div class="user_profile_each">
-      <% if @localartist.youtube_url.present? %>
-        <p><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= @localartist.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
-      <% end %>
+      <div class="user_profile_each">  <!-- 自分が貼り付けたyoutbe -->
+        <% if @localartist.youtube_url.present? %>
+          <p><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= @localartist.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+        <% end %>
       </div>
     </div>
   </div>
 
     <div class="localartist_profile_lower">
-      <p class="localartist_profile_comment_title">一言コメント(最新5件を表示)</p>
-     <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
+      <p class="localartist_profile_comment_title"><%= t("singlecomment") %>(最新5件を表示)</p>
+      <!-- このcomments_areaというHTMLのidを取得して、そのdivの部分だけを更新する -->
       <div id ="comments_area">
        <!-- 投稿されたコメント一覧をブログの詳細ページに表示するためのrender -->
         <%= render partial: 'comments/index', locals: { comments: @comments, localartist: @localartist } %>
@@ -85,21 +80,21 @@
     <div class="localartist_profile_lower_button_show">
       <% if @localartist.user == current_user %>
         <!--投稿ユーザー -->
-         <p class="lower_button 1"><%= link_to "アーティストを編集する", edit_localartist_path(@localartist.id),class:"btn btn-primary btn-block btn-lg" %></p>
-         <p class="lower_button 2"><%= link_to "削除する", localartist_path(@localartist.id), method: :delete,class:"btn btn-danger btn-block btn-lg",
+         <p class="lower_button 1"><%= link_to t("edit"), edit_localartist_path(@localartist.id),class:"btn btn-primary btn-block btn-lg" %></p>
+         <p class="lower_button 2"><%= link_to t("delete"), localartist_path(@localartist.id), method: :delete,class:"btn btn-danger btn-block btn-lg",
          data: { confirm: '本当に削除していいですか？' } %></p>
       <% else %>
-  　   <!--非投稿ユーザー -->
-        <p class="lower_button 1"><%= link_to 'タグを追加する', edit_localartist_path(@localartist),class:"btn btn-primary btn-block btn-lg" %></p>
+  　     <!--非投稿ユーザー -->
+        <p class="lower_button 1"><%= link_to t("addtag"), edit_localartist_path(@localartist),class:"btn btn-primary btn-block btn-lg" %></p>
         <% if @favorite.present? %>
-          <p class="lower_button 2"><%= link_to "お気に入りを解除する", favorite_path(id: @favorite.id), method: :delete, class:"btn btn-danger btn-block btn-lg" %></p>
+          <p class="lower_button 2"><%= link_to t("favorite.delete"), favorite_path(id: @favorite.id), method: :delete, class:"btn btn-danger btn-block btn-lg" %></p>
         <% else %>
-          <p class="lower_button 2"><%= link_to "お気に入りに追加する", favorites_path(localartist_id: @localartist.id), method: :post,class:"btn btn-success btn-block btn-lg" %></p>
+          <p class="lower_button 2"><%= link_to t("favorite.add"), favorites_path(localartist_id: @localartist.id), method: :post,class:"btn btn-success btn-block btn-lg" %></p>
         <% end %>
-        <p class="lower_button 3"><%= link_to "投稿ユーザーのプロフィールへ", user_path(@localartist.user.id),class:"btn btn-warning btn-block btn-lg"  %></p>
+        <p class="lower_button 3"><%= link_to t("posterprofile"), user_path(@localartist.user.id),class:"btn btn-warning btn-block btn-lg"  %></p>
       <% end %>
     </div>
-    <div class="localartist_profile_lower_button_show">
-      <%= link_to '戻る', localartists_path %>
-    </div>
+  <div class="localartist_profile_lower_button_show">
+    <%= link_to t("back"), localartists_path %>
+  </div>
 </div>

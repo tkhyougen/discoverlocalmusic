@@ -16,7 +16,6 @@
       <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
       <!-- <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script> -->
       <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
-
       <script src="user.js"></script> -->
 
 
@@ -57,14 +56,10 @@
   </head>
 
 
-   <body>
-
+  <body>
     <header>
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
-        <!-- <div class="header-left"> -->
           <a class="navbar-brand" style="font-size:3rem">Discover Local Music </a>
-        <!-- </div> -->
-
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav">
             <div class="header-right">
@@ -72,53 +67,47 @@
                 <li class="nav-item" style="font-weight:bold">
                   <p>ログイン中のユーザー:<%= current_user.name %></p>
                 </li>
-
-
                 <li class="nav-item dropdown">
                    <div class= "dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:blue">
-                   投稿する
+                     <%= t("submit") %>
                    <span class="caret"></span>
                    </div>
                    <div class ="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
-                     <p><%= link_to "アーティスト", new_localartist_path %></p>
-                     <p><%= link_to "スポット", new_spot_path %></p>
+                     <p><%= link_to t("localartist.artist"), new_localartist_path %></p>
+                     <p><%= link_to t("spot.spot"), new_spot_path %></p>
                    </div>
                 </li>
-
-
                 <li class="nav-item dropdown">
                    <div class= "dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:blue">
-                   探す
+                     <%= t("search") %>
                    <span class="caret"></span>
                    </div>
                    <div class="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
-                     <p><%= link_to "アーティスト", localartists_path(current_user.id) %></p>
-                     <p><%= link_to "スポット", spots_path(current_user.id) %></p>
+                     <p><%= link_to t("localartist.artist"), localartists_path(current_user.id) %></p>
+                     <p><%= link_to t("spot.spot"), spots_path(current_user.id) %></p>
                    </div>
                 </li>
-
                 <li class="nav-item">
-                  <a><%= link_to "マイページ",user_path(current_user.id) %></a>
+                  <a><%= link_to t("menu.mypage"),user_path(current_user.id) %></a>
                 </li>
                 <li class="nav-item">
-                  <a><%= link_to "ログアウト",destroy_user_session_path, method: :delete %></a>
+                  <a><%= link_to t("menu.logout"),destroy_user_session_path, method: :delete %></a>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <a><%= link_to "ログイン", new_user_session_path %></a>
+                  <a><%= link_to t("menu.login"), new_user_session_path %></a>
                 </li>
                 <li class="nav-item">
-                  <a><%= link_to "新規登録", new_user_registration_path %></a>
+                  <a><%= link_to t("menu.registration"), new_user_registration_path %></a>
                 </li>
               <% end %>
             </div>
           </ul>
         </div>
       </nav>
-
     </header>
 
-      <!-- noticeとalertを挿入 -->
+    <!-- noticeとalertを挿入 -->
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% end %>
@@ -126,14 +115,13 @@
       <p class="alert"><%= alert %></p>
     <% end %>
 
+    <!-- yieldで各view -->
     <%= yield %>
-
-
   </body>
 
   <footer>
     <div class="footer-logo">
-      <p>© 2020. Discoverlocalmusic All Rights Reserved. </p>
+      <p>© 2020. Discoverlocalmusic All Rights Reserved.</p>
     </div>
   </footer>
 

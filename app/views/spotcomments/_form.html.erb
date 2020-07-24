@@ -9,11 +9,11 @@
       </ul>
     </div>
   <% end %>
-  <div class="comment_form">
-    <%= form.label:content, style:"display:none;" %>
-    <%= form.text_area :content,:size =>'250x2',class:"form-control",placeholder:"50文字まで" %>
-  </div>
-  <div class="actions">
-    <%= form.submit:"コメントを残す" %>
-  </div>
+    <div class="comment_form">
+      <%= form.label:content, style:"display:none;" %>
+      <%= form.text_area :content,:size =>'250x2',class:"form-control",placeholder:"50文字まで" %>
+    </div>
+    <div class="actions">
+      <%= form.submit:"コメントを残す" %>
+    </div>
 <% end %>

@@ -1,8 +1,6 @@
 class CommentsController < ApplicationController
 
   before_action :set_localartist, only: [:create, :edit, :update]
-  # before_action :set_comments, only: [:index, :create, :update, :destroy]
-
 
   def index
     @comments = @localartist.comments.all.order('created_at DESC')
@@ -54,20 +52,14 @@ class CommentsController < ApplicationController
   end
 
 
-
   private
 
   def comment_params
     params.require(:comment).permit(:localartist_id, :content)
   end
-
-    # localaritstをパラメータの値から探し出し,localaritstに紐づくcommentsとしてbuild
+  # localaritstをパラメータの値から探し出し,localaritstに紐づくcommentsとしてbuild
   def set_localartist
     @localartist = Localartist.find(params[:localartist_id])
   end
-
-  # def set_comments
-  #   @comment = @localartist.comments.includes([:user]).order(id: :desc)
-  # end
 
 end

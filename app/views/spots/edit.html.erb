@@ -1,9 +1,9 @@
 <div class="mypagetitle">
-  <p>編集する</p>
+  <p><%= t("edit") %></p>
 </div>
 
 <%= render 'form', spot: @spot %>
 
 <div class="user_profile_lower_button_edit">
-  <%= link_to '戻る', spot_path %>
+  <%= link_to t("back"), spot_path %>
 </div>
