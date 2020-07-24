@@ -1,5 +1,6 @@
 http://localhost:3000/
 
+#### git add commit push origin
 #### アセットコンパイル
 rails assets:precompile RAILS_ENV=production
 
