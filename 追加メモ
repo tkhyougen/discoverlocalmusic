@@ -1,8 +1,39 @@
 http://localhost:3000/
 
+#### アセットコンパイル
+rails assets:precompile RAILS_ENV=production
 
-例：
-ログインユーザーのみがブログ投稿できる。未ログインでも一覧表示は閲覧可能
+###デプロイ前には例外処理
+config/environments/development.rb
+config.consider_all_requests_local = falseに変更することでエラー画面表示
+
+###herokuでのシードデータ
+ config/initializers/local.rbの:jaをコメントアウトしてからrails db:seed
+（Heroku上でrails cを実行するためにはheroku run rails c、seedコマンドは、heroku run rails db:seedを実行）
+
+##heroku
+
+# Heokuへのデプロイ
+`$ git push heroku master `
+
+# データベース移行(データベースの移行　マイグレーション必要な場合)
+`$ heroku run rails db:migrate`
+
+## 以下参考
+## エラーが出た場合
+`$  heroku buildpacks:add --index 1 heroku/nodejs`
+## アドレス確認
+`$ heroku config`
+https://damp-atoll-65761.herokuapp.com/
+## GithubにPushしたら自動デプロイについて
+https://reasonable-code.com/github-push-heroku/
+
+
+
+
+
+
+##ログインユーザーのみがブログ投稿できる。未ログインでも一覧表示は閲覧可能
 
 class BlogsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
@@ -61,17 +92,6 @@ end
   </div>
 </nav>
 
-#### アセットコンパイル
-
-
-rails assets:precompile RAILS_ENV=production
-
-###デプロイ前には例外処理
-
-###herokuでのシードデータ
- config/initializers/local.rbの:jaをコメントアウトしてからrails db:seed
-（Heroku上でrails cを実行するためにはheroku run rails c、seedコマンドは、heroku run rails db:seedを実行します。）
-
 
 ###application.js 下記だとエラー
 //= require rails-ujs
@@ -95,37 +115,6 @@ Gemfile の turbolinks 行をコメントアウトする　の項目
 
 
 
-<div class="search">
-    <form class="form-inline">
-      <%= form_with(scope: :search, url:localartists_path, local: true, method: :get) do |form| %>
-
-        <div class="flex-inline">
-          <%= form.label :name, "ｱｰﾃｨｽﾄ名" %>
-          <%= form.text_field :name, class: "form-control" %>
-        </div>
-        <div class="flex-inline">
-          <%= form.label :country_search, "国名" %>
-          <%= form.text_field :country, class: "form-control" %>
-        </div>
-
-        <div class="flex-inline">
-          <%= form.label :userartist_search, "好きなアーティスト" %>
-          <%= form.select("tag_list", User.tag_list.pluck(:name, :id), { include_blank:"選択する",include_hidden: false }) %>
-            <!--label_idをパラメータ値として飛ばす pluckでlabelのidとnameを取り出す -->
-        </div>
-        <div class="flex-inline">
-          <%= form.submit name="検索する" %>
-        </div>
-      <% end %>
-    </form>
-</div>
-
-
-◎youtube api   helperの　def find_videos(keyword,XXXXXX)
-, after: 6.months.ago, before: Time.now
-
-
-
 ##youtbe api  localartist/show
 <% @youtube_data.each do |item| %>
   <table>
@@ -140,3 +129,6 @@ Gemfile の turbolinks 行をコメントアウトする　の項目
     </div>
   </table>
   <% end %>
+
+#youtube api   helperの　def find_videos(keyword,XXXXXX)
+  , after: 6.months.ago, before: Time.now

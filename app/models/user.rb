@@ -9,6 +9,7 @@ class User < ApplicationRecord
   before_validation {email.downcase!}
   validates :email, presence: true, uniqueness: true, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :comment, length:{ maximum:255 }
+  validates :password, length:{ minimum:6 }
 
   #user.localartists
   has_many :localartists, dependent: :destroy
