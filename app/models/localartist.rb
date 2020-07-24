@@ -3,7 +3,7 @@ class Localartist < ApplicationRecord
   before_validation {name.capitalize!}
   validates :name, presence: true, length:{ maximum:30 },uniqueness: true
   before_validation {country.capitalize!}
-  validates :country, presence: true, length:{ maximum:20 }
+  validates :country, presence: true, length:{ maximum:30 }
   validates :post_comment, length:{ maximum:255 }
 
   #アソシエーション　ex.localartists.user.name
