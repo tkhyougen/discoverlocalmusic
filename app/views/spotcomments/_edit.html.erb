@@ -9,11 +9,11 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= form.text_area :content, id: "comment_content_#{spot.id}" %>
-    <%= form.label :content %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="field">
+      <%= form.text_area :content, id: "comment_content_#{spot.id}" %>
+      <%= form.label :content %>
+    </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
 <% end %>

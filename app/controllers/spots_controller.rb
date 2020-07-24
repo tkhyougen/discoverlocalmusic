@@ -1,13 +1,10 @@
 class SpotsController < ApplicationController
   before_action :set_spot, only: [:show, :edit, :update, :destroy]
-
   PER = 12
 
   def index
-
     @spots = Spot.all.order(id: :desc)
     @user = current_user
-
     #ransack
     @search = Spot.ransack(params[:q])
     @spots = @search.result(id: :desc)
@@ -60,9 +57,7 @@ class SpotsController < ApplicationController
     #set_spot
     @spotcomments = @spot.spotcomments.all.order('created_at DESC')
     @spotcomment = @spot.spotcomments.build
-
     @spotfavorite = current_user.spotfavorites.find_by(spot_id: @spot.id)
-
   end
 
 

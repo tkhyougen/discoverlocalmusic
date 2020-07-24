@@ -13,58 +13,53 @@
   <% end %>
 <!--  -->
 
-<div class ="container_profile">
-  <div class="user_profile_upper">
-    <div class="user_profile_upper_left">
-      <div class="user_profile_image">
-          <p><%= form.label :写真 %></p>
-          <% if @spot.image && @spot.image.url %>
-            <%= image_tag @spot.image.url,:size =>'350x350', id: :image_preview %>
-          <% else %>
-            <%= image_tag 'spoticon.png',:size =>'350x350', id: :image_preview %>
-          <% end %>
-            <p class="image_file_field"><%= form.file_field :image, id: :user_image %></p>
-      </div>
-    </div>
-
-    <div class="user_profile_upper_right">
-      <div class="user_name_edit">
-          <p class="profile_data"><%= form.label :スポット名 %></p>
-          <p><%= form.text_field :name,autofocus: true,placeholder:"自動で先頭大文字なります",class:"form-control" %></p>
-      </div>
-      <div class="user_email_edit">
-          <p class="profile_data"><%= form.label :国 %></p>
-          <p><%= form.text_field :country, placeholder:"自動で先頭大文字なります(japan=>Japan)",class:"form-control" %></p>
-      </div>
-
-      <div class="spot_place">
-        <%= form.label :場所の種類 %>
-        <%= form.select :genre, {"レコードCDショップ":"ショップ", "ライブハウス/バー":"ライブハウス/バー","施設/聖地":"施設/聖地","その他":"その他"},{include_blank:"選択",include_hidden:false}, class:"form-control" %>
-      </div>
-
-      <div class="user_comment">
-        <p class="profile_data">  <%= form.label :コメント %></p>
-        <p><%= form.text_area :post_comment, placeholder:"このスポットについてコメントしてください",autofocus: true,size: "20x4", class:"form-control",id: "input-text" %></p>
-        <a id="counter">0</a><a>/255文字まで</a>
-      </div>
-    </div>
-
-  </div>
-
-  <br /><br /><br /><br /><br /><br />
-
-  <div class ="spot_address_lower">
-    <p class="profile_data">  <%= form.label :住所 %></p>
-    <p><%= form.text_area :address, placeholder:"住所を入力すればgooglemapで検索します",autofocus: true,size: "10x1", class:"form-control" %></p>
-  </div>
-
-
-  <div class="user_profile_lower_button_edit">
-    <div class="update_field">
-        <div class="actions">
-          <p><%= form.submit "投稿する",class:"btn btn-primary btn-block btn-lg" %></p>
+  <div class ="container_profile">
+    <div class="user_profile_upper">
+      <div class="user_profile_upper_left">
+        <div class="user_profile_image">
+            <p><%= form.label :image %></p>
+            <% if @spot.image && @spot.image.url %>
+              <%= image_tag @spot.image.url,:size =>'350x350', id: :image_preview %>
+            <% else %>
+              <%= image_tag 'spoticon.png',:size =>'350x350', id: :image_preview %>
+            <% end %>
+              <p class="image_file_field"><%= form.file_field :image, id: :user_image %></p>
         </div>
+      </div>
+
+      <div class="user_profile_upper_right">
+        <div class="user_name_edit">
+            <p class="profile_data"><%= form.label :name %></p>
+            <p><%= form.text_field :name,autofocus: true,placeholder:"先頭大文字になります",class:"form-control" %></p>
+        </div>
+        <div class="user_email_edit">
+            <p class="profile_data"><%= form.label :country %></p>
+            <p><%= form.text_field :country, placeholder:"自動で先頭大文字なります(japan=>Japan)",class:"form-control" %></p>
+        </div>
+        <div class="spot_place">
+          <%= form.label :genre %>
+          <%= form.select :genre, {"レコードCDショップ":"ショップ", "ライブハウス/バー":"ライブハウス/バー","施設/聖地":"施設/聖地","その他":"その他"},{include_blank:"選択",include_hidden:false}, class:"form-control" %>
+        </div>
+        <div class="user_comment">
+          <p class="profile_data">  <%= form.label :comment %></p>
+          <p><%= form.text_area :post_comment, placeholder:"このスポットについてコメントしてください",autofocus: true,size: "20x4", class:"form-control",id: "input-text" %></p>
+          <a id="counter">0</a><a><%= t("count.255") %></a>
+        </div>
+      </div>
+    </div>
+    <br /><br /><br /><br /><br /><br />
+
+    <div class ="spot_address_lower">
+      <p class="profile_data">  <%= form.label :address %></p>
+      <p><%= form.text_area :address, placeholder:"住所を入力すればgooglemapで検索します",autofocus: true,size: "10x1", class:"form-control" %></p>
+    </div>
+
+    <div class="user_profile_lower_button_edit">
+      <div class="update_field">
+          <div class="actions">
+            <p><%= form.submit t("submit"),class:"btn btn-primary btn-block btn-lg" %></p>
+          </div>
+      </div>
     </div>
   </div>
-  <% end %>
-</div>
+<% end %>

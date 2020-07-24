@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  # root "users#index"
 
   #usersのshow indexへのルーティングを追加する。deviseにはないため
   resources :users, only: [:show,:index]

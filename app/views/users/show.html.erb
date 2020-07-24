@@ -1,5 +1,5 @@
 <div class="mypagetitle">
-  <p><%= @user.name%>のページ</p>
+  <p><%= @user.name%><%= t("user.page") %></p>
 </div>
 
 <div class ="container_profile">
@@ -16,15 +16,15 @@
 
     <div class="user_profile_upper_right">
       <div class="user_name">
-        <p class="profile_data">ユーザー名</p>
+        <p class="profile_data"><%= t("user.name") %></p>
         <p><%= @user.name %></p>
       </div>
       <div class="user_email">
-        <p class="profile_data">Emailアドレス</p>
+        <p class="profile_data"><%= t("user.email") %></p>
         <p><%= @user.email %></p>
       </div>
       <div class="user_comment">
-        <p class="profile_data">コメント</p>
+        <p class="profile_data"><%= t("user.comment") %></p>
         <p><%= @user.comment %></p>
       </div>
     </div>
@@ -32,18 +32,18 @@
 
   <!-- taggableのラベル欄 -->
   <div class ="user_profile_lower">
-    <p>登録している好きなアーティスト</p>
+    <p><%= t("user.taglist") %></p>
     <% if @user.tag_list.present? %>
       <% @user.tag_list.each do |tag| %>
         <span class="label label-danger"><%= tag %></span>
       <% end %>
     <% else %>
-      <h5>登録がありません</h5>
+      <h5><%= t("nopost") %></h5>
     <% end %>
   </div>
 
   <div class ="user_profile_myposts artists">
-    <p>投稿したアーティスト</p>
+    <p><%= t("artistpost") %></p>
     <div class="user_profile_posts">
       <% if @user.localartists.present? %>
       <% @userartistlists.each do |localartist| %>
@@ -68,7 +68,7 @@
         </table>
       <% end %>
       <% else %>
-        <h5 style="margin:0 auto;">登録がありません</h5>
+        <h5 style="margin:0 auto;"><%= t("nopost") %></h5>
       <% end %>
     </div>
     <div class="paginate">
@@ -77,7 +77,7 @@
   </div>
 
   <div class ="user_profile_myposts spots">
-    <p>投稿したスポット</p>
+    <p><%= t("spotpost") %></p>
     <div class="user_profile_posts">
       <% if @user.spots.present? %>
         <% @userspots.each do |spot| %>
@@ -102,7 +102,7 @@
           </table>
         <% end %>
       <% else %>
-        <h5 style="margin:0 auto;">登録がありません</h5>
+        <h5 style="margin:0 auto;"><%= t("nopost") %></h5>
       <% end %>
     </div>
       <div class="paginate">
@@ -112,8 +112,8 @@
 
   <div class="user_profile_lower_button_show">
     <% if current_user.id == @user.id %>
-      <p class="lower_button 1"><%= link_to "プロフィール編集", edit_user_registration_path(current_user.id),class:"btn btn-primary btn-block btn-lg" %></p>
-      <p class="lower_button 2"><%= link_to "お気に入りをみる", favorites_path(current_user.id),class:"btn btn-danger btn-block btn-lg" %></p>
+      <p class="lower_button 1"><%= link_to t("edit"), edit_user_registration_path(current_user.id),class:"btn btn-primary btn-block btn-lg" %></p>
+      <p class="lower_button 2"><%= link_to t("favorite_list"), favorites_path(current_user.id),class:"btn btn-danger btn-block btn-lg" %></p>
     <% end %>
   </div>
 

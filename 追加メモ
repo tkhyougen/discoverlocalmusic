@@ -68,6 +68,11 @@ rails assets:precompile RAILS_ENV=production
 
 ###デプロイ前には例外処理
 
+###herokuでのシードデータ
+ config/initializers/local.rbの:jaをコメントアウトしてからrails db:seed
+（Heroku上でrails cを実行するためにはheroku run rails c、seedコマンドは、heroku run rails db:seedを実行します。）
+
+
 ###application.js 下記だとエラー
 //= require rails-ujs
 //= require activestorage

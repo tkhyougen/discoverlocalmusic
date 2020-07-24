@@ -205,3 +205,70 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+
+  user:
+    page: のページ
+    name: ユーザー名
+    email: Emailアドレス
+    comment: コメント
+    taglist: 登録している好きなアーティスト
+
+  post:
+    image: 写真
+
+  localartist:
+    artist: アーティスト
+    name: アーティスト名
+    country: 出身国
+    comment: コメント
+    youtube: Youtube表示
+    youtube_url: Youtubeアドレス
+    recommend: このアーティスト好きにおすすめ
+  spot:
+    spot: スポット
+    name: スポット名
+    country: 国
+    genre: 種類
+    comment: コメント
+    map: 地図表示
+
+  poster: 投稿者
+  nopost: 登録がありません
+  artistpost: 投稿したアーティスト
+  spotpost: 投稿したスポット
+  singlecomment: 一言コメント
+  edit: 編集する
+  editbutton: 編集
+  delete: この投稿を削除する
+  deletebutton: 削除
+  favorite: お気に入り
+  favorite_list: お気に入りを見る
+  submit: 投稿する
+  search: 検索
+  back: 戻る
+  posterprofile: 投稿ユーザーのプロフィールへ
+  addtag: タグを追加する
+  search: 探す
+  alreadyregistered: 登録済みユーザーのログインはこちら
+
+  count:
+    255: /255文字まで
+  message:
+    confirm: 以下の内容で投稿する
+    spotindex: スポットを探す
+    artistindex: アーティストを探す
+  result:
+    spot: スポット検索結果一覧
+    localartist: アーティスト検索結果一覧
+  newpost:
+    spot: スポット新規投稿
+    localartist: アーティスト新規投稿
+  favorite:
+    add: お気に入りに追加する
+    delete: お気に入りを解除する
+  menu:
+    mypage: マイページ
+    login: ログイン
+    logout: ログアウト
+    registration: 新規登録
+    registration1: 新規登録はこちら

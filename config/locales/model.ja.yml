@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    models:
+      localartist: アーティスト
+      spot: スポット
+      user: ユーザー
+    attributes:
+      localartist:
+        image: 写真
+        content: 内容
+        name: アーティスト名
+        country: 国
+        comment: コメント
+        youtube: おすすめYoutube動画
+        myfavorite: 自分のお気に入りアーティストから
+      spot:
+        image: 写真
+        name: スポット名
+        country: 国
+        genre: 場所の種類
+        comment: コメント
+        address: 住所
+      user:
+        title: タイトル
+        name: ユーザー名
+        image: 写真
+        tag_list: 好きなアーティスト
+        comment: コメント
+        email: メールアドレス
+        current_password: 現在のパスワード
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        remember_me: ログインを記憶
