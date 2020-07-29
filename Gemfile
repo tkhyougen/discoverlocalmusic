@@ -66,6 +66,7 @@ group :test do
   gem 'webdrivers'
   gem 'launchy'
   # gem 'database_cleaner'
+  gem "spring-commands-rspec"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

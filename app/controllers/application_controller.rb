@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
 
 
   protected
-    #name image commentの操作を許可する
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:sign_up, keys: [:comment])
@@ -19,6 +18,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys:[:comment])
     devise_parameter_sanitizer.permit(:account_update, keys:[:remove_image])
     devise_parameter_sanitizer.permit(:account_update, keys:[:tag_list])
+    devise_parameter_sanitizer.permit(:account_update, keys:[:password])
+    devise_parameter_sanitizer.permit(:account_update, keys:[:current_password])
   end
 
   def check_user

@@ -8,6 +8,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   '/users'
   # end
 
+  def create
+    super
+  end
+
   #paginateでの表示数
   PER = 6
 
@@ -21,7 +25,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # # PUT /resource
   def update
+
+    @userartistlists = @user.localartists.page(params[:page]).per(PER)
+    @userspots = @user.spots.page(params[:page]).per(PER)
+
     super
+    binding.pry
   end
 
   # # DELETE /resource
@@ -60,7 +69,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :image, :image_cache, :comment,:password, :password_confirmation,:tag_list,:country_list,:artist_list)
+    params.require(:user).permit(:name, :email, :image, :image_cache, :comment,:remove_image,:tag_list,:password,:password_confirmation,:current_password)
   end
 
   #editにてタグを表示

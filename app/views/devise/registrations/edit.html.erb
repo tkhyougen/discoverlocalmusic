@@ -3,7 +3,7 @@
 </div>
 
 <%= form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f| %>
-<%= render "devise/shared/error_messages", resource: resource %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class ="container_profile">
     <div class="user_profile_upper">
@@ -117,23 +117,29 @@
       </div>
     </div>
 
-    <div class="password_change">
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
-      <% end %>
-      <div class="password_field">
-        <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-        <% if @minimum_password_length %>
-          <br />
-          <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+    <div class="user_password_lower">
+      <h4 style="font-weight:bold;">パスワード変更</h4>
+      <div class="password_change">
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
         <% end %>
-      </div>
-      <div class="password_field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+        <div class="pass">
+          <div class="lower_button 1">
+            <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+            <% if @minimum_password_length %>
+                <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+            <% end %>
+          </div>
+          <div class="lower_button 2">
+            <!-- <div class="password_field"> -->
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+          </div>
+        </div>
       </div>
     </div>
+
 
     <div class="user_profile_lower_button_edit">
       <div class="update_field">
