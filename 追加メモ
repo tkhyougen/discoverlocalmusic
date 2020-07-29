@@ -16,8 +16,12 @@ config.assets.js_compressor = Uglifier.new(harmony: true)
 helper localartist
 layout applications
 
+##heroku
+git add commit heroku master
+heroku run rails db:migrate
+heroku run rails db:seed
 
-###heroku
+
 
 # herokuでのシードデータ
  config/initializers/local.rbの:jaをコメントアウトしてからrails db:seed
