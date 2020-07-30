@@ -30,7 +30,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @userspots = @user.spots.page(params[:page]).per(PER)
 
     super
-    binding.pry
   end
 
   # # DELETE /resource
