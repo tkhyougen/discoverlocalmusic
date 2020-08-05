@@ -3,6 +3,7 @@
 // require jquery_ujs
 //= require jquery-ui
 //= require tag-it
+//= require select2
 //= require activestorage
 //= require jquery.turbolinks
 // require turbolinks

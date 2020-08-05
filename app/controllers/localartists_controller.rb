@@ -37,7 +37,7 @@ class LocalartistsController < ApplicationController
         @localartists = Localartist.all.where("country ilike ?", "%#{params[:search][:country]}%")
 
       elsif params[:search][:tag_list].present?
-          @localartists = Localartist.tagged_with(params[:search][:tag_list])
+          @localartists = Localartist.all.tagged_with([params[:search][:tag_list]], :any => true)
       end
     end
     @localartists = @localartists.order(id: :desc).page(params[:page]).per(PER)

@@ -28,3 +28,7 @@ $(function(){
 //     fieldName: 'localartist[tag_list]'
 //     singleField: true
 //   });
+
+$(document).ready(function() {
+  $('.mySelect2').select2();
+});

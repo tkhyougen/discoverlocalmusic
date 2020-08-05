@@ -14,8 +14,8 @@
         <%= form.collection_select :country, Localartist.all.order("country ASC"), :country, :country,{include_blank:"アルファベット順"}, class:"form-control" %>
       </div>
       <div class="search_form">
-        <%= form.label :自分の好きなｱｰﾃｨｽﾄから %>
-        <%= form.select :tag_list, @user.tag_list.map, {include_blank:"このﾀｸﾞが付いているｱｰﾃｨｽﾄを検索",include_hidden:false}, class:"form-control" %>
+        <%= form.label :自分の好きなアーティストから %>
+        <%= form.select :tag_list, @user.tag_list.map, {include_blank:"複数選択可",include_hidden:false},{multiple: true, class: 'mySelect2 form-control'} %>
       </div>
   </div>
       <div class="search_button">

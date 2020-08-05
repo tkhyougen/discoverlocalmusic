@@ -1,8 +1,8 @@
 /*
-
  *= require_tree .
  * require jquery-ui
  *= require jquery.tagit
+ *= require select2
  *= require tagit.ui-zendesk
  *= require bootstrap/dist/css/bootstrap.min
  *= require_self
