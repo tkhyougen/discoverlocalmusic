@@ -42,10 +42,10 @@
 
     <div class ="user_profile_lower">
       <p><%= t("localartist.recommend") %></p>
-      <%= form.hidden_field :tag_list %>
+      <%= form.hidden_field :tag_list,value: @localartist.tag_list.join(",") %>  <!--value~joinを付けないとtagが繋がってしまう-->
         <% @localartist.tag_list.each do |tag| %>
           <span class="label label-danger"><%= tag %></span>
-      <% end %>
+        <% end %>
     </div>
 
     <div class ="user_profile_lower">
@@ -57,7 +57,7 @@
     <div class ="user_profile_lower_button_edit">
       <div class="update_field">
         <p><%= form.submit t("submit"),class:"btn btn-primary btn-block btn-lg" %></p>
-        <p><%= form.submit t("back"), name:"back" %></p> <!-- #cretateアクションでbackパラメーター送る -->
+        <p><%= form.submit t("back"), name:"back" %></p> <!-- #createアクションでbackパラメーター送る -->
       </div>
     </div>
   </div>

@@ -9,7 +9,7 @@
         <% if @user.image.url.present? && @user.image.present? %>
           <%= image_tag @user.image.thumb.url, :size =>'350x350' %>
         <% else %>
-          <%= image_tag 'usericondefault.png',:size =>'350x350' %>
+          <%= image_tag 'artisticon.jpg',:size =>'350x350',class:"rounded-circle" %>
         <% end %>
       </div>
     </div>

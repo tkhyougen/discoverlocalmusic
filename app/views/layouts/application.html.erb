@@ -52,6 +52,14 @@
         });
       });
 
+    //noiceの表示時間
+    $(document).ready(function() {
+        toastr.options.timeOut = 1000;
+      });
+    toastr.options = {
+      "timeOut": "1000"
+    }
+
     </script>
 
 
@@ -69,36 +77,52 @@
                 </li>
                 <li class="nav-item dropdown">
                    <div class= "dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:blue">
-                     <%= t("submit") %>
-                   <span class="caret"></span>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i><%= t("submit") %>
+                    <span class="caret"></span>
                    </div>
                    <div class ="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
-                     <p><%= link_to t("localartist.artist"), new_localartist_path %></p>
-                     <p><%= link_to t("spot.spot"), new_spot_path %></p>
+                    <%= link_to new_localartist_path do %>
+                      <p><i class="fa fa-user-plus"></i><%= t("localartist.artist") %></p>
+                    <% end %>
+                    <%= link_to new_spot_path do %>
+                      <p><i class="fa fa-picture-o"></i><%= t("spot.spot") %></p>
+                    <% end %>
                    </div>
                 </li>
                 <li class="nav-item dropdown">
                    <div class= "dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown" role="button" aria-haspopup="true" style="color:blue">
-                     <%= t("search") %>
-                   <span class="caret"></span>
+                     <i class="fa fa-search" aria-hidden="true"></i><%= t("search") %>
+                     <span class="caret"></span>
                    </div>
                    <div class="dropdown-menu" aria-labelledby="dropdownMenu3" style="background-color:#f8f9fa">
-                     <p><%= link_to t("localartist.artist"), localartists_path(current_user.id) %></p>
-                     <p><%= link_to t("spot.spot"), spots_path(current_user.id) %></p>
+                     <%= link_to localartists_path(current_user.id) do%>
+                      <p><i class="fa fa-users"></i><%= t("localartist.artist") %></p>
+                     <% end %>
+                     <%= link_to spots_path(current_user.id) do %>
+                      <p><i class="fa fa-picture-o"></i><%= t("spot.spot") %></p>
+                     <% end %>
                    </div>
                 </li>
                 <li class="nav-item">
-                  <a><%= link_to t("menu.mypage"),user_path(current_user.id) %></a>
+                  <%= link_to user_path(current_user.id) do %>
+                    <i class="fa fa-user"></i><%= t("menu.mypage") %>
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <a><%= link_to t("menu.logout"),destroy_user_session_path, method: :delete %></a>
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                    <i class="fa fa-sign-out"></i><%= t("menu.logout") %>
+                  <% end %>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <a><%= link_to t("menu.login"), new_user_session_path %></a>
+                  <%= link_to new_user_session_path do %>
+                    <i class="fa fa-sign-in"></i><%= t("menu.login") %>
+                  <% end %>
                 </li>
                 <li class="nav-item">
-                  <a><%= link_to t("menu.registration"), new_user_registration_path %></a>
+                  <%= link_to new_user_registration_path do %>
+                    <i class="fa fa-registered"></i><%= t("menu.registration") %>
+                  <% end %>
                 </li>
               <% end %>
             </div>
@@ -107,12 +131,14 @@
       </nav>
     </header>
 
-    <!-- noticeとalertを挿入 -->
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
+    <% if flash.any? %>
+      <script type="text/javascript">
+        <% flash.each do |key, value| %>
+          <% key = "success" if key == "notice" %>
+          <% key = "error" if key == "alert" %>
+          toastr['<%= key %>']('<%= value %>');
+        <% end %>
+      </script>
     <% end %>
 
     <!-- yieldで各view -->

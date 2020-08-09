@@ -106,7 +106,12 @@ class LocalartistsController < ApplicationController
 
   def destroy
     @localartist.destroy
-    redirect_to edit_user_registration_path(current_user.id), notice:"削除しました"
+    path = Rails.application.routes.recognize_path(request.referer)
+    if path[:controller] == "users/registrations"
+      redirect_to edit_user_registration_path(current_user.id), notice:"削除しました"
+    else
+      redirect_to localartists_path, notice:"削除しました"
+    end
   end
 
 

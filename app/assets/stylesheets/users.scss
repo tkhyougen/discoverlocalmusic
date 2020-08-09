@@ -32,6 +32,7 @@ html,head, body, footer {
 
 body{
   height:100%;
+  padding-top:40px;
   padding-bottom:40px;/*フッターの高さと同じにする*/
 }
 
@@ -224,4 +225,8 @@ footer{
   text-align:center;
   word-wrap:break-word;
   margin-top:30px;
+}
+
+.rounded-circle {
+   border-radius: 50%;
 }

@@ -5,5 +5,7 @@
  *= require select2
  *= require tagit.ui-zendesk
  *= require bootstrap/dist/css/bootstrap.min
+ *= require toastr
+ *= require font-awesome
  *= require_self
  */
