@@ -13,7 +13,7 @@
             <% if @user.image.url %>
               <%= image_tag @user.image.url(:thumb),:size =>'350x350', id: :image_preview %>
             <% else %>
-              <%= image_tag 'usericondefault.png',:size =>'350x350', id: :image_preview %>
+              <%= image_tag 'artisticon.jpg',:size =>'350x350',class:"rounded-circle", id: :image_preview %>
             <% end %>
           <p class="image_file_field"><%= f.file_field :image, id: :user_image %></p>
           <p><%= f.check_box :remove_image %>画像を削除</p>
@@ -66,8 +66,12 @@
                 <tr>
                   <td>
                     <p><%= localartist.name %></p>
-                    <a style="font-size:1.2rem;"><%= link_to '編集', edit_localartist_path(localartist) %></a>
-                    <a style="font-size:1.2rem;"><%= link_to '削除', localartist, method: :delete, data: { confirm: '本当に削除しますか?' } %></a>
+                    <a style="font-size:1.2rem;"><%= link_to edit_localartist_path(localartist) do %>
+                      <i class="fa fa-pencil-square-o"></i>
+                    <% end %></a>
+                    <a style="font-size:1.2rem;"><%= link_to localartist, method: :delete, data: { confirm: '本当に削除しますか?' } do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %></a>
                   </td>
                 </tr>
               </div>
@@ -101,8 +105,12 @@
                 <tr>
                   <td>
                     <p><%= spot.name %></p>
-                    <a style="font-size:1.2rem;"><%= link_to t("editbutton"), edit_spot_path(spot) %></a>
-                    <a style="font-size:1.2rem;"><%= link_to t("deletebutton"), spot, method: :delete, data: { confirm: '本当に削除しますか?' } %></a>
+                    <a style="font-size:1.2rem;"><%= link_to edit_spot_path(spot) do %>
+                      <i class="fa fa-pencil-square-o"></i>
+                    <% end %></a>
+                    <a style="font-size:1.2rem;"><%= link_to spot, method: :delete, data: { confirm: '本当に削除しますか?' } do %>
+                      <i class="fa fa-trash"></i>
+                    <% end %></a>
                   </td>
                 </tr>
               </div>

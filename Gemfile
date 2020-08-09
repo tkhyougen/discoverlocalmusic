@@ -90,3 +90,5 @@ gem "webdrivers"
 gem "faker"
 gem "dotenv-rails"
 gem "select2-rails"
+gem "toastr-rails"  #noticeメッセージを変更
+gem 'font-awesome-rails', '~>4.7'#アイコン設定

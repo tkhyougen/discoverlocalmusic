@@ -15,7 +15,7 @@
       </div>
       <div class="search_form">
         <%= form.label :自分の好きなアーティストから %>
-        <%= form.select :tag_list, @user.tag_list.map, {include_blank:"複数選択可",include_hidden:false},{multiple: true, class: 'mySelect2 form-control'} %>
+        <%= form.select :tag_list, @user.tag_list.map, {include_blank:"複数選択可",include_hidden:false},{multiple: true, class:'mySelect2 form-control'} %>
       </div>
   </div>
       <div class="search_button">

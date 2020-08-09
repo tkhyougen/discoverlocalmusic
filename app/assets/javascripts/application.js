@@ -7,5 +7,6 @@
 //= require activestorage
 //= require jquery.turbolinks
 // require turbolinks
+//= require toastr
 //= require bootstrap/dist/js/bootstrap.min
 //= require_tree .
