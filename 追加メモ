@@ -17,6 +17,7 @@ config.assets.js_compressor = Uglifier.new(harmony: true)
 以下にGOOGLEAPIKEY
 helper localartist
 layout applications
+.env
 
 ##heroku
 git add commit heroku master
