@@ -50,8 +50,12 @@
 
     <div class ="user_profile_lower">
       <p><%= t("localartist.youtube_url") %></p>
-      <p class="profile_data"><%= form.hidden_field :youtube_url %></p>
-      <p><%= @localartist.youtube_url %></p>
+      <%= form.fields_for :youtubes do |form| %> <!-- hiddenでパラメータ飛ばす　-->
+          <p class="profile_data"><%= form.hidden_field :address %></p>
+      <% end %>
+      <% @youtubes.each do |a| %>  <!-- eachでアドレス表示　-->
+        <p><%= a.address %> </p>
+      <% end %>
     </div>
 
     <div class ="user_profile_lower_button_edit">

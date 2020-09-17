@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # ログインしていないと一切の投稿や閲覧ができないようにする
-  before_action :check_user, unless: :devise_controller?
+  # before_action :check_user, unless: :devise_controller?
 
   # 下のdef configure..を実行
   before_action :configure_permitted_parameters, if: :devise_controller?

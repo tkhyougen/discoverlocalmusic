@@ -49,22 +49,26 @@ class LocalartistsController < ApplicationController
     path = Rails.application.routes.recognize_path(request.referer)
     if params[:back]
       @localartist = Localartist.new(localartist_params)
+      @localartist.youtubes.build
     else
       @localartist = Localartist.new
+      @localartist.youtubes.build
     end
   end
 
   def confirm
     @localartist = Localartist.new(localartist_params)
+    # @localartist.youtubes.build
     @localartist.user_id = current_user.id
     render :new if @localartist.invalid?
+    @youtubes = @localartist.youtubes
   end
 
   def create
     @localartist = Localartist.new(localartist_params)
     @localartist.user_id = current_user.id
-    #youtubeのアドレス下11桁を取り出し、viewにあてはめ
-    set_youtube
+    # set_youtube
+
     if params[:back]
       #戻るで再入力の際にタグを残す
       set_localartist_tags_to_gon
@@ -83,6 +87,8 @@ class LocalartistsController < ApplicationController
 
   def edit
     #set_localrtist
+    @localartist.youtubes.build
+    @youtubes = @localartist.youtubes
   end
 
   def update
@@ -97,6 +103,7 @@ class LocalartistsController < ApplicationController
 
   def show
     #set_localrtist
+    set_youtube
     @comments = @localartist.comments.all.order('created_at DESC')
     @comment = @localartist.comments.build
     #youtube api
@@ -118,7 +125,7 @@ class LocalartistsController < ApplicationController
   private
 
   def localartist_params
-    params.require(:localartist).permit(:image,:image_cache, :name, :comment,:country, :post_comment, :tag_list, :who_list, :youtube_url)
+    params.require(:localartist).permit(:image,:image_cache, :name, :comment,:country, :post_comment, :tag_list, :who_list, :user_id, :youtube_url,youtubes_attributes:[:id, :localartist_id, :address, :_destroy])
   end
 
   def set_localartist
@@ -138,9 +145,23 @@ class LocalartistsController < ApplicationController
   end
 
   def set_youtube
-    url = params[:localartist][:youtube_url]
-    url = url.last(11)
-    @localartist.youtube_url = url
+    # url = params[:localartist][:youtubes][:address]
+    # url = url.last(11)
+    # @localartist.youtube_url = url
+    @all = []
+    if @localartist.youtubes.pluck("address").first.present?
+      firstadd = @localartist.youtubes.pluck("address").first.last(11)
+      @all << firstadd
+    end
+    if @localartist.youtubes.pluck("address").second.present?
+      secondadd = @localartist.youtubes.pluck("address").second.last(11)
+      @all << secondadd
+    end
+    if @localartist.youtubes.pluck("address").third.present?
+      thirdadd = @localartist.youtubes.pluck("address").third.last(11)
+      @all << thirdadd
+    end
+
   end
 
 end

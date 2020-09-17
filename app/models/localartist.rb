@@ -20,4 +20,8 @@ class Localartist < ApplicationRecord
   #画像アップロード
   mount_uploader :image, ImageUploader
 
+  #youtube urlをnested
+  has_many :youtubes, dependent: :destroy
+  accepts_nested_attributes_for :youtubes, allow_destroy: true
+
 end

@@ -1,7 +1,7 @@
 <!--新規作成newの場合、もしくは投稿者による編集の場合はすべての項目を入力できる -->
 <% unless controller.action_name == 'edit' && current_user != @localartist.user %>
 
-      <%= form_with(model: @localartist, local: true, url: choose_new_or_edit_localartists) do |form| %>
+      <%= nested_form_for(@localartist, local: true, url: choose_new_or_edit_localartists) do |form| %>
       <!--エラー  -->
           <% if @localartist.errors.any? %>
             <div id="error_explanation">
@@ -13,7 +13,7 @@
               </ul>
             </div>
           <% end %>
-
+     <!-- エラー -->
         <div class ="container_profile">
           <div class="user_profile_upper">
             <div class="user_profile_upper_left">
@@ -57,23 +57,58 @@
             </div>
           </div>
 
-          <div class ="user_profile_lower">
-            <p class="profile_data"><%= form.label :youtube %></p>
-            <p><%= form.text_field :youtube_url,placeholder:"Youtubeアドレスを貼ってください(e.g. https://www.youtube.com/watch?v=XXXXXX)", autofocus: true, class:"form-control" %></p>
-          </div>
+           <!-- #### -->
+             <p class="profile_data" style="text-align:center;"><%= form.label :youtube %></p>
+             <%= form.fields_for :youtubes do |youtube_form| %>
+               <div class ="localartist_youtube">
+                  <div class="field">
+                    <p><%= youtube_form.text_field :address,placeholder:"Youtubeアドレスを貼ってください(e.g. https://www.youtube.com/watch?v=XXXXXX)",autofocus: true, class:"form-control" %></p>
+                  </div>
+               </div>
+               <%= youtube_form.link_to_remove "削除" %>
+             <% end %>
+             <%= form.link_to_add "アドレス追加", :youtubes, data: { limit: 3 } %>
+
+
+          <script>
+            $(function() {
+                // アドレスの追加は3つまで
+              $(document).on('nested:fieldAdded', function(e) {
+                // setFieldNum();
+                var link = $(e.currentTarget.activeElement);
+                if (!link.data('limit')) {
+                  return;
+                }
+                if (link.siblings('.fields:visible').length >= link.data('limit')) {
+                  link.hide();
+                }
+              });
+
+              $(document).on('nested:fieldRemoved', function(e) {
+                var link = $(e.target).siblings('a.add_nested_fields');
+                if (!link.data('limit')) {
+                  return;
+                }
+                if (link.siblings('.fields:visible').length < link.data('limit')) {
+                  link.show();
+                }
+              });
+            })
+          </script>
 
           <div class="user_profile_lower_button_edit">
-            <div class="update_field">
-                <div class="actions">
-                  <p><%= form.submit t("submit"),class:"btn btn-primary btn-block btn-lg" %></p>
-                  <% if controller.action_name == 'edit' %>
-                    <p><%= link_to t("back"), localartist_path(@localartist.id) %></p>
+           <div class="update_field">
+               <div class="actions">
+                 <p><%= form.submit t("submit"),class:"btn btn-primary btn-block btn-lg" %></p>
+                 <% if controller.action_name == 'edit' %>
+                   <p><%= link_to t("back"), localartist_path(@localartist.id) %></p>
                   <% end %>
                 </div>
             </div>
           </div>
-        </div>
-      <% end %>
+         </div>
+       <% end %>
+
 
 <!--日投稿者による編集はタグ追加のみ-->
 <% else %>
@@ -128,9 +163,14 @@
 
         <div class ="user_profile_lower">
           <p><%= t("localartist.youtube_url") %></p>
-          <p class="profile_data"><%= form.hidden_field :youtube_url %></p>
-          <p><%= @localartist.youtube_url %></p>
+          <%= form.fields_for :youtubes do |form| %> <!-- hiddenでパラメータ飛ばす　-->
+              <p class="profile_data"><%= form.hidden_field :address %></p>
+          <% end %>
+          <% @youtubes.each do |a| %>  <!-- eachでアドレス表示　-->
+            <p><%= a.address %> </p>
+          <% end %>
         </div>
+        <br><br>
 
         <div class ="user_profile_lower_button_edit">
           <div class="update_field">
@@ -138,5 +178,6 @@
             <p><%= link_to t("back"), localartist_path(@localartist.id) %></p>
           </div>
         </div>
+      </div>
     <% end %>
 <% end %>

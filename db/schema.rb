@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_162637) do
+ActiveRecord::Schema.define(version: 2020_08_13_153006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,14 @@ ActiveRecord::Schema.define(version: 2020_07_08_162637) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "youtubes", force: :cascade do |t|
+    t.bigint "localartist_id"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["localartist_id"], name: "index_youtubes_on_localartist_id"
+  end
+
   add_foreign_key "comments", "localartists"
   add_foreign_key "comments", "users"
   add_foreign_key "localartists", "users"
@@ -128,4 +136,5 @@ ActiveRecord::Schema.define(version: 2020_07_08_162637) do
   add_foreign_key "spotcomments", "users"
   add_foreign_key "spots", "users"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "youtubes", "localartists"
 end
