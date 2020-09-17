@@ -7,9 +7,11 @@
             <div class ="comment-content" id ="this_comment_<%= comment.id %>"></div>
             ユーザー<%= comment.user.name %>のコメント<div class="balloon"><%= comment.content %></div>
             <% if comment.user == current_user %>
-              <a><%= link_to "編集", edit_localartist_comment_path(localartist, comment), remote: true %></a>
-              <a><%= link_to "削除", localartist_comment_path(comment.localartist_id, comment.id), method: :delete, remote: true,
-                                              data: { confirm: "本当に削除しますか?"} %></a>
+              <%= link_to edit_localartist_comment_path(localartist, comment), remote: true do %><i class ="fa fa-pencil-square-o"></i>
+              <% end %>
+              <%= link_to localartist_comment_path(comment.localartist_id, comment.id), method: :delete, remote: true, data: { confirm: "本当に削除しますか?"} do %><i class ="fa fa-trash"></i>
+              <% end %>
+                                    
             <% end %>
           </li>
         <% end %>

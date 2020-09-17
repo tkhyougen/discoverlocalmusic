@@ -11,7 +11,7 @@ ja:
         name: アーティスト名
         country: 国
         comment: コメント
-        youtube: おすすめYoutube動画
+        youtube: おすすめYoutube動画(3件まで)
         myfavorite: 自分のお気に入りアーティストから
       spot:
         image: 写真

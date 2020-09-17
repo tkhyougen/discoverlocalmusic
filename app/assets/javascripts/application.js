@@ -8,5 +8,6 @@
 //= require jquery.turbolinks
 // require turbolinks
 //= require toastr
+//= require jquery_nested_form 
 //= require bootstrap/dist/js/bootstrap.min
 //= require_tree .

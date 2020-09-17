@@ -25,7 +25,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # # PUT /resource
   def update
-
     @userartistlists = @user.localartists.page(params[:page]).per(PER)
     @userspots = @user.spots.page(params[:page]).per(PER)
 

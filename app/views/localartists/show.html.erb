@@ -40,7 +40,8 @@
   <div class ="user_profile_myposts artists">
     <p> <%= t("localartist.youtube") %></p>
     <div class="user_profile_posts">
-      <% if @youtube_data.present? %>     <!--youtube apiで自動表示-->
+      <!--youtube apiで自動表示-->
+      <% if @youtube_data.present? %>
         <% @youtube_data.each do |item| %>
           <table>
             <div class="user_profile_each">
@@ -54,12 +55,19 @@
           </table>
         <% end %>
       <% end %>
+      <!-- -->
 
-      <div class="user_profile_each">  <!-- 自分が貼り付けたyoutbe -->
-        <% if @localartist.youtube_url.present? %>
-          <p><iframe width="250" height="250" src="https://www.youtube.com/embed/<%= @localartist.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+        <!-- youtbeアソシエーション-->
+        <% if @localartist.youtubes.present? %>
+          <div class="user_profile_posts">
+            <% @all.each do |each| %>
+              <div class="user_profile_each">
+                <p><iframe width="250" height="250" src="https://www.youtube.com/embed/<%=each%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+              </div>
+            <% end %>
+          </div>
         <% end %>
-      </div>
+
     </div>
   </div>
 
