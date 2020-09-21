@@ -1,11 +1,12 @@
 # README
 
 # DISCOVER LOCAL MUIC
+https://mighty-lake-26726.herokuapp.com/
 
 ## 概要
-自分の好きな国とｱｰﾃｨｽﾄを登録することで、他のユーザーが投稿した
-中から、国ごとに自分の嗜好に似たﾛｰｶﾙｱｰﾃｨｽﾄを検索ことができます。
-また、国ごとのスポットも投稿/閲覧できます。
+自分の好きなｱｰﾃｨｽﾄを登録することで、他のユーザーが投稿した
+中から、国ごとに自分の嗜好に似たﾛｰｶﾙｱｰﾃｨｽﾄを検索することができます。
+また、同じように国ごとの音楽スポットも投稿/閲覧できます。
 
 ## バージョン情報
 Ruby 2.6.5
@@ -31,6 +32,7 @@ mini_magick  (image resize)
 acts_as_taggable_on
 gon
 ransack
+nested_form
 etc.
 
-https://peaceful-atoll-36393.herokuapp.com/
+<!-- https://peaceful-atoll-36393.herokuapp.com/ -->
