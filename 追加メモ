@@ -1,14 +1,17 @@
 http://localhost:3000/
 
 
+###デプロイ前には例外処理
+config/environments/production.rb
+config.consider_all_requests_local = falseに変更することでエラー画面表示
+
+
 #### アセットコンパイル
 rails assets:precompile RAILS_ENV=production
 #### git add commit push origin
 ### git push heroku master でデプロイ
 
-###デプロイ前には例外処理
-config/environments/production.rb
-config.consider_all_requests_local = falseに変更することでエラー画面表示
+
 
 ##ES6でエラー
 config.assets.js_compressor = Uglifier.new(harmony: true)
