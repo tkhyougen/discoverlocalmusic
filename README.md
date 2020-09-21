@@ -29,10 +29,10 @@ google geocoder (map)
 google/api_client (youtube)  
 carrierwave  (image upload)  
 mini_magick  (image resize)  
-acts_as_taggable_on
-gon
-ransack
-nested_form
-etc.
+acts_as_taggable_on   
+gon   
+ransack   
+nested_form   
+etc.    
 
 <!-- https://peaceful-atoll-36393.herokuapp.com/ -->
