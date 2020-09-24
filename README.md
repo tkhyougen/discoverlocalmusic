@@ -1,6 +1,6 @@
 # README
 
-# DISCOVER LOCAL MUIC
+# DISCOVER LOCAL MUSIC
 https://mighty-lake-26726.herokuapp.com/
 
 ## 概要
@@ -29,10 +29,10 @@ google geocoder (map)
 google/api_client (youtube)  
 carrierwave  (image upload)  
 mini_magick  (image resize)  
-acts_as_taggable_on   
-gon   
-ransack   
-nested_form   
+acts_as_taggable_on  (label)
+gon   (label)
+ransack   (search)
+nested_form   (post)
 etc.    
 
 <!-- https://peaceful-atoll-36393.herokuapp.com/ -->
